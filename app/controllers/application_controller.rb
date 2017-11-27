@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  # before_action :
-  # before_action :
+  before_action :authenticate!
 
-  before_action def authenticate!
-    authenticate_handy! || authenticate_client!
-  end
+  def authenticate!
+   :authenticate_handy! || :authenticate_client!
+   @current_user = handy_signed_in? ? current_handy : current_client
+end
 end
