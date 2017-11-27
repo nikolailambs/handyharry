@@ -1,0 +1,24 @@
+<%= simple_form_for [:handies, @project] do |f| %>
+<!-- INPUT NICOLAI FOR PROJECT -->
+
+  <%= f.input 'title' %>
+  <%= f.input 'description' %>
+  <%= f.input 'address' %>
+  <%= f.input 'deadline' %>
+
+  <%= f.simple_fields_for :tasks do |task| %>
+    <%= render 'task_field', f: task %>
+  <% end %>
+
+  <%= f.simple_fields_for :clients do |client| %>
+    <%= f.association :client %>
+    <%# render 'client_field', f: client %>
+  <% end %>
+  <div class="links">
+  </br>
+  <%#= link_to_add_association 'add task', f, :doses, class: "btn btn-primary" %>
+  </div>
+  </br>
+
+  <%= f.button :submit %>
+<% end %>

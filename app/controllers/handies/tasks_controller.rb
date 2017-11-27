@@ -4,13 +4,13 @@ class TasksController < ApplicationController
     @project = Project.find(params[:project_id])
     @task = Task.find(params[:id])
     @task.destroy
-    redirect_to project_path(@task.project)
+    redirect_to handies_project_path(@task.project)
   end
 
   private
 
   def task_params
-    params.require(:task).permit(:title, :description, :assigned_to, status: true, :deadline)
+    params.require(:task).permit(:title, :description, :assigned_to, :status, :deadline)
   end
 
 end
