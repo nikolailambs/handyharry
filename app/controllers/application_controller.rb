@@ -5,5 +5,6 @@ class ApplicationController < ActionController::Base
   def authenticate!
    :authenticate_handy! || :authenticate_client!
    @current_user = handy_signed_in? ? current_handy : current_client
-end
+ end
+
 end
