@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :handies
 
   resources :projects do
-    resources :tasks
+    resources :tasks, except: [:shwow]
   end
 
   resources :messages, except: [:update, :edit]

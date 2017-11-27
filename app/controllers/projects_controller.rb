@@ -3,12 +3,18 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    # @project = Project.find(params[:project_id])
+    # @tasks = Task.all
+    # @task.project = @project
   end
 
   def new
+    @project = Project.new
+    @project.tasks.build
   end
 
   def create
+
   end
 
   def edit
