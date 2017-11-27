@@ -2,11 +2,11 @@ Rails.application.routes.draw do
   devise_for :clients
   devise_for :handies
 
-
   namespace :handies do
     resources :projects do
-      resources :tasks
+      resources :tasks, only: [:new, :create]
     end
+    resources :tasks, only: [:destroy]
 
     resources :messages, except: [:update, :edit]
   end
