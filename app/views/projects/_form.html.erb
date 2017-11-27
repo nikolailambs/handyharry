@@ -1,0 +1,14 @@
+<%= simple_form_for(@projects) do |f| %>
+
+<!-- INPUT NICOLAI FOR PROJECT -->
+
+<%= f.simple_fields_for :tasks do |task| %>
+  <%= render 'task_field', f: task %>
+<% end %>
+<div class="links">
+  </br>
+  <%= link_to_add_association 'add task', f, :doses, class: "btn btn-primary" %>
+</div>
+</br>
+<%= f.button :submit, class: "btn btn-primary"  %>
+<% end %>
