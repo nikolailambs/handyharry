@@ -18,7 +18,7 @@ class Handies::ProjectsController < ApplicationController
     @project = Project.new(project_params)
 
     if @project.save
-      redirect_to @project
+      redirect_to project_path(@project)
     else
       render :new
     end
@@ -28,9 +28,7 @@ class Handies::ProjectsController < ApplicationController
   end
 
   def update
-    @project.update(project_params)
-
-    if @project.save
+    if @project.update(project_params)
       redirect_to @project
     else
       render :edit
@@ -38,7 +36,7 @@ class Handies::ProjectsController < ApplicationController
   end
 
   def destroy
-    @project.delete
+    @project.destroy
     redirect_to projects_path
   end
 
@@ -49,7 +47,7 @@ class Handies::ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:address, :deadline, :description, :title, tasks_attributes: [:id, :title, :description, :assigned_to, status:, :deadline, :project_id])
+    params.require(:project).permit(:address, :deadline, :description, :title, tasks_attributes: [:id, :title, :description, :assigned_to, status:, :deadline])
   end
 end
 
