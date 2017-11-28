@@ -1,8 +1,14 @@
 class MessagesController < ApplicationController
 
-
   def inbox
-    @messages = olicy_scope(Message).order(created_at: :desc)
+    ids = Message.select("MAX(id) AS id").group(:receiver_id).collect(&:id)
+    @conversations = Message.order("created_at DESC").where(id: ids).where(sender: current_user).or(Message.order("created_at DESC").where(id: ids).where(receiver: current_user))
+  end
+
+  def index
+    @message_receiver = Message.find(params[:id]).receiver
+    @message_sender = Message.find(params[:id]).sender
+    @messages = Message.where(receiver: @message_receiver).where(sender: current_user).or(Message.where(sender: @message_sender).where(receiver: current_user))
   end
 
   def show
@@ -18,7 +24,7 @@ class MessagesController < ApplicationController
     @message.receiver = User.find(params[:message][:receiver_id])
 
     if @message.save
-      redirect_to messages_path
+      redirect_to inbox_path
     else
       render :new
     end

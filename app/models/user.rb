@@ -4,7 +4,8 @@ class User < ApplicationRecord
   has_many :messages
   has_many :projects
   has_many :tasks, through: :projects
-  has_many :conversations, through: :messages
+
+  has_many :conversations, foreign_key: :sender_id
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
