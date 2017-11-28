@@ -1,5 +1,38 @@
 class TasksController < ApplicationController
 
+  before_action :set_task, only: [:edit, :update, :destroy]
+
+  def index
+    @project = Project.find(params[:project_id])
+    @task.project = @project
+    @task = Task.all
+  end
+
+  def create # only the user
+    @task = Task.new(task_params)
+    @project = Project.find(params[:project_id])
+    @task.project = @project
+    authorize @task
+
+    if @task.save
+      flash[:notice] = "Task added"
+      redirect_to project_path(@project)
+    else
+      flash[:alert] = "Something went wrong"
+      render "projects/show"
+    end
+  end
+
+  def update
+    if @task.update(task_params)
+      flash[:notice] = "Task updated"
+      redirect_to project_path(@project)
+    else
+      flash[:alert] = "Something went wrong"
+      render "projects/show"
+    end
+  end
+
   def destroy
     @project = Project.find(params[:project_id])
     @task = Task.find(params[:id])
@@ -9,8 +42,12 @@ class TasksController < ApplicationController
 
   private
 
-  def task_params
-    params.require(:task).permit(:title, :description, :assigned_to, :status, :deadline)
+  def set_project
+    @task = Task.find(params[:id])
+    authorize @task
   end
 
+  def task_params
+    params.require(:task).permit(:description)
+  end
 end
