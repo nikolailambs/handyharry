@@ -1,2 +1,116 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner parallax">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-md-5 text-center">
+
+        <div class="container-content">
+          <h1><em>Handy</em> Harry</h1>
+          <p>The Task Manager for Handymen</p>
+          <div style="height: 40px; width: 100%; font-size: 3vh" id="typed-content"></div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-md-offset-3 col-md-4">
+        <div class="new-handy">
+          <div class="new-handy_intro">
+            <h4>Become a Handy Harry</h4>
+            <p>Create an account</p>
+          </div>
+         <div class="new-handy_form">
+          <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= f.error_notification %>
+            <div class="form-inputs">
+              <%= f.input :first_name, label: false, placeholder:'Charlotte' %>
+              <%= f.input :second_name, label: false, placeholder:'Vercarre' %>
+              <%= f.input :email, label: false, placeholder: "charlotte.vercarre@gmail.com", autofocus: true %>
+              <%= f.input :password, label: false, placeholder: '******', hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+              <%= f.hidden_field :handy, value: true %>
+            </div>
+            <div class="form-actions">
+              <%= f.button :submit, "Sign up" %>
+            </div>
+          <% end %>
+          <hr>
+          <div class="new-handy_login">
+            <p>Already have an account?</p>
+           <%- if controller_name != 'sessions' %>
+            <%= link_to "Log in", new_session_path(resource_name) %><br />
+            <% end -%>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="container">
+  <div class="row">
+    <div class="message">
+      <div class="message-name">
+        <i class="material-icons">access_alarm</i>
+      </div>
+      <div class="message-body">
+        <p> nowadays, we hear <strong>efficiency</strong> <i>comes standard</i></p>
+        <p> it's in our day-to-day, on the job, and at home
+        <p><strong> get the job done</strong> in fewer clicks — like a boss </p>
+      </div>
+      <div class="message-name">
+        <i class="material-icons">cloud_done</i>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="message">
+      <div class="message-name">
+        <i class="material-icons">weekend</i>
+      </div>
+      <div class="message-body">
+        <p> easy peasy. <strong>so easy</strong> a computer could do it </p>
+        <p> but really, go ahead and do your thing</p>
+        <p> <strong>our algorithm learns</strong> your style and work flow </p>
+      </div>
+      <div class="message-name">
+        <i class="material-icons">thumb_up</i>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="message">
+      <div class="message-name">
+        <i class="material-icons">message</i>
+      </div>
+      <div class="message-body">
+        <p><strong> R.I.P. </strong></p>
+        <p> <strong>Mike Roe Mannah-Jing</strong>* </p>
+        <p> collaborate, communicate, and stay in the know </p>
+        <p> (*Get it? <i>MicRoManaging?!</i> genius. we know. rest in peace, Mike.)</p>
+      </div>
+      <div class="message-name">
+        <i class="material-icons">people_outline</i>
+      </div>
+    </div>
+  </div>
+</div>
+
+ -->
+
+<!-- typed.js -->
+<script src="https://unpkg.com/typed.js@2.0.6/lib/typed.js"></script>
+<script>
+
+const typed = new Typed("#typed-content", {
+  strings: ["", "Manage Home Repairs", "Manage Tasks", "Communicate with your customers"],
+  typeSpeed: 100,
+  smartBackspace: true,
+  backSpeed: 100,
+  loop: true,
+  showCursor: false
+});
+
+
+</script>
+
+
+
