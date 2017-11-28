@@ -20,13 +20,13 @@
         <% end %>
       <% end %>
     </ul>
-      <%= link_to 'Add a Task', edit_handies_project_path(@project), class: "btn btn-primary" %>
+      <%= link_to 'Add a Task', edit_project_path(@project), class: "btn btn-primary" %>
       </br>
       </br>
-      <%= link_to 'Back', handies_projects_path, class: "btn btn-primary" %>
+      <%= link_to 'Back', projects_path, class: "btn btn-primary" %>
       </br>
       </br>
-      <%= link_to 'Delete Project', handies_project_path(@project), method: :delete, class: "btn btn-primary" %>
+      <%= link_to 'Delete Project', project_path(@project), method: :delete, class: "btn btn-primary" %>
 
     </div>
   </div>

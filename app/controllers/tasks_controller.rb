@@ -4,7 +4,7 @@ class TasksController < ApplicationController
     @project = Project.find(params[:project_id])
     @task = Task.find(params[:id])
     @task.destroy
-    redirect_to handies_project_path(@task.project)
+    redirect_to project_path(@task.project)
   end
 
   private
