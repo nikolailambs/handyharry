@@ -1,0 +1,15 @@
+<%= simple_form_for @project do |f| %>
+<!-- INPUT NICOLAI FOR PROJECT -->
+
+  <%= f.input 'title' %>
+  <%= f.input 'description' %>
+  <%= f.input 'address' %>
+  <%= f.input 'deadline' %>
+
+  <%= f.simple_fields_for :tasks do |task| %>
+    <%= render 'task_field', f: task %>
+  <% end %>
+  <%= f.association :client %>
+
+  <%= f.button :submit %>
+<% end %>
