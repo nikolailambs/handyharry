@@ -1,0 +1,6 @@
+<% @messages.each do |message| %>
+
+  <%= message.content %>
+  <%= link_to 'Open', conversation_path(message), class:"btn" %>
+  <br>
+<% end %>
