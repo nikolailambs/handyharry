@@ -16,9 +16,9 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    @project.handy = current_user #in the end it should be the client doing the tasks
-    @client = User.find(params[:project][:client_id])
-    @project.client = @client #in the end it should be the handy to whom the tasks gets asigned
+    @project.client = current_user #in the end it should be the client doing the tasks
+    @handy = User.find(params[:project][:handy_id])
+    @project.handy = @handy #in the end it should be the handy to whom the tasks gets asigned
 
     if @project.save
       redirect_to project_path(@project)

@@ -1,5 +1,19 @@
+<div class="container">
+  <div class="row">
+   <% @projects.each do |project| %>
+   <div class="col-xs-12 col-sm-4">
+     <div class="card">
+      <div class="card-category"><%= project.status %></div>
+      <div class="card-description">
+        <%= project.address %>
+        <%= project.title %>
+      </div>
+      <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
+      <%= link_to "", project_path(project), class: "card-link" %>
+    </div>
+  </div>
+  <% end %>
+</div>
+</div>
 
-<% @projects.each do |project| %>
-  <%= project.title %>
-  <%= project.description %>
-<% end %>
+<%= link_to "Add a project", new_project_path, class: "btn btn-primary" %>

@@ -1,11 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <h1><%= @project.title %></h1>
-
-      <!-- INPUT NICOLAI -->
-
-
+      <div class="show-description">
+        <h1><%= @project.title %></h1>
+        <h3> <%= @project.status %> </h3>
+        <h3> <%= @project.address %> </h3>
+        <h3> <%= @project.description %> </h3>
+      </div>
     <ul>
       <% @project.tasks.each do |task| %>
         <li><%= task.title %> </li>
