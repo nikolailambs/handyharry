@@ -2,11 +2,7 @@ class MessagesController < ApplicationController
 
 
   def inbox
-    @messages = Message.all.where(sender_id: current_user)
-  end
-
-  def index
-    @messages = Message.all.where(sender_id: current_user).where(receiver_id: params[:id])
+    @messages = olicy_scope(Message).order(created_at: :desc)
   end
 
   def show

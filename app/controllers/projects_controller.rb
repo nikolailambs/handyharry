@@ -2,23 +2,27 @@ class ProjectsController < ApplicationController
 
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
+
   def index
-    @projects = Project.all
+    @projects = policy_scope(Project).order(created_at: :desc)
   end
 
   def show
+    @task = Task.new
   end
 
   def new
     @project = Project.new
-    @project.tasks.build
+    authorize @project
   end
 
-  def create
+  def create # only the user
     @project = Project.new(project_params)
     @project.client = current_user #in the end it should be the client doing the tasks
     @handy = User.find(params[:project][:handy_id])
     @project.handy = @handy #in the end it should be the handy to whom the tasks gets asigned
+
+    authorize @project
 
     if @project.save
       redirect_to project_path(@project)
@@ -47,6 +51,7 @@ class ProjectsController < ApplicationController
 
   def set_project
     @project = Project.find(params[:id])
+    authorize @project
   end
 
   def project_params
