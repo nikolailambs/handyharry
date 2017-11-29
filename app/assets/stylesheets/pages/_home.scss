@@ -1,1 +1,197 @@
 // Specific CSS for your home-page
+
+
+// **** Banner and Navbar CSS *****
+
+.banner {
+  color: white;
+  min-height: 100vh;
+  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  background-size: cover !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.banner h1 {
+  font-size: 5vh;
+  font-weight: bold;
+  text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+}
+.banner p {
+  font-size: 3vh;
+  font-weight: lighter;
+  color: rgb(255, 255, 255);
+  margin-bottom: 30px;
+  margin-top: 0;
+}
+
+.container-content{
+  // width: 550px;
+  // margin-left: 50px;
+  text-align: left;
+  h1{
+    margin-top: 0;
+    margin-bottom: 0;
+    color: white;
+    text-align: left;
+  }
+  h3{
+    font-size: 20px;
+
+    font-family: $light-font;
+  }
+  .btn-success{
+    background-color: #04194C  !important;
+    border: none !important;
+    font-size: 20px;
+    color: #9bdcd4;
+    font-weight: bolder;
+    &:hover{
+       background-color: #9bdcd4  !important;
+       color: #04194C !important;
+    }
+  }
+}
+
+.parallax {
+  /* The image used */
+  background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), image-url('handyharry.jpeg');
+
+  /* Set a specific height */
+  height: 100vh;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+// **** Form *****
+
+.new-handy {
+  padding: 10px;
+  background-color: #E8EBEF;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.new-handy_intro p {
+  font-size: 16px;
+  color: black;
+}
+
+.new-handy_intro h4 {
+  font-size: 25px;
+  color: black;
+}
+
+.new-handy_form {
+  margin-top: 20px;
+  width: 250px;
+
+  color: black;
+  margin: 0 auto;
+
+}
+
+.new-handy_form input {
+  font-size: 12px;
+  border-color: #B1B9C3;
+}
+
+.new-handy_form input[type=submit]{
+  font-size: 16px;
+}
+
+// **** Form links *****
+
+hr {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border: 0;
+    border-top: 2px solid #DCE0E6;
+}
+.new-handy_login {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.new-handy_login p {
+  font-size: 16px;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.new-handy_login a {
+  font-size: 16px;
+
+}
+
+
+// **** Wrappe Offer *****
+
+.wrapper-offer {
+    height: 100vh;
+    padding: 3em 0 0;
+    background-color: white;
+    background-size: cover;
+    text-align: center;
+}
+
+.wrapper-offer h2{
+  color: #D0D4D8;
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 4vh;
+
+}
+
+.new-handy-value-prop {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 16em;
+    width: 16em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+    background: #D0D4D8;
+    border-radius: 100%;
+    color: white;
+    text-align: center;
+    font-size: 1.25rem;
+}
+
+.new-handy-value-prop-text {
+  font-size: 1.5em;
+}
+
+/* Hover effects */
+.reviews-product:hover {
+  background: #f7f7fa;
+  cursor: pointer;
+}
+.reviews-product-upvote:hover {
+  color: #5898f1;
+  cursor: pointer;
+}
+.reviews-product:hover .product-upvote { transform: scale(1.2) }
+.reviews-product:hover .product-controls-hidden a { color: #E6E6E6 }
+.reviews-product-upvote:hover .product-arrow { border-bottom: 9px solid #5898f1 }
+
+.review-wrapper{
+  display: flex;
+  align-items: center;
+  h3{
+    padding-left: 10px;
+    font-size: 20px;
+  }
+}
+.review-container{
+  p{
+    font-style: italic;
+  }
+}
