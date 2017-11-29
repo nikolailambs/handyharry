@@ -1,9 +1,17 @@
-<div class="navbar-wagon">
-  <!-- Logo -->
-  <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.png" %>
-  <% end %>
+<div class="navbar-wagon" style="background:<%= background %>; box-shadow:<%= shadow %>;">
 
+  <!-- Left navigation -->
+
+
+  <div class="navbar-search">
+    <%= link_to root_path, class: "navbar-wagon-brand" do %>
+       <%= image_tag "logo.png" %>
+    <% end %>
+    <% if user_signed_in? %>
+      <a href="#" id="search-icon"><i class="fa fa-search" aria-hidden="true"></i></a>
+      <p class="search-bar"> Search</p>
+    <% end %>
+  </div>
 
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
@@ -11,9 +19,10 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
-      <%= link_to "Host", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Trips", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Messages", inbox_path, class: "navbar-wagon-item navbar-wagon-link" %>
+
+      <%= link_to inbox_path, class: "navbar-wagon-link" do %>
+      <i class="fa fa-comment" aria-hidden="true"></i>
+      <% end %>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
@@ -41,7 +50,7 @@
       </div>
     <% else %>
       <!-- Login link (when logged out) -->
-      <%= link_to t(".sign_in", default: "Login or sign up as customer"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link btn btn-default" %>
+      <%= link_to t(".sign_in", default: "Customers"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% end %>
   </div>
 
@@ -57,4 +66,16 @@
     </div>
   </div>
 </div>
+
+
+<% content_for(:after_js) do %>
+  <script>
+    $( "#search-icon" ).click(e => {
+      e.preventDefault();
+      $( ".search-bar" ).toggleClass( "active" );
+      $(".search-bar").focus();
+    });
+  </script>
+<% end %>
+
 
