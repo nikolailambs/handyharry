@@ -9,4 +9,12 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+
+  def conversations
+    messages = self.messages
+    senders = messages.map { |m| return m.sender unless m.sender != self }
+    receivers = messages.map { |m| return m.receiver unless m.receiver != self }
+    persons = senders + receivers
+  end
 end

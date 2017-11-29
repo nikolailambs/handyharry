@@ -1,11 +1,14 @@
 class MessagesController < ApplicationController
 
   def inbox
+
+    skip_authorization
     ids = Message.select("MAX(id) AS id").group(:receiver_id).collect(&:id)
     @conversations = Message.order("created_at DESC").where(id: ids).where(sender: current_user).or(Message.order("created_at DESC").where(id: ids).where(receiver: current_user))
   end
 
   def index
+    skip_authorization
     @message_receiver = Message.find(params[:id]).receiver
     @message_sender = Message.find(params[:id]).sender
     @messages = Message.where(receiver: @message_receiver).where(sender: current_user).or(Message.where(sender: @message_sender).where(receiver: current_user))
@@ -15,10 +18,12 @@ class MessagesController < ApplicationController
   end
 
   def new
+    skip_authorization
     @message = Message.new
   end
 
   def create
+    skip_authorization
     @message = Message.new(message_params)
     @message.sender = current_user
     @message.receiver = User.find(params[:message][:receiver_id])
