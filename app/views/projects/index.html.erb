@@ -9,7 +9,8 @@
               <ul>
                 <li>
                   <i class="fa fa-search" aria-hidden="true"></i>
-                  <img class="avatar-large" src="https://kitt.lewagon.com/placeholder/users/gabriel-dehan">
+<!--                   https://bootsnipp.com/snippets/featured/circle-progress-bar-->
+                  <div class="progress-value">  <img class="avatar-large" src="https://kitt.lewagon.com/placeholder/users/gabriel-dehan"></div><!-- MUST BE STATUS LATER!! -->
                   <i class="fa fa-bell-o" aria-hidden="true"></i>
                   <div class="notification-icon">
                     <span class="glyphicon glyphicon-envelope"></span>
@@ -33,6 +34,15 @@
       </div>
 
       <% @projects.each do |project| %>
+      <div  class="myProgress" data-project-completion="<%= project.completion_percentage %>">
+          <span class="progress-left">
+          <span class="progress-bar"></span>
+          </span>
+          <span class="progress-right">
+          <span class="progress-bar"></span>
+          </span>
+
+      </div>
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
@@ -42,6 +52,7 @@
                 <img class="avatar-large" src="https://kitt.lewagon.com/placeholder/users/gabriel-dehan">
                 <%= project.address %>
                 <%= project.status %>
+
                 <%= link_to "", project_path(project), class: "tag-link" %>
                 </li>
               </ul>
@@ -77,9 +88,30 @@
   </div>
 </div>
 
+<%=  content_for :after_js do %>
 
+<script>
+var bar = $(".myProgress");
 
+if (bar) {
+function setProgress(){
+  var status = bar
 
+  if (status = 100)
+    bar.className = "progress green";
+  else if (status = 75)
+    bar.className = "progress blue fifty";
+  else if (status = 50)
+    bar.className = "progress yellow";
+  else if (status < 50)
+    bar.className = "progress pink";
+}
+
+}
+
+</script>
+
+<% end %>
 
 
 
