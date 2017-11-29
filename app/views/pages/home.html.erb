@@ -24,6 +24,7 @@
               <%= f.input :second_name, label: false, placeholder:'Vercarre' %>
               <%= f.input :email, label: false, placeholder: "charlotte.vercarre@gmail.com", autofocus: true %>
               <%= f.input :password, label: false, placeholder: '******', hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+               <%= f.input :password_confirmation, label: false, placeholder: 'Confirm your password' %>
               <%= f.hidden_field :handy, value: true %>
             </div>
             <div class="form-actions">
@@ -45,58 +46,46 @@
 </div>
 
 
-<!-- <div class="container">
+<div class="wrapper-offer">
+  <div class="container">
   <div class="row">
-    <div class="message">
-      <div class="message-name">
-        <i class="material-icons">access_alarm</i>
-      </div>
-      <div class="message-body">
-        <p> nowadays, we hear <strong>efficiency</strong> <i>comes standard</i></p>
-        <p> it's in our day-to-day, on the job, and at home
-        <p><strong> get the job done</strong> in fewer clicks — like a boss </p>
-      </div>
-      <div class="message-name">
-        <i class="material-icons">cloud_done</i>
+    <h2>Handy Harry in your pocket</h2>
+  <div class="col-xs-12 col-md-4">
+    <div class="new-handy-value-prop">
+      <div class="new-handy-value-prop-content">
+          <div>
+            <i class="fa fa-wrench fa-5x" aria-hidden="true"></i>
+          </div>
+          <span class="new-handy-value-prop-text">Manage your Home Repairs</span>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="message">
-      <div class="message-name">
-        <i class="material-icons">weekend</i>
-      </div>
-      <div class="message-body">
-        <p> easy peasy. <strong>so easy</strong> a computer could do it </p>
-        <p> but really, go ahead and do your thing</p>
-        <p> <strong>our algorithm learns</strong> your style and work flow </p>
-      </div>
-      <div class="message-name">
-        <i class="material-icons">thumb_up</i>
+  <div class="col-xs-12 col-md-4">
+    <div class="new-handy-value-prop">
+      <div class="new-handy-value-prop-content">
+        <div>
+            <i class="fa fa-tasks fa-5x" aria-hidden="true"></i>
+          </div>
+          <span class="new-handy-value-prop-text">Add tasks</span>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="message">
-      <div class="message-name">
-        <i class="material-icons">message</i>
-      </div>
-      <div class="message-body">
-        <p><strong> R.I.P. </strong></p>
-        <p> <strong>Mike Roe Mannah-Jing</strong>* </p>
-        <p> collaborate, communicate, and stay in the know </p>
-        <p> (*Get it? <i>MicRoManaging?!</i> genius. we know. rest in peace, Mike.)</p>
-      </div>
-      <div class="message-name">
-        <i class="material-icons">people_outline</i>
+  <div class="col-xs-12 col-md-4">
+    <div class="new-handy-value-prop">
+      <div class="new-handy-value-prop-content">
+        <div>
+            <i class="fa fa-comment fa-5x" aria-hidden="true"></i>
+          </div>
+          <span class="new-handy-value-prop-text">Communicate with your customers</span>
       </div>
     </div>
+  </div>
+
   </div>
 </div>
 
- -->
 
-<!-- typed.js -->
+
 <script src="https://unpkg.com/typed.js@2.0.6/lib/typed.js"></script>
 <script>
 
