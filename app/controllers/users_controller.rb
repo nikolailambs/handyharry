@@ -1,14 +1,8 @@
-class MessagesController < ApplicationController
-
-  def inbox
-    ids = Message.select("MAX(id) AS id").group(:receiver_id).collect(&:id)
-    @conversations = Message.order("created_at DESC").where(id: ids).where(sender: current_user).or(Message.order("created_at DESC").where(id: ids).where(receiver: current_user))
-  end
+class UsersController < ApplicationController
 
   def index
-    @message_receiver = Message.find(params[:id]).receiver
-    @message_sender = Message.find(params[:id]).sender
-    @messages = Message.where(receiver: @message_receiver).where(sender: current_user).or(Message.where(sender: @message_sender).where(receiver: current_user))
+    ids = Message.select("MAX(id) AS id").group(:receiver_id).collect(&:id)
+    @conversations = Message.order("created_at DESC").where(id: ids).where(sender: current_user).or(Message.order("created_at DESC").where(id: ids).where(receiver: current_user))
   end
 
   def show

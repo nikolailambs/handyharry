@@ -1,7 +1,7 @@
 <%= simple_form_for [Message.new] do |f| %>
 
   <div class="assign-to-handy-field">
-    <%= f.hidden_field :receiver_id, value: @messages[0].receiver_id %>
+    <%= f.hidden_field :receiver_id, value: @messages[0].sender_id %>
   </div>
   <%= f.input 'content' %>
   <%= f.button :submit, 'Send' %>
