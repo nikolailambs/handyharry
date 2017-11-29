@@ -1,0 +1,75 @@
+
+// **** Banner *****
+.banner-login a {
+  font-size: 16px;
+}
+
+
+// **** Form login *****
+
+.form-login {
+  background: #E8EBEF;
+  padding: 10px 20px;
+  margin-top: 150px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  h4 {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .btn {
+    margin-bottom: 20px
+  }
+}
+
+
+.form-login input {
+  font-size: 12px;
+  border-color: #B1B9C3;
+}
+
+.form-login input[type=submit]{
+  font-size: 16px;
+}
+
+.user_remember_me label {
+  font-size: 12px;
+}
+
+
+.form-actions {
+  text-align: center;
+
+}
+
+// **** Form booleans ****
+
+.form-booleans {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+
+}
+
+.form-booleans a {
+ font-size: 12px;
+
+}
+
+// **** Form links login*****
+
+.user_signin {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.user_signin p {
+  font-size: 16px;
+  color: black;
+  margin-bottom: 10px;
+}
+
+
