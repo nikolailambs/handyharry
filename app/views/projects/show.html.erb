@@ -1,33 +1,22 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <h1><%= @project.title %></h1>
-
-      <!-- INPUT NICOLAI -->
-
-
-    <ul>
-      <% @project.tasks.each do |task| %>
-        <li><%= task.title %> </li>
-        <li><%= task.description %></li>
-        <li><%= task.assigned_to %></li>
-        <li><%= task.deadline %></li>
-        <% if task.status == true %>
-          <p>Task completed</p>
-        <% end %>
-         <% if task.status == false %>
-          <p>Task open</p>
-        <% end %>
+      <div class="show-description">
+        <h1><%= @project.title %></h1>
+        <h3> <%= @project.status %> </h3>
+        <h3> <%= @project.address %> </h3>
+        <h3> <%= @project.description %> </h3>
+      </div>
+      <% if policy(Task).create? %>
+        <%= render 'tasks/task_field', project: @project %>
+        <%# link_to 'Add a Task', new_project_task_path(@project), class: "btn btn-primary" %>
       <% end %>
-    </ul>
-      <%= link_to 'Add a Task', edit_project_path(@project), class: "btn btn-primary" %>
       </br>
       </br>
       <%= link_to 'Back', projects_path, class: "btn btn-primary" %>
       </br>
       </br>
       <%= link_to 'Delete Project', project_path(@project), method: :delete, class: "btn btn-primary" %>
-
     </div>
   </div>
 </div>

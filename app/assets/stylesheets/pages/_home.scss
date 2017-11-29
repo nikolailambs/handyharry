@@ -38,6 +38,7 @@
   }
   h3{
     font-size: 20px;
+<<<<<<< HEAD
 
     font-family: $light-font;
   }
@@ -52,6 +53,10 @@
        color: #04194C !important;
     }
   }
+=======
+    font-family: $light-font;
+  }
+>>>>>>> b7b13d772429382860d2fd5c9f61ece4d0e6d2af
 }
 
 .parallax {
@@ -134,18 +139,32 @@ hr {
 // **** Wrappe Offer *****
 
 .wrapper-offer {
+<<<<<<< HEAD
     height: 100vh;
     padding: 3em 0 0;
     background-color: white;
+=======
+    min-height: 100vh;
+    padding: 3em 0 0;
+    background-color: #83DACE;
+>>>>>>> b7b13d772429382860d2fd5c9f61ece4d0e6d2af
     background-size: cover;
     text-align: center;
 }
 
 .wrapper-offer h2{
+<<<<<<< HEAD
   color: #D0D4D8;
   text-align: center;
   margin-bottom: 50px;
   font-size: 4vh;
+=======
+  color: white;
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 3.5vh;
+  font-weight: bold;
+>>>>>>> b7b13d772429382860d2fd5c9f61ece4d0e6d2af
 
 }
 
@@ -158,9 +177,15 @@ hr {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 2rem;
+<<<<<<< HEAD
     background: #D0D4D8;
     border-radius: 100%;
     color: white;
+=======
+    background-color: white;
+    border-radius: 100%;
+    color: #83DACE;
+>>>>>>> b7b13d772429382860d2fd5c9f61ece4d0e6d2af
     text-align: center;
     font-size: 1.25rem;
 }

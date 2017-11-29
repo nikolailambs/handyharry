@@ -24,7 +24,7 @@
               <%= f.input :second_name, label: false, placeholder:'Vercarre' %>
               <%= f.input :email, label: false, placeholder: "charlotte.vercarre@gmail.com", autofocus: true %>
               <%= f.input :password, label: false, placeholder: '******', hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-               <%= f.input :password_confirmation, label: false, placeholder: '******' %>
+               <%= f.input :password_confirmation, label: false, placeholder: 'Confirm your password' %>
               <%= f.hidden_field :handy, value: true %>
             </div>
             <div class="form-actions">

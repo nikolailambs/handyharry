@@ -6,10 +6,9 @@
   <%= f.input 'address' %>
   <%= f.input 'deadline' %>
 
-  <%= f.simple_fields_for :tasks do |task| %>
-    <%= render 'task_field', f: task %>
-  <% end %>
-  <%= f.association :client %>
-
+  <div class="assign-to-handy-field">
+    <h4>Assign the project to an handyman!</h4>
+    <%= f.association :handy, :include_blank => false, collection: User.where(handy: true) %>
+  </div>
   <%= f.button :submit %>
 <% end %>

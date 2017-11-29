@@ -1,0 +1,22 @@
+<%= link_to 'Contact a Handyman', new_message_path %>
+<ul>
+  <% @conversations.each do |conversation| %>
+  <div class="message">
+    <img class="avatar-large" src="https://kitt.lewagon.com/placeholder/users/gabriel-dehan">
+    <div class="message-name">
+      <h3><%= conversation.sender_id %></h3>
+      <p><%= conversation.created_at %></p>
+    </div>
+    <div class="message-body">
+      <p><strong> <%= conversation.content %></strong></p>
+    </div>
+    <div class="message-status">
+      <p class="status pending">Pending</p>
+      <%= link_to 'Open', conversation_path(conversation), class:"btn" %>
+    </div>
+  </div>
+</div>
+<% end %>
+</ul>
+
+<%= current_user.id %>
