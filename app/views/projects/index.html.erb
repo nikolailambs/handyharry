@@ -1,21 +1,90 @@
 <div class="container">
   <div class="row">
-   <% @projects.each do |project| %>
-   <div class="col-xs-12 col-sm-4">
-     <div class="card">
-      <div class="card-category"><%= project.status %></div>
-      <div class="card-description">
-        <%= project.address %>
-        <%= project.title %>
+   <div class="col-sm-3 col-md-3">
+    <div class="panel-group" id="accordion">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" href="#facets-1">
+              <ul>
+                <li>
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                  <img class="avatar-large" src="https://kitt.lewagon.com/placeholder/users/gabriel-dehan">
+                  <i class="fa fa-bell-o" aria-hidden="true"></i>
+                  <div class="notification-icon">
+                    <span class="glyphicon glyphicon-envelope"></span>
+                    <span class="message-badge">19</span> <!-- MUST BE MESSAGES COUNNT LATER!! -->
+                  </div>
+                    <% if policy(Project).create? %>
+                      <%= link_to '', new_project_path, class: "fa fa-cart-plus" %> <!-- to be added: aria-hidden="true" -->
+                    <% end %>
+                </li>
+              </ul>
+            </a>
+          </h4>
+        </div>
+        <div id="facets-1" class="panel-collapse collapse in">
+          <ul class="list-group">
+            <div class="list-group-item checkbox checkbox-circle">
+              <input type="text" name="search" id="searchbox" placeholder="Enter a search" />
+            </div>
+          </ul>
+        </div>
       </div>
-      <img class="card-user" src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
-      <%= link_to "", project_path(project), class: "card-link" %>
+
+      <% @projects.each do |project| %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" href="#facets-2"><span class="glyphicon glyphicon-tag"></span>
+              <ul>
+                <li>
+                <img class="avatar-large" src="https://kitt.lewagon.com/placeholder/users/gabriel-dehan">
+                <%= project.address %>
+                <%= project.status %>
+                <%= link_to "", project_path(project), class: "tag-link" %>
+                </li>
+              </ul>
+            </a>
+          </h4>
+        </div>
+        <div id="facets-2" class="panel-collapse collapse in">
+          <ul class="list-group">
+            <div class="list-group-item">
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              <span class="glyphicon glyphicon-envelope"></span>
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+            </div>
+          </ul>
+        </div>
+        <% if policy(Task).create? %>
+          <div class="list-group-item checkbox checkbox-circle">
+            <input type="checkbox" name="created" id="created2" />
+            <label for="created2">
+              <%= render 'task/index', project: @project %>
+            <span class="badge">1</span></label>
+          </div>
+          <div class="list-group-item checkbox checkbox-circle">
+            <input type="checkbox" name="created" id="created2" />
+            <label for="created2">
+              <%= render 'tasks/task_field', project: @project %>
+            <span class="badge">1</span></label>
+          </div>
+        <% end %>
+      <% end %>
+      </div>
     </div>
   </div>
-  <% end %>
-</div>
 </div>
 
-<% if policy(Project).create? %>
-  <%= link_to "Add a project", new_project_path, class: "btn btn-primary" %>
-<% end %>
+
+
+
+
+
+
+
+
+
+
+
