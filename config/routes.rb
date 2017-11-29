@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'chat_rooms/show'
+
   devise_for :users
 
   resources :projects do
@@ -6,9 +8,10 @@ Rails.application.routes.draw do
   end
   resources :tasks, only: [:destroy]
 
-  get '/inbox', to: 'messages#inbox', as: 'inbox'
-  get '/inbox/:id/messages', to: 'messages#index', as: 'conversation'
-  resources :messages, except: [:index, :show, :update, :edit]
+
+  resources :chat_rooms, only: [:show, :index, :new, :create] do
+    resources :messages, only: [:create]
+  end
 
 
   root to: 'pages#home'
