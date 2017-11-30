@@ -3,9 +3,10 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :update, :destroy]
 
   def index
+    #@tasks = Task.all
+    @tasks = policy_scope(Task).order(created_at: :desc)
     @project = Project.find(params[:project_id])
-    @task.project = @project
-    @task = Task.all
+    @tasks.project = @project
   end
 
   def create # only the user
@@ -34,20 +35,22 @@ class TasksController < ApplicationController
   end
 
   def destroy
+
     @project = Project.find(params[:project_id])
     @task = Task.find(params[:id])
     @task.destroy
-    redirect_to project_path(@task.project)
+    redirect_to projects_path
   end
 
   private
 
-  def set_project
+  def set_task
+
     @task = Task.find(params[:id])
     authorize @task
   end
 
   def task_params
-    params.require(:task).permit(:description)
+    params.require(:task).permit(:description, :status)
   end
 end
