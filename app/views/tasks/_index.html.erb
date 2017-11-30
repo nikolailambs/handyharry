@@ -1,32 +1,21 @@
-<li>
-  <input type="checkbox" name="created" id="created2" />
-  <label for="created2">
-  <% project.tasks.each do |task| %>
-    <%#= form_for(task, :id => "status", :remote => true) do |f| %>
-      <%#= f.check_box :called %>
-      <%#= f.submit %>
-    <%# end %>
-    <%= task.description %>
 
-    <%= link_to 'Delete Task', project_task_path(id: task.project.id, project_id: project.id), method: :delete, class: "btn btn-primary" %>
+<%= test = project.tasks.first %>
+
+
+
+<% project.tasks.each do |task| %>
+<%= simple_form_for [project, task], remote: true, html: { id: "form_#{task.id}" } do |f| %>
+<%# simple_form_for :update, url: project_task_path(id: test.project.id, project_id: project.id), :method => :patch do |f| %>
+  <%= f.input :status, label: false, as: :boolean, input_html: { id: "task-check-#{task.id}", class: "task-check", data: { task_id: task.id } } %>
+<% end %>
+<div class= "project-show-product-body">
+<!--     <input type="checkbox" class='project-show-product-checkbox'>
+ -->    <%= task.description %>
+
+    <%= link_to 'Delete', project_task_path(id: task.project.id, project_id: project.id), method: :delete, class: "btn btn-primary" %></br>
     <%#= link_to 'Edit Task', task_path(task) %>
   <% end %>
-</li>
+</div>
 
 <%#= link_to 'Add a Task', project_tasks_path(), class: "btn btn-primary" %>
 
-
-<!-- <script>
-  jQuery(function($){
-    // grab the form in this closure;
-    var form = $("form#status");
-
-    // hide the submit button
-    form.find("input[type=submit]").hide();
-
-    // set the click handler
-    $("#task_called").click(function(){
-      form.submit();
-    });
-  });
-</script> -->

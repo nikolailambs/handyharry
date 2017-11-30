@@ -74,12 +74,6 @@
               <%= render 'tasks/index', project: project %>
             </div>
           <% end %>
-
-          <% if policy(Task).create? || policy(Task).update? || policy(Task).desrtoy?%>
-            <div class="list-group-item checkbox checkbox-circle">
-              <%= render 'tasks/task_field', project: project, task: @task %>
-            </div>
-          <% end %>
           <% end %>
           </ul>
         </div>
