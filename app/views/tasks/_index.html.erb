@@ -1,19 +1,32 @@
-<ul>
-  <% @project.tasks.each do |task| %>
-    <li><%= task.title %> </li>
-    <li><%= task.description %></li>
-    <li><%= task.assigned_to %></li>
-    <li><%= task.deadline %></li>
-    <% if task.status == true %>
-      <p>Task completed</p>
-    <% end %>
-     <% if task.status == false %>
-      <p>Task incomplete</p>
-    <% end %>
-    <%= link_to 'Delete Task', project_task_path(@task), method: :delete, class: "btn btn-primary" %>
-    <%= link_to 'Edit Task', project_task_path(@task) %>
+<li>
+  <input type="checkbox" name="created" id="created2" />
+  <label for="created2">
+  <% project.tasks.each do |task| %>
+    <%#= form_for(task, :id => "status", :remote => true) do |f| %>
+      <%#= f.check_box :called %>
+      <%#= f.submit %>
+    <%# end %>
+    <%= task.description %>
+
+    <%= link_to 'Delete Task', project_task_path(id: task.project.id, project_id: project.id), method: :delete, class: "btn btn-primary" %>
+    <%#= link_to 'Edit Task', task_path(task) %>
   <% end %>
-</ul>
+</li>
+
+<%#= link_to 'Add a Task', project_tasks_path(), class: "btn btn-primary" %>
 
 
-<%= link_to 'Add a Task', project_task_path(task), class: "btn btn-primary" %>
+<!-- <script>
+  jQuery(function($){
+    // grab the form in this closure;
+    var form = $("form#status");
+
+    // hide the submit button
+    form.find("input[type=submit]").hide();
+
+    // set the click handler
+    $("#task_called").click(function(){
+      form.submit();
+    });
+  });
+</script> -->
