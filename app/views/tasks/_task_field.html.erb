@@ -1,11 +1,12 @@
 <!-- nested into project form -->
-<div class="nested-fields">
-  <%= simple_form_for [@project, @task] do |f| %>
+<li>
+  <%= simple_form_for [project, @task] do |f| %>
     <%= f.input :description, label: "Task" , placeholder: "Enter a task description" %>
     <%= f.submit %>
   <% end %>
-  </br>
+</li>
+</br>
   <%#= link_to_remove_association "remove task", f, class: "btn btn-primary"%>
-</div>
+
 
 

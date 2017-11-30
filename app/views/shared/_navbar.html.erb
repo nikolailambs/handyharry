@@ -18,7 +18,7 @@
 
     <% if user_signed_in? %>
 
-      <!-- Links when logged in -->
+      <!-- Chat Room link -->
       <%= link_to chat_rooms_path, class: "navbar-wagon-link" do %>
         <i class="fa fa-comment" aria-hidden="true"></i>
       <% end %>
@@ -38,11 +38,6 @@
               <% end %>
             </li>
             <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-home"></i>  <%= t(".profile", default: "Home") %>
-              <% end %>
-            </li>
-            <li>
               <% logout_path = destroy_user_session_path %>
               <%= link_to logout_path, method: :delete do %>
                 <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
@@ -58,16 +53,32 @@
   </div>
 
   <!-- Dropdown list appearing on mobile only -->
-  <div class="navbar-wagon-item hidden-md hidden-lg">
-    <div class="dropdown">
-      <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
-      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><%= link_to 'Messages', chat_rooms_path %></li>
-        <li><a href="#">Other one</a></li>
-      </ul>
-    </div>
+  <div class="navbar-wagon-right hidden-md hidden-lg">
+    <% if current_user %>
+      <%= link_to chat_rooms_path, class: "navbar-wagon-link" do %>
+        <i class="fa fa-comment" aria-hidden="true"></i>
+      <% end %>
+      <div class="navbar-wagon-xs-dropdown">
+        <div class="dropdown">
+          <% if current_user.handy %>
+              <%= image_tag 'handy.png', class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <% else %>
+              <%= image_tag 'client.png', class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <% end %>
+
+          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+            <li>
+              <% logout_path = destroy_user_session_path %>
+              <%= link_to logout_path, method: :delete do %>
+                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+              <% end %>
+            </li>
+          </ul>
+        </div>
+      </div>
+    <% end %>
   </div>
+
 </div>
 
 

@@ -35,13 +35,12 @@
 
       <% @projects.each do |project| %>
       <div  class="myProgress" data-project-completion="<%= project.completion_percentage %>">
-          <span class="progress-left">
-          <span class="progress-bar"></span>
-          </span>
-          <span class="progress-right">
-          <span class="progress-bar"></span>
-          </span>
-
+        <span class="progress-left">
+        <span class="progress-bar"></span>
+        </span>
+        <span class="progress-right">
+        <span class="progress-bar"></span>
+        </span>
       </div>
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -58,7 +57,7 @@
               </ul>
             </a>
           </h4>
-        </div>
+        </div class="container">
         <div id="facets-2" class="panel-collapse collapse in">
           <ul class="list-group">
             <div class="list-group-item">
@@ -68,21 +67,22 @@
             </div>
           </ul>
         </div>
-        <% if policy(Task).create? %>
-          <div class="list-group-item checkbox checkbox-circle">
-            <input type="checkbox" name="created" id="created2" />
-            <label for="created2">
-              <%= render 'task/index', project: @project %>
-            <span class="badge">1</span></label>
-          </div>
-          <div class="list-group-item checkbox checkbox-circle">
-            <input type="checkbox" name="created" id="created2" />
-            <label for="created2">
-              <%= render 'tasks/task_field', project: @project %>
-            <span class="badge">1</span></label>
-          </div>
-        <% end %>
-      <% end %>
+        <div>
+          <ul>
+          <% if policy_scope(Task) || policy(Task).desrtoy? %>
+            <div class="list-group-item checkbox checkbox-circle">
+              <%= render 'tasks/index', project: project %>
+            </div>
+          <% end %>
+
+          <% if policy(Task).create? || policy(Task).update? || policy(Task).desrtoy?%>
+            <div class="list-group-item checkbox checkbox-circle">
+              <%= render 'tasks/task_field', project: project, task: @task %>
+            </div>
+          <% end %>
+          <% end %>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

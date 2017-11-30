@@ -21,6 +21,9 @@
   width: 35px;
   border-radius: 50%;
 }
+.navbar-wagon-xs-dropdown {
+  padding-left: 20px;
+}
 
 /* left section */
 
@@ -47,7 +50,7 @@
 .search-bar {
   border: 0;
   outline: 0;
-  width: 185px;
+  width: 100px;
   transform: translateX(-10%);
   transition: all .3s ease;
   background-color: transparent;
