@@ -18,6 +18,12 @@
 
     <% if user_signed_in? %>
 
+      <!-- Projects link -->
+
+      <%= link_to projects_path, class: "navbar-wagon-link" do %>
+        <i class="fa fa-wrench" aria-hidden="true"></i>
+      <% end %>
+
       <!-- Chat Room link -->
       <%= link_to chat_rooms_path, class: "navbar-wagon-link" do %>
         <i class="fa fa-comment" aria-hidden="true"></i>
@@ -55,6 +61,9 @@
   <!-- Dropdown list appearing on mobile only -->
   <div class="navbar-wagon-right hidden-md hidden-lg">
     <% if current_user %>
+      <%= link_to projects_path, class: "navbar-wagon-link" do %>
+        <i class="fa fa-wrench" aria-hidden="true"></i>
+      <% end %>
       <%= link_to chat_rooms_path, class: "navbar-wagon-link" do %>
         <i class="fa fa-comment" aria-hidden="true"></i>
       <% end %>
@@ -67,6 +76,11 @@
           <% end %>
 
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+            <li>
+              <%= link_to "#" do %>
+                <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+              <% end %>
+            </li>
             <li>
               <% logout_path = destroy_user_session_path %>
               <%= link_to logout_path, method: :delete do %>
