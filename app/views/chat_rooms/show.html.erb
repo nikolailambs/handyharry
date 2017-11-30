@@ -3,8 +3,15 @@
   <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
       <div class="chat-header">
-        <%= link_to 'Back', chat_rooms_path %>
-        <h4><%= @chat_room.name %></h4></div>
+        <%= link_to 'Back', chat_rooms_path, class:"to-inbox-btn" %>
+        <h4><%= current_user.handy ? User.find(@chat_room.name[:client_id]).first_name + " " + User.find(@chat_room.name[:client_id]).second_name : User.find(@chat_room.name[:handy_id]).first_name + " " + User.find(@chat_room.name[:handy_id]).first_name %>
+        </h4>
+          <% if current_user.handy %>
+            <%= image_tag 'client.png', class:"avatar chat-avatar" %>
+          <% else %>
+            <%= image_tag 'handy.png', class:"avatar chat-avatar" %>
+          <% end %>
+      </div>
       <div class="messages">
         <% @chat_room.messages.each do |message| %>
           <%= render 'messages/message', message: message, user_is_messages_author: message.user == current_user %>
