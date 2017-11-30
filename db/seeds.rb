@@ -3,106 +3,86 @@
 #
 # Examples:
 #
-#   movies = Movie.create!([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create!(name: 'Luke', movie: movies.first
+
+#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
+#   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
 
 User.destroy_all
 Project.destroy_all
 Task.destroy_all
 
+@user_ids = (1..10).to_a
+@date = rand(1.year).seconds.from_now
 
-client_one = User.create!(
-  :email => "client@user.de",
-  :password => "123456",
-  :handy => false,
-)
+@project_ids =(1..5).to_a
 
-client_two = User.create!(
-  :email => "client2@user.de",
-  :password => "123456",
-  :handy => false,
-)
 
-handy = User.create!(
-  :email => "handy@user.de",
-  :password => "123456",
-  :handy => true,
-)
+puts 'Creating 5 fake users...'
 
-p1= Project.create!(
-  :address => "Berliner Allee",
-  :status => false,
-  :description => "Repair Toilet",
-  :title => "Toilet",
-  :client_id => client_one.id,
-  :handy_id => handy.id,
+5.times do
+  user = User.new(
+    email: Faker::Internet.email,
+    password: "123456",
+    speciality: "",
+    handy: false,
+    first_name: Faker::Name.first_name,
+    second_name: Faker::Name.last_name,
+    avatar: "/assets/images/client.png",
+    phone: "",
+    status: ""
   )
+  user.save!
+end
 
-p2 = Project.create!(
-  :address => "Frankfurter Allee",
-  :status => false,
-  :description => "Set up kitchen",
-  :title => "Kitchen",
-  :client_id => client_two.id,
-  :handy_id => handy.id,
-  )
+puts 'Creating 5 fake handies...'
 
-t1 = Task.create!(
-  :description => "abcdefgh",
-  :status => false,
-  :project_id => p1.id
+5.times do
+  user = User.new(
+    email: Faker::Internet.email,
+    password: "123456",
+    speciality: "",
+    handy: true,
+    first_name: Faker::Company.name,
+    second_name: Faker::Name.last_name,
+    avatar: "/assets/images/handy.png",
+    phone: "",
+    status: ""
   )
+  user.save!
+end
 
-t2 = Task.create!(
-  :description => "jhagdfjhlafgsdhj",
-  :status => false,
-  :project_id => p1.id
-  )
+puts 'Creating 2 fake projects...'
 
-t3 = Task.create!(
-  :description => "lkahflk",
-  :status => true,
-  :project_id => p1.id
+5.times do
+  project = Project.new(
+    handy_id: @user_ids.sample,
+    client_id: @user_ids.sample,
+    address: Faker::Address.street_address,
+    deadline: @date,
+    status: false,
+    description: "Toilet is broken. Please fix the toilet seat",
+    title: "Toilet",
+    location: Faker::Address.secondary_address
   )
+  project.save!
+end
 
-t4 = Task.create!(
-  :description => "a,jbdakjs",
-  :status => true,
-  :project_id => p1.id
-  )
+puts 'Creating 2 fake tasks...'
 
-t5 = Task.create!(
-  :description => "kahdflksh",
-  :status => false,
-  :project_id => p1.id
+2.times do
+  task = Task.new(
+    project_id: @project_ids.sample,
+    title: "",
+    description: "Buy toilet seat.",
+    assigned_to: "",
+    status: false,
+    deadline: @date
   )
+  task.save!
+end
 
-t1 = Task.create!(
-  :description => "abcdefgh",
-  :status => false,
-  :project_id => p2.id
-  )
 
-t2 = Task.create!(
-  :description => "jhagdfjhlafgsdhj",
-  :status => true,
-  :project_id => p2.id,
-  )
 
-t3 = Task.create!(
-  :description => "lkahflk",
-  :status => true,
-  :project_id => p2.id
-  )
 
-t4 = Task.create!(
-  :description => "a,jbdakjs",
-  :status => true,
-  :project_id => p2.id,
-  )
-
-t5 = Task.create!(
-  :description => "kahdflksh",
-  :status => false,
-  :project_id => p2.id,
-  )
+puts 'Seeding finished!'

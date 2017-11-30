@@ -22,10 +22,14 @@ class ChatRoomsController < ApplicationController
     @chat_room.handy = User.find(params[:chat_room][:handy_id])
     @chat_room.client = User.find(params[:chat_room][:client_id])
 
-    if @chat_room.save!
-      redirect_to chat_room_path(@chat_room)
+    if ChatRoom.where(handy_id: params[:chat_room][:handy_id]).where(client_id: params[:chat_room][:client_id])
+      redirect_to chat_rooms_path, :flash => { :alert => "Chat already exists" }
     else
-      render 'new'
+      if @chat_room.save
+        redirect_to chat_room_path(@chat_room)
+      else
+        render 'new'
+      end
     end
   end
 
