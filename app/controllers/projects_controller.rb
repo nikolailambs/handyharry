@@ -5,6 +5,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = policy_scope(Project).order(created_at: :desc)
+    @task = Task.new
 
   end
 

@@ -4,9 +4,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :projects do
-    resources :tasks, only: [:new, :create]
+    resources :tasks, only: [:new, :create, :destroy]
   end
-  resources :tasks, only: [:destroy]
 
 
   resources :chat_rooms, only: [:show, :index, :new, :create] do
