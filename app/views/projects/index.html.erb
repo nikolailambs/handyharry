@@ -1,5 +1,6 @@
 <div class="container-fluid">
   <div class="row">
+
     <div class="tabs">
       <a class="tab active" href="#">
         <h3>Today</h3>
@@ -12,37 +13,37 @@
 
   <div class="row">
    <div class="col-xs-12-fluid">
-    <div class="projects">
-      <div class="project">
-        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-        <% @projects.each do |project| %>
-        <div class="card">
-          <div class="card-header">
-            <img class="card-avatar" src="https://kitt.lewagon.com/placeholder/users/gabriel-dehan">
-            <h3><%=project.address %></h3>
-            <p class="urgent">URGENT</p>
-          </div>
-          <div class="card-content">
-            <div class="card-content-details">
-              <div class="card-content-title">
-                <i class="fa fa-wrench" aria-hidden="true"></i>
-                <%= project.title %>
+      <div class="projects">
+        <div class="project">
+          <i class="fa fa-chevron-right" aria-hidden="true"></i>
+          <% @projects.each do |project| %>
+            <div class="card">
+              <div class="card-header">
+                <img class="card-avatar" src="https://kitt.lewagon.com/placeholder/users/gabriel-dehan">
+                <h3><%=project.address %></h3>
+                <p class="urgent">URGENT</p>
               </div>
-              <div class="card-content-location">
-                <i class="fa fa-wrench" aria-hidden="true"></i>
-                <%= project.location %>
+              <div class="card-content">
+                <div class="card-content-details">
+                  <div class="card-content-title">
+                    <i class="fa fa-wrench" aria-hidden="true"></i>
+                    <%= project.title %>
+                  </div>
+                  <div class="card-content-location">
+                    <i class="fa fa-wrench" aria-hidden="true"></i>
+                    <%= project.location %>
+                  </div>
+                </div>
+                <div class="card-content-contacts">
+                  <i class="fa fa-phone" aria-hidden="true"></i>
+                  <i class="fa fa-comment" aria-hidden="true"></i>
+                  <i class="fa fa-road" aria-hidden="true"></i>
+                </div>
               </div>
             </div>
-            <div class="card-content-contacts">
-              <i class="fa fa-phone" aria-hidden="true"></i>
-              <i class="fa fa-comment" aria-hidden="true"></i>
-              <i class="fa fa-road" aria-hidden="true"></i>
-            </div>
-          </div>
+          <% end %>
         </div>
-        <% end %>
       </div>
-    </div>
     </div>
   </div>
 </div>

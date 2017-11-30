@@ -1,6 +1,53 @@
 
-<% @chat_rooms.each do |chat_room| %>
-  <%= chat_room %> <%= link_to 'Open', chat_room_path(chat_room) %>
-<% end %>
-
 <%= link_to 'Add chatroom', new_chat_room_path %>
+<% @chat_rooms.each do |chat_room| %>
+<div class="inbox">
+  <% if chat_room.messages.any? %>
+
+    <% if current_user.handy %>
+      <%= image_tag 'client.png', class:"avatar inbox-avatar-size" %>
+    <% else %>
+      <%= image_tag 'handy.png', class:"avatar inbox-avatar-size" %>
+    <% end %>
+    <div class="inbox-name">
+    <h3>
+      <%= current_user.handy ? User.find(chat_room.name[:client_id]).first_name + " " + User.find(chat_room.name[:client_id]).second_name : User.find(chat_room.name[:handy_id]).first_name + " " + User.find(chat_room.name[:handy_id]).first_name %>
+    </h3>
+    <p><%= chat_room.messages.last.created_at.today? ? chat_room.messages.last.created_at.strftime("%k:%M") : chat_room.messages.last.created_at.strftime("%d.%m.%Y - %k/%M") %></p>
+   </div>
+    <div class="inbox-body">
+      <p>
+       <%= chat_room.messages.last.content %>
+      </p>
+    </div>
+    <div class="inbox-status">
+      <p class="status pending">o</p>
+    </div>
+    <%= link_to 'Open', chat_room_path(chat_room) %>
+    </div>
+
+  <% else %>
+
+    <% if current_user.handy %>
+      <%= image_tag 'client.png', class:"avatar inbox-avatar-size" %>
+    <% else %>
+      <%= image_tag 'handy.png', class:"avatar inbox-avatar-size" %>
+    <% end %>
+    <div class="inbox-name">
+    <h3>
+      <%= current_user.handy ? User.find(chat_room.name[:client_id]).first_name + " " + User.find(chat_room.name[:client_id]).second_name : User.find(chat_room.name[:handy_id]).first_name + " " + User.find(chat_room.name[:handy_id]).first_name %>
+    </h3>
+   </div>
+    <div class="inbox-body">
+      <p>
+       <i>No messages</i>
+      </p>
+    </div>
+    <div class="inbox-status">
+      <p class="status pending">o</p>
+    </div>
+    <%= link_to 'Send first message', chat_room_path(chat_room) %>
+    </div>
+
+  <% end %>
+<% end %>

@@ -1,3 +1,10 @@
+@button-bg-color: #0d5287;
+@button-bg-hover-color: #0585e8;
+@button-text-padding: 14px;
+@button-text-color: white;
+@button-height: 22px;
+@button-text-size: 14px;
+
 .messages {
   font-size: 14px;
   color: #868686;
@@ -65,7 +72,18 @@ input.form-control {
   color: white;
   padding: 10px 20px;
   margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   h4 {
     margin: 0;
+  }
+
+  .chat-avatar {
+  }
+
+  .to-inbox-btn {
+    text-decoration: none;
   }
 }

@@ -2,6 +2,13 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "http://TODO_PUT_YOUR_DOMAIN_HERE" }
   # Settings specified here will take precedence over those in config/application.rb.
 
+####################################### Action cable (messenger)################
+
+  config.action_cable.url = "ws://handyharry.herokuapp.com/cable"
+  config.action_cable.allowed_request_origins = [ "http://handyharry.herokuapp.com", "https://handyharry.herokuapp.com" ]
+
+#############################################################################
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
