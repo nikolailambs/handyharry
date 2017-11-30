@@ -8,6 +8,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'pg'
 gem 'puma'
 gem 'rails', '5.1.4'
+gem 'faker'
 gem 'redis', '~> 3.3'
 
 gem 'autoprefixer-rails'
