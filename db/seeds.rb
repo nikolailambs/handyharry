@@ -84,7 +84,7 @@ end
 
 
 
-puts 'Finished!'
+puts 'Seeding finished!'
 
 
 
