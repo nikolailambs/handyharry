@@ -1,4 +1,17 @@
 
 <%= simple_form_for @chat_room do |f| %>
-  <%= f.input :name %>
+  <% if current_user.handy %>
+    <p>Contact a client (because you are a handy)</p>
+    <div class="assign-to-handy-field">
+      <%= f.association :client, :include_blank => false, collection: User.where.not(id: current_user) %>
+      <%= f.input :handy_id, :as => :hidden, :input_html => { :value => current_user.id } %>
+    </div>
+  <% else %>
+    <p>Contact a handy (because you are a client)</p>
+    <div class="assign-to-handy-field">
+      <%= f.association :handy, :include_blank => false, collection: User.where.not(id: current_user) %>
+      <%= f.input :client_id, :as => :hidden, :input_html => { :value => current_user.id } %>
+    </div>
+  <% end %>
+  <%= f.submit 'Contact' %>
 <% end %>
