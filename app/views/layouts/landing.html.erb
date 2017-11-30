@@ -8,20 +8,14 @@
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
   </head>
-  <body>
-    <% if current_page?(root_path) %>
-      <%= render 'shared/navbar', background: "transparent", shadow: "none" %>
-    <% else %>
-      <%= render 'shared/navbar', background: "#83DACE", shadow: "0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03)" %>
-    <% end %>
+  <body class='parallax'>
+    <%= render 'shared/navbar', background: "transparent", shadow: "none" %>
 
     <%= render 'shared/flashes' %>
-
-    <div class="main">
-      <%= yield %>
-    </div>
+    <%= yield %>
+    <% unless current_page?(new_user_session_path) %>
       <%= render 'shared/footer' %>
+    <% end %>
     <%= javascript_include_tag 'application' %>
-    <%= yield(:after_js) %>
   </body>
 </html>
