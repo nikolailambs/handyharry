@@ -1,0 +1,6 @@
+
+<% @chat_rooms.each do |chat_room| %>
+  <%= chat_room %> <%= link_to 'Open', chat_room_path(chat_room) %>
+<% end %>
+
+<%= link_to 'Add chatroom', new_chat_room_path %>
