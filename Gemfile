@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.3.5'
 
-gem 'faker'
 gem "pundit"
 gem 'devise'
 gem 'figaro'
@@ -9,7 +8,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'pg'
 gem 'puma'
 gem 'rails', '5.1.4'
-gem 'redis'
+gem 'faker'
+gem 'redis', '~> 3.3'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'

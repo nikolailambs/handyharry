@@ -4,11 +4,20 @@
   margin-right: 10px;
 }
 
+.unread-message-background {
+  background-color: #DFF1EF;
+}
+
 .inbox {
   display: flex;
   align-items: center;
   padding: 20px;
   border-bottom: 1px solid rgba(220,224,244,0.4);
+  position: relative;
+
+  p {
+    margin: 10px;
+  }
 }
 .inbox:last-child {
   border-bottom: none;
@@ -47,15 +56,26 @@
   margin: 6px 0;
 }
 .inbox-status {
-  font-size: 14px;
+  font-size: 24px;
   font-weight: bold;
-}
-.status.accepted {
-  color: #04A366;
-}
-.status.declined {
-  color: red;
-}
-.status.pending {
   color: lightgrey;
+
+  .unread-message {
+    color: #F22F17;
+  }
+}
+
+.open-message {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index: 2;
+  background: black;
+  opacity: 0;
+
+  &:hover {
+    opacity: 0.1;
+  }
 }

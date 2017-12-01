@@ -1,53 +1,56 @@
-
-<%= link_to 'Add chatroom', new_chat_room_path %>
+<% contact = current_user.handy ? "client" : "handyman" %>
+<%= link_to 'Contact a Person', new_chat_room_path %>
 <% @chat_rooms.each do |chat_room| %>
-<div class="inbox">
-  <% if chat_room.messages.any? %>
 
+
+  <% if chat_room.messages.any? %>
+  <div class="inbox <%= chat_room.messages.last.read ? "read-message-background" : "unread-message-background" %>">
     <% if current_user.handy %>
-      <%= image_tag 'client.png', class:"avatar inbox-avatar-size" %>
+    <%= image_tag 'client.png', class:"avatar inbox-avatar-size" %>
     <% else %>
-      <%= image_tag 'handy.png', class:"avatar inbox-avatar-size" %>
+    <%= image_tag 'handy.png', class:"avatar inbox-avatar-size" %>
     <% end %>
     <div class="inbox-name">
-    <h3>
-      <%= current_user.handy ? User.find(chat_room.name[:client_id]).first_name + " " + User.find(chat_room.name[:client_id]).second_name : User.find(chat_room.name[:handy_id]).first_name + " " + User.find(chat_room.name[:handy_id]).first_name %>
-    </h3>
-    <p><%= chat_room.messages.last.created_at.today? ? chat_room.messages.last.created_at.strftime("%k:%M") : chat_room.messages.last.created_at.strftime("%d.%m.%Y - %k/%M") %></p>
-   </div>
+      <h3>
+        <%= current_user.handy ? User.find(chat_room.name[:client_id]).first_name + " " + User.find(chat_room.name[:client_id]).second_name : User.find(chat_room.name[:handy_id]).first_name + " " + User.find(chat_room.name[:handy_id]).second_name %>
+      </h3>
+      <p><%= chat_room.messages.last.created_at.today? ? chat_room.messages.last.created_at.strftime("%k:%M") : chat_room.messages.last.created_at.strftime("%d.%m.%Y - %k/%M") %></p>
+    </div>
     <div class="inbox-body">
       <p>
-       <%= chat_room.messages.last.content %>
+        <%= chat_room.messages.last.user == current_user ? "✓✓" : "" %>
+        <%= chat_room.messages.last.content %>
       </p>
     </div>
     <div class="inbox-status">
-      <p class="status pending">o</p>
-    </div>
-    <%= link_to 'Open', chat_room_path(chat_room) %>
-    </div>
+      <p class='status <%= chat_room.messages.last.read ? "read-message" : "unread-message" %>'>
+       <% if !chat_room.messages.last.read %> <!-- message.read gets set to true form the other person, because its not individual for each person so it gets setted true as soon as ones sends it from the chatroom -->
+       ●
+       <% end %>
+     </p>
+   </div>
+   <%= link_to '', chat_room_path(chat_room), class:"open-message" %>
+  </div>
 
   <% else %>
-
+  <div class="inbox unread-message-background">
     <% if current_user.handy %>
-      <%= image_tag 'client.png', class:"avatar inbox-avatar-size" %>
+    <%= image_tag 'client.png', class:"avatar inbox-avatar-size" %>
     <% else %>
-      <%= image_tag 'handy.png', class:"avatar inbox-avatar-size" %>
+    <%= image_tag 'handy.png', class:"avatar inbox-avatar-size" %>
     <% end %>
     <div class="inbox-name">
-    <h3>
-      <%= current_user.handy ? User.find(chat_room.name[:client_id]).first_name + " " + User.find(chat_room.name[:client_id]).second_name : User.find(chat_room.name[:handy_id]).first_name + " " + User.find(chat_room.name[:handy_id]).first_name %>
-    </h3>
-   </div>
+      <h3>
+        <%= current_user.handy ? User.find(chat_room.name[:client_id]).first_name + " " + User.find(chat_room.name[:client_id]).second_name : User.find(chat_room.name[:handy_id]).first_name + " " + User.find(chat_room.name[:handy_id]).first_name %>
+      </h3>
+    </div>
     <div class="inbox-body">
       <p>
        <i>No messages</i>
-      </p>
-    </div>
-    <div class="inbox-status">
-      <p class="status pending">o</p>
-    </div>
-    <%= link_to 'Send first message', chat_room_path(chat_room) %>
-    </div>
+     </p>
+   </div>
+   <%= link_to '', chat_room_path(chat_room), class:"open-message" %>
+  </div>
 
   <% end %>
 <% end %>
