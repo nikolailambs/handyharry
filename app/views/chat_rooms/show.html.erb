@@ -1,7 +1,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-6 col-sm-offset-3">
+    <div class="col-sm-6 col-sm-offset-3 chat-body">
       <div class="chat-header">
         <%= link_to 'Back', chat_rooms_path, class:"to-inbox-btn" %>
         <h4><%= current_user.handy ? User.find(@chat_room.name[:client_id]).first_name + " " + User.find(@chat_room.name[:client_id]).second_name : User.find(@chat_room.name[:handy_id]).first_name + " " + User.find(@chat_room.name[:handy_id]).first_name %>
@@ -20,6 +20,7 @@
       <div id="create-message">
         <%= simple_form_for [ @chat_room, Message.new ], remote: true do |f| %>
           <%= f.input :content, label: false %>
+          <%= f.input :read, as: :hidden, :input_html => { :value => true } %>
         <% end %>
       </div>
     </div>
