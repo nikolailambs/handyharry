@@ -1,16 +1,14 @@
 <% project.tasks.each do |task| %>
 <%= simple_form_for [project, task], remote: true, html: { id: "form_#{task.id}" } do |f| %>
-<%# simple_form_for :update, url: project_task_path(id: test.project.id, project_id: project.id), :method => :patch do |f| %>
+
   <%= f.input :status, label: false, as: :boolean, input_html: { id: "task-check-#{task.id}", class: "task-check", data: { task_id: task.id } } %>
 <% end %>
 <div class= "project-show-product-body">
-<!--     <input type="checkbox" class='project-show-product-checkbox'>
- -->    <%= task.description %>
+
+    <%= task.description %>
 
     <%= link_to 'Delete', project_task_path(id: task.project.id, project_id: project.id), method: :delete, class: "btn btn-primary" %></br>
     <%#= link_to 'Edit Task', task_path(task) %>
   <% end %>
 </div>
-
-<%#= link_to 'Add a Task', project_tasks_path(), class: "btn btn-primary" %>
 

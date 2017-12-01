@@ -7,7 +7,7 @@
 /* Tabs */
 
 .tabs {
-  background: #E8EBEF;
+  background: #F2F7FB;
   display: flex;
   padding: 10px 10px 0 0px;
   color: white;
@@ -24,6 +24,7 @@
   font-size: 25px;
   font-weight: bold;
   margin: 0;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6)
 }
 .tabs p {
   opacity: 0.5;
@@ -39,7 +40,7 @@
 }
 
 .tab.active {
-  background: #CCD0D3;
+  background: #E8EBEF;
   color: white;
 }
 
@@ -47,7 +48,7 @@
 /* Projectlist */
 
 .projects {
-  background: #CCD0D3;
+  background: #E8EBEF;
   height: 100vh;
 }
 
@@ -176,6 +177,20 @@
   text-decoration: none;
 }
 
+
+/* Project-tasks*/
+
+
+.project-tasks {
+  margin-left: 100px;
+}
+
+.custom-control-description {
+  font-size: 18px;
+  font-weight: normal;
+  color: #60636B;
+
+}
 // .message-badge {
 //   background-color: #fa3e3e;
 //   border-radius: 2px;
