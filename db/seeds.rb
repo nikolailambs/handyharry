@@ -16,16 +16,15 @@ require 'faker'
 #   Task.destroy_all
 # end
 
-@user_ids = (1..10).to_a
 @date = rand(1.year).seconds.from_now
 
-@project_ids =(1..5).to_a
 
-
-puts 'Creating 5 fake users...'
 
 5.times do
-  user = User.new(
+
+  puts 'Creating 5 fake clients...'
+
+  client = User.new(
     email: Faker::Internet.email,
     password: "123456",
     speciality: "",
@@ -36,13 +35,10 @@ puts 'Creating 5 fake users...'
     phone: "",
     status: ""
   )
-  user.save!
-end
 
-puts 'Creating 5 fake handies...'
+  puts 'Creating 5 fake handies...'
 
-5.times do
-  user = User.new(
+  handy = User.new(
     email: Faker::Internet.email,
     password: "123456",
     speciality: "",
@@ -53,39 +49,39 @@ puts 'Creating 5 fake handies...'
     phone: "",
     status: ""
   )
-  user.save!
+
+  puts 'Creating 5 fake projects'
+
+  5.times do
+      project = Project.new(
+        handy: handy,
+        client: client,
+        address: Faker::Address.street_address,
+        deadline: @date,
+        status: false,
+        description: "Toilet is broken. Please fix the toilet seat",
+        title: "Toilet",
+        location: Faker::Address.secondary_address
+      )
+
+    puts 'Creating 2 fake tasks'
+
+    2.times do
+        task = Task.new(
+          project: project,
+          title: "",
+          description: Faker::Job.field,
+          assigned_to: "",
+          status: false,
+          deadline: @date
+        )
+        task.save!
+    end
+    project.save!
+  end
+  client.save!
+  handy.save!
 end
-
-puts 'Creating 2 fake projects...'
-
-5.times do
-  project = Project.new(
-    handy_id: @user_ids.sample,
-    client_id: @user_ids.sample,
-    address: Faker::Address.street_address,
-    deadline: @date,
-    status: false,
-    description: "Toilet is broken. Please fix the toilet seat",
-    title: "Toilet",
-    location: Faker::Address.secondary_address
-  )
-  project.save!
-end
-
-puts 'Creating 2 fake tasks...'
-
-2.times do
-  task = Task.new(
-    project_id: @project_ids.sample,
-    title: "",
-    description: "Buy toilet seat.",
-    assigned_to: "",
-    status: false,
-    deadline: @date
-  )
-  task.save!
-end
-
 
 
 
