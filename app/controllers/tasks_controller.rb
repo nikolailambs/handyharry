@@ -27,6 +27,8 @@ class TasksController < ApplicationController
   def update
     if @task.update(task_params)
         flash[:notice] = "Task updated"
+
+        @project_completion = @task.project.completion_percentage
       respond_to do |format|
         format.html { redirect_to project_path(@task.project) }
         format.js # render tasks/update.js.erb

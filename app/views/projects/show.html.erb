@@ -1,7 +1,7 @@
 <div class="container">
   <div class="project-show-message">
     <div class="progress-value">
-      <div id="circle">
+      <div id="circle" data-circle-value="<%= @project.completion_percentage %>">
         <img class="project-show-avatar-large" src="https://kitt.lewagon.com/placeholder/users/gabriel-dehan">
       </div>
     <div class="project-show-message-name"></div>
@@ -53,7 +53,6 @@
     lineCap: 'round',
     fill: {color: '#ffa500'}
   });
-
 
   // setTimeout(function() { c.circleProgress('value', 0.7); }, 1000);
   // setTimeout(function() { c.circleProgress('value', 1.0); }, 1100);
