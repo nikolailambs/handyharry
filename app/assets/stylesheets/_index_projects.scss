@@ -1,6 +1,9 @@
 // SET UP MESSAGE ALERT
 
-
+.container-fluid {
+  margin: 0;
+  padding: 0;
+}
 /* Tabs */
 
 .tabs {
@@ -45,6 +48,7 @@
 
 .projects {
   background: #CCD0D3;
+  height: 100vh;
 }
 
 
@@ -53,27 +57,51 @@
 .project {
   display: flex;
   align-items: center;
+  margin-left: 10px;
+  padding: 0 20px;
 }
 
 /* Card */
 
-.card {
+.project-card {
   padding: 10px;
+  margin: 10px;
   width: 100%;
+  height: 150px;
+  border-radius: 15px;
+
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  background-position: center;
+  color: white;
+  position: relative;
+  background-color: #83DACE;
+  position: relative;
 }
 
+.project-card h3 {
+  margin: 0;
+  font-size: 25px;
+}
+
+.tag-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+
+}
 
 /* Card-header*/
 
 .card-header {
   display: flex;
-  justify-content: space-between;
 }
 
 .card-avatar {
-  height: 25px;
-  width: 25px;
+  height: 40px;
+  width: 40px;
   border-radius: 50%;
+  margin-right: 20px;
 }
 
 .urgent {
@@ -83,25 +111,70 @@
 /* Card-content*/
 
 .card-content {
-  display: flex;
-  justify-content: space-between;
+  margin-top: 20px;
+}
 
+.card-content-details {
+  background-color: rgba(250, 250, 250, 0.8);
+  border-radius: 15px;
+  padding: 0 5px 0px 15px;
+  margin-left: -10px;
+  text-shadow: none;
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+}
+
+.card-content-details i {
+  margin-right: 5px;
+  color: #60636B;
 }
 
 .card-content-title {
   display: flex;
+  align-items: baseline;
 }
+
+.card-content-title p {
+ margin: 0;
+ color: #60636B;
+}
+
 
 .card-content-location {
   display: flex;
+  align-items: baseline;
+}
+
+.card-content-location p{
+  margin: 0;
+  color: #60636B;
 }
 
 .card-content-contacts {
+  position: absolute;
+  bottom: 25px;
+  right: 45px;
   display: flex;
   justify-content: space-between;
 }
 
+.card-content-contacts i {
+  margin-right: 15px;
+  font-size: 35px !important;
+  text-shadow: none;
+}
 
+.card-content-contacts i {
+  margin-right: 15px;
+  font-size: 35px !important;
+  text-shadow: none;
+}
+
+.card-content-contacts i:hover {
+  color: #da552f;
+  text-decoration: none;
+}
 // .message-badge {
 //   background-color: #fa3e3e;
 //   border-radius: 2px;
