@@ -64,14 +64,16 @@ input.form-control {
     box-shadow: none;
   }
 }
+
 .chat-header {
-  background-color: #4F2F4C;
+  background-color: #565554;
   color: white;
   padding: 10px 20px;
   margin: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 50px;
 
   h4 {
     margin: 0;
@@ -82,5 +84,6 @@ input.form-control {
 
   .to-inbox-btn {
     text-decoration: none;
+    color: white;
   }
 }
