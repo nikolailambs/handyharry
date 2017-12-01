@@ -1,8 +1,3 @@
-
-<%= test = project.tasks.first %>
-
-
-
 <% project.tasks.each do |task| %>
 <%= simple_form_for [project, task], remote: true, html: { id: "form_#{task.id}" } do |f| %>
 <%# simple_form_for :update, url: project_task_path(id: test.project.id, project_id: project.id), :method => :patch do |f| %>
