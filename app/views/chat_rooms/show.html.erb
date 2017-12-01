@@ -5,7 +5,7 @@
       <div class="chat-header">
         <%= link_to 'Back', chat_rooms_path, class:"to-inbox-btn" %>
         <h4>name
-          <%#= current_user.handy ? @chat_room.name[:client].email : @chat_room.name[:handy].email %>
+          <%= current_user.handy ? @chat_room.name[:client].build_user_name : @chat_room.name[:handy].build_user_name %>
         </h4>
         <% if current_user.handy %>
           <%= image_tag 'client.png', class:"avatar chat-avatar" %>
