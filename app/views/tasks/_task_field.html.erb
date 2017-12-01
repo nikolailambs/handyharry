@@ -1,11 +1,10 @@
 <!-- nested into project form -->
-<li>
+<div class= "project-show-card-category">
   <%= simple_form_for [project, @task] do |f| %>
-    <%= f.input :description, label: "Task" , placeholder: "Enter a task description" %>
-    <%= f.submit %>
+    <%= f.submit "add task"%>
+    <%= f.input :description, label: false , placeholder: "Add task ..." %>
   <% end %>
-</li>
-</br>
+</div>
   <%#= link_to_remove_association "remove task", f, class: "btn btn-primary"%>
 
 

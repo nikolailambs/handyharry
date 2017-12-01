@@ -1,39 +1,76 @@
 <div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <div class="show-description">
-        <h1><%= @project.title %></h1>
-        <h3> <%= @project.status %> </h3>
-        <h3> <%= @project.address %> </h3>
-        <h3> <%= @project.description %> </h3>
+  <div class="project-show-message">
+    <div class="progress-value">
+      <div  class="myProgress" data-project-completion="<%= @project.completion_percentage %>">
+        <span class="progress-left">
+        <span class="progress-bar"></span>
+        </span>
+          <img class="project-show-avatar-large" src="https://kitt.lewagon.com/placeholder/users/gabriel-dehan">
+        <span class="progress-right">
+        <span class="progress-bar"></span>
+        </span>
       </div>
-      <% if policy_scope(Task) || policy(Task).desrtoy? %>
-        <div class="list-group-item checkbox checkbox-circle">
-          <input type="checkbox" name="created" id="created2" />
-          <label for="created2">
-            <%= render 'tasks/index', project: @project %>
-          <span class="badge">1</span></label>
-        </div>
-        <% end %>
-        <% if policy(Task).create? || policy(Task).update? || policy(Task).desrtoy?%>
-        <div class="list-group-item checkbox checkbox-circle">
-          <input type="checkbox" name="created" id="created2" />
-          <label for="created2">
-            <%= render 'tasks/task_field', project: @project, task: @task %>
-            <%# link_to 'Add a Task', new_project_task_path(@project), class: "btn btn-primary" %>
-          <span class="badge">1</span></label>
-        </div>
+    <div class="project-show-message-name"></div>s
+      <i class="fa fa-phone" aria-hidden="true"></i>
+      <i class="fa fa-comment" aria-hidden="true"></i>
+      <i class="fa fa-map-marker" aria-hidden="true"></i>
+    </div>
+    <div class="project-show-message-body">
+      <p><strong><%= @project.address %></strong></p>
+      <p><%= @project.title %></p>
+      <p> <%= @project.description %> </p>
+    </div>
+    <div class="message-status">
+    </div>
+  </div>
+</div>
+<div class="project-show-product">
+  <div class='project-show-none'>
+    <div class="project-show-none"></div>
+      <% if policy(Task).create? || policy(Task).update? || policy(Task).desrtoy?%>
+        <%= render 'tasks/task_field', project: @project, task: @task %>
+        <%# link_to 'Add a Task', new_project_task_path(@project), class: "btn btn-primary" %>
       <% end %>
-
-      </br>
-      </br>
-      <%= link_to 'Back', projects_path, class: "btn btn-primary" %>
-      </br>
-      </br>
-      <%= link_to 'Delete Project', project_path(@project), method: :delete, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>
+<div class="project-show-product">
+  <div class='project-show-product-check'>
+    <div class="project-show-product-checkbox"></div>
+      <% if policy_scope(Task) || policy(Task).desrtoy? %>
+        <%= render 'tasks/index', project: @project %>
+      <% end %>
     </div>
   </div>
 </div>
 
+      <%= link_to 'Back', projects_path, class: "btn btn-primary" %>
+
+      <%= link_to 'Delete Project', project_path(@project), method: :delete, class: "btn btn-primary" %>
+
+
+<%=  content_for :after_js do %>
+
+<script>
+var bar = $(".myProgress");
+
+if (bar) {
+function setProgress(){
+  var status = bar
+
+  if (status = 100)
+    bar.className = "progress green";
+  else if (status = 75)
+    bar.className = "progress blue fifty";
+  else if (status = 50)
+    bar.className = "progress yellow";
+  else if (status < 50)
+    bar.className = "progress pink";
+    }
+  }
+
+</script>
+
+<% end %>
 
 

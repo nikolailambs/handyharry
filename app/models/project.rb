@@ -9,6 +9,7 @@ class Project < ApplicationRecord
     amount_tasks = tasks.count
     tasks.each do |task|
       complete = []
+      i = 0
       if task.status
         i += 1
         complete << i
@@ -17,5 +18,4 @@ class Project < ApplicationRecord
       amounnt_complete/amount_tasks*100
     end
   end
-
 end

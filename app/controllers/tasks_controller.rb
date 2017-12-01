@@ -26,8 +26,11 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      flash[:notice] = "Task updated"
-      redirect_to project_path(@project)
+        flash[:notice] = "Task updated"
+      respond_to do |format|
+        format.html { redirect_to project_path(@task.project) }
+        format.js # render tasks/update.js.erb
+      end
     else
       flash[:alert] = "Something went wrong"
       render "projects/show"
@@ -35,7 +38,6 @@ class TasksController < ApplicationController
   end
 
   def destroy
-
     @project = Project.find(params[:project_id])
     @task = Task.find(params[:id])
     @task.destroy
@@ -45,7 +47,6 @@ class TasksController < ApplicationController
   private
 
   def set_task
-
     @task = Task.find(params[:id])
     authorize @task
   end
