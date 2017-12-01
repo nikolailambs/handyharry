@@ -58,12 +58,24 @@
               <div class="row">
                 <% if project.tasks %>
                   <% project.tasks.each do |task| %>
+
                     <div class="project-task">
-                      <label class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input">
-                        <span class="custom-control-indicator"></span>
+
+                        <div>
+                          <%= render 'tasks/index', project: project, task: task %>
+                        </div>
+
+
                         <span class="custom-control-description"><%= task.description  %></span>
-                      </label>
+
+                        <% if policy_scope(Task) || policy(Task).destroy? %>
+                        <div>
+                          <%= link_to project_task_path(id: task.id, project_id: project.id), method: :delete  do%>
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                          <% end %>
+                        </div>
+                        <% end %>
+
                     </div>
                   <% end %>
                 <% end %>

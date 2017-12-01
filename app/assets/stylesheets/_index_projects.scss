@@ -189,8 +189,27 @@
   font-size: 18px;
   font-weight: normal;
   color: #60636B;
+  margin-left: 20px;
+  margin-right: 5px;
+}
+
+.project-task {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  align-content: flex-end;
+  .form-group {
+    margin: 0;
+  }
+  .checkbox {
+    margin: 0;
+    label {
+      min-height: 16px;
+    }
+  }
 
 }
+
 // .message-badge {
 //   background-color: #fa3e3e;
 //   border-radius: 2px;

@@ -21,7 +21,7 @@
 <div class="project-show-product">
   <div class='project-show-none'>
     <div class="project-show-none"></div>
-      <% if policy(Task).create? || policy(Task).update? || policy(Task).desrtoy?%>
+      <% if policy(Task).create? || policy(Task).update? || policy(Task).destroy?%>
         <%= render 'tasks/task_field', project: @project, task: @task %>
         <%# link_to 'Add a Task', new_project_task_path(@project), class: "btn btn-primary" %>
       <% end %>
