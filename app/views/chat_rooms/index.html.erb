@@ -12,7 +12,8 @@
     <% end %>
     <div class="inbox-body">
       <h3>
-        <%= current_user.handy ? chat_room.name[:client].email : chat_room.name[:handy].email %>
+        name
+        <%#= current_user.handy ? chat_room.name[:client].email : chat_room.name[:handy].email %>
       </h3>
       <p>
         <%= chat_room.messages.last.user == current_user ? "✓✓" : "" %>
