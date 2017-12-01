@@ -1,11 +1,11 @@
 //   console.log("before if")
 <% if @message.errors.any? %>
   //handle valdiation errors later
-<% else %>
+  <% else %>
   const messagesContainer = document.querySelector('.messages');
   messagesContainer.insertAdjacentHTML('beforeend', '<%= j render "messages/message", message: @message, user_is_messages_author: true %>')
   const input = document.querySelector('#message_content');
   input.value = '';
-  input.blur();
+  // input.blur();
   scrollLastMessageIntoView();
-<% end %>
+  <% end %>
