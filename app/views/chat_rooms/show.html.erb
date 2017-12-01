@@ -6,15 +6,15 @@
         <%= link_to 'Back', chat_rooms_path, class:"to-inbox-btn" %>
         <h4><%= current_user.handy ? @chat_room.name[:client].build_user_name : @chat_room.name[:handy].build_user_name %>
         </h4>
-          <% if current_user.handy %>
-            <%= image_tag 'client.png', class:"avatar chat-avatar" %>
-          <% else %>
-            <%= image_tag 'handy.png', class:"avatar chat-avatar" %>
-          <% end %>
+        <% if current_user.handy %>
+          <%= image_tag 'client.png', class:"avatar chat-avatar" %>
+        <% else %>
+          <%= image_tag 'handy.png', class:"avatar chat-avatar" %>
+        <% end %>
       </div>
       <div class="messages">
         <% @chat_room.messages.each do |message| %>
-          <%= render 'messages/message', message: message, user_is_messages_author: message.user == current_user %>
+        <%= render 'messages/message', message: message, user_is_messages_author: message.user == current_user %>
         <% end %>
       </div>
       <div id="create-message">
@@ -28,18 +28,76 @@
 </div>
 <% content_for :after_js do %>
 
-  <script>
-    scrollLastMessageIntoView();
-    App['chat_room_<%= @chat_room.id %>'] = App.cable.subscriptions.create(
-      { channel: 'ChatRoomsChannel', chat_room_id: <%= @chat_room.id %> },
-      {
-        received: (data) => {
-          if (data.current_user_id !== <%= current_user.id %>) {
-            const messagesContainer = document.querySelector('.messages');
-            messagesContainer.insertAdjacentHTML('beforeend', data.message_partial);
-            scrollLastMessageIntoView();
-          }
+<!-- aloglia auto complete  -->
+<!-- <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
+<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script> -->
+<!-- aloglia auto complete end -->
+
+<!-- search start -->
+<script>
+  scrollLastMessageIntoView();
+  App['chat_room_<%= @chat_room.id %>'] = App.cable.subscriptions.create(
+    { channel: 'ChatRoomsChannel', chat_room_id: <%= @chat_room.id %> },
+    {
+      received: (data) => {
+        if (data.current_user_id !== <%= current_user.id %>) {
+          const messagesContainer = document.querySelector('.messages');
+          messagesContainer.insertAdjacentHTML('beforeend', data.message_partial);
+          scrollLastMessageIntoView();
         }
-      });
-  </script>
+      }
+    });
+
+  document.addEventListener("keyup", (event) => {
+    var messageText = document.getElementById("message_content").value;
+    if( messageText.includes("@")){
+      var result = filter(messageText.split(" "), 0, "@" )
+
+  // aloglia search with auto complete
+      var client = algoliasearch('<%= ENV['AlgoliaApplicationID'] %>', '<%= ENV['AlgoliaSearchOnly'] %>');
+      var index = client.initIndex('Project');
+
+        index.search(result[0], { hitsPerPage: 5, page: 0 })
+          .then(function searchDone(content) {
+          console.log(content)
+
+
+        })
+        .catch(function searchFailure(err) {
+        console.error(err);
+        });
+
+// autocomplete
+        //   $('#message_content').autocomplete({ hint: false }, [
+        //   {
+        //     source: $.fn.autocomplete.sources.hits(index, { hitsPerPage: 5 }),
+        //     displayKey: 'title',
+        //     templates: {
+        //       suggestion: function(suggestion) {
+        //         return suggestion._highlightResult.my_attribute.value;
+        //       }
+        //     }
+        //   }
+        // ]).on('autocomplete:selected', function(event, suggestion, dataset) {
+        //   console.log(suggestion, dataset);
+        // });
+// autocomplete
+
+      };
+});
+</script>
 <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
