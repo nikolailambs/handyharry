@@ -4,7 +4,7 @@
   <% @chat_rooms.each do |chat_room| %>
 
   <% if chat_room.messages.any? %>
-  <div class="inbox <%= chat_room.messages.last.user.has_read_message ? "read-message-background" : "unread-message-background" %>">
+  <div class="inbox <%#= chat_room.messages.last.user.has_read_message ? "read-message-background" : "unread-message-background" %>">
     <% if current_user.handy %>
     <%= image_tag 'client.png', class:"avatar inbox-avatar-size" %>
     <% else %>
