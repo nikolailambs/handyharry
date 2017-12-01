@@ -1,4 +1,6 @@
 
+<% project.tasks.each do |task| %>
+>>>>>>> origin
 <%= simple_form_for [project, task], remote: true, html: { id: "form_#{task.id}" } do |f| %>
 
   <%= f.input :status, label: false, as: :boolean, input_html: { id: "task-check-#{task.id}", class: "task-check", data: { task_id: task.id } } %>
