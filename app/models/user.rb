@@ -5,8 +5,22 @@ class User < ApplicationRecord
   has_many :tasks, through: :projects
 
   has_many :messages, dependent: :destroy
-  has_many :chat_rooms
+  has_many :chat_rooms, dependent: :destroy
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  def build_user_name
+    if check_user_names?
+      self.first_name + " " + self.second_name
+    else
+      self.email
+    end
+  end
+
+  private
+
+  def check_user_names?
+    self.first_name && self.second_name
+  end
 end

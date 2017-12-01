@@ -7,15 +7,9 @@ class Project < ApplicationRecord
 
   def completion_percentage
     amount_tasks = tasks.count
-    tasks.each do |task|
-      complete = []
-      i = 0
-      if task.status
-        i += 1
-        complete << i
-      end
-      amounnt_complete = complete.count
-      amounnt_complete/amount_tasks*100
-    end
+    status_true = tasks.select { |f| f.status == true }
+    amount_true = status_true.count
+    result = (amount_true.to_f / amount_tasks.to_f).to_f
+    result.round(2)
   end
 end
