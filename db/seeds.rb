@@ -8,11 +8,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
-Rails.env.development?
-  User.destroy_all
-  Project.destroy_all
-  Task.destroy_all
-end
+# if Rails.env.development?
+#   Chat_room.destroy_all
+#   Message.destroy_all
+#   User.destroy_all
+#   Project.destroy_all
+#   Task.destroy_all
+# end
 
 @user_ids = (1..10).to_a
 @date = rand(1.year).seconds.from_now
