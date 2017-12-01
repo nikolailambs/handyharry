@@ -53,13 +53,14 @@
         </div>
       </div>
     <% else %>
-      <!-- Login link (when logged out) -->
-      <%= link_to t(".sign_in", default: "Customers"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <!-- Login link for customers (when logged out) -->
+      <%= link_to t(".sign_in", default: "Customers"), new_user_session_path, class: "btn btn-customers" %>
     <% end %>
   </div>
 
   <!-- Dropdown list appearing on mobile only -->
   <div class="navbar-wagon-right hidden-md hidden-lg">
+    <%= link_to t(".sign_in", default: "Customers"), new_user_session_path, class: "btn btn-customers" %>
     <% if current_user %>
       <%= link_to projects_path, class: "navbar-wagon-link" do %>
         <i class="fa fa-wrench" aria-hidden="true"></i>

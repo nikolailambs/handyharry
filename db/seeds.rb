@@ -8,7 +8,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
-# Rails.env.development?
+
+
+# if Rails.env.development?
+#   Chat_room.destroy_all
+#   Message.destroy_all
 #   User.destroy_all
 #   Project.destroy_all
 #   Task.destroy_all

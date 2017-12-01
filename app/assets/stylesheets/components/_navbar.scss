@@ -92,6 +92,20 @@
   text-decoration: none;
 }
 
+.btn-customers {
+  font-size: 16px;
+  color: white;
+  background: #FC4B2B;
+  border-radius: 10px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.btn-customers:hover {
+  color: #60636B;
+  text-decoration: none;
+}
+
 /* Dropdown menu */
 .navbar-wagon-dropdown-menu {
   margin-top: 15px;
