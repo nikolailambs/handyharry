@@ -4,7 +4,7 @@
     <div class="col-sm-6 col-sm-offset-3 chat-body">
       <div class="chat-header">
         <%= link_to 'Back', chat_rooms_path, class:"to-inbox-btn" %>
-        <h4>name
+        <h4>
           <%= current_user.handy ? @chat_room.name[:client].build_user_name : @chat_room.name[:handy].build_user_name %>
         </h4>
         <% if current_user.handy %>

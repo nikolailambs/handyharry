@@ -12,7 +12,6 @@
       <% end %>
       <div class="inbox-body">
         <h3>
-          name
           <%= current_user.handy ? chat_room.name[:client].build_user_name : chat_room.name[:handy].build_user_name %>
         </h3>
         <p>
