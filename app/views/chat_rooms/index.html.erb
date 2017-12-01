@@ -12,7 +12,7 @@
     <% end %>
     <div class="inbox-body">
       <h3>
-        <%= current_user.handy ? chat_room.name[:client].build_user_name : chat_room.name[:handy].build_user_name %>
+        <%= current_user.handy ? chat_room.name[:client].email : chat_room.name[:handy].email %>
       </h3>
       <p>
         <%= chat_room.messages.last.user == current_user ? "✓✓" : "" %>
@@ -42,7 +42,7 @@
   <% end %>
   <div class="inbox-body">
     <h3>
-      <%= current_user.handy ? chat_room.name[:client].build_user_name : chat_room.name[:handy].build_user_name %>
+      <%= current_user.handy ? chat_room.name[:client].email : chat_room.name[:handy].email %>
     </h3>
     <p><i>No messages</i></p>
   </div>
