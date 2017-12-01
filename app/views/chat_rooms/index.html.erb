@@ -12,7 +12,8 @@
     <% end %>
     <div class="inbox-body">
       <h3>
-        <%= current_user.handy ? chat_room.name[:client].email : chat_room.name[:handy].email %>
+        name
+        <%#= current_user.handy ? chat_room.name[:client].email : chat_room.name[:handy].email %>
       </h3>
       <p>
         <%= chat_room.messages.last.user == current_user ? "✓✓" : "" %>
@@ -36,9 +37,9 @@
 <% else %>
 <div class="inbox unread-message-background">
   <% if current_user.handy %>
-  <%= image_tag 'client.png', class:"avatar inbox-avatar-size" %>
+    <%= image_tag 'client.png', class:"avatar inbox-avatar-size" %>
   <% else %>
-  <%= image_tag 'handy.png', class:"avatar inbox-avatar-size" %>
+    <%= image_tag 'handy.png', class:"avatar inbox-avatar-size" %>
   <% end %>
   <div class="inbox-body">
     <h3>
