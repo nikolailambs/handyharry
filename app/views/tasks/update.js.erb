@@ -1,14 +1,17 @@
 console.log("hello")
 var id = 'task-check-<%= @task.id + 1 %>'
-<%# if @task.status %>
 console.log(id)
 var checkbox = document.getElementById(id)
 console.log(checkbox)
 checkbox.value = 0
-  // console.log(document.getElementById("task-check-<%= @task.id %>").prop('checked');)
 
-<%# else %>
-  // document.getElementById("task-check-<%= @task.id %>").prop('checked');
+var newCompletionRate = <%= @project_completion %>
+$('#circle').circleProgress({
+    startAngle: -Math.PI / 4 * 3,
+    value: newCompletionRategu,
+    lineCap: 'round',
+    fill: {color: '#ffa500'}
+  });
 
-<%# end %>
+
 

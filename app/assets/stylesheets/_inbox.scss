@@ -4,10 +4,6 @@
   margin-right: 10px;
 }
 
-.unread-message-background {
-  background-color: #DFF1EF;
-}
-
 .inbox {
   display: flex;
   align-items: center;
@@ -39,29 +35,43 @@
   opacity: 0.6;
   margin-top: 5px;
 }
-.inbox-body {
-  padding-left: 10px;
-  font-size: 13px;
-  color: rgba(0,0,0,0.7);
-}
+
 .inbox-body {
   padding-left: 20px;
-  color: rgba(0,0,0,0.4);
+  h3 {
+    color: rgba(0,0,0,0.8);
+    font-size: 18px;
+  }
+  p {
+    color: rgba(0,0,0,0.4);
+    font-size: 13px;
+    margin: 6px 0;
+  }
 }
 .inbox-body strong{
   color: rgba(0,0,0,0.9);
   color: rgba(0,0,0,0.9);
 }
-.inbox-body p {
-  margin: 6px 0;
-}
+
 .inbox-status {
   font-size: 24px;
   font-weight: bold;
   color: lightgrey;
-
+  p {
+    font-size: 15px;
+  }
   .unread-message {
     color: #F22F17;
+  }
+}
+
+.unread-message-background {
+  background-color: #DFF1EF;
+
+  .inbox-status {
+    p {
+      color: #8FCFC1;
+    }
   }
 }
 
@@ -78,4 +88,11 @@
   &:hover {
     opacity: 0.1;
   }
+}
+
+.contact-btn {
+  margin: 5px;
+  font-size: 16px;
+  background: #FF4A1C;
+  color: white;
 }

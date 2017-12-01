@@ -1,16 +1,10 @@
 <div class="container">
   <div class="project-show-message">
     <div class="progress-value">
-      <div  class="myProgress" data-project-completion="<%= @project.completion_percentage %>">
-        <span class="progress-left">
-        <span class="progress-bar"></span>
-        </span>
-          <img class="project-show-avatar-large" src="https://kitt.lewagon.com/placeholder/users/gabriel-dehan">
-        <span class="progress-right">
-        <span class="progress-bar"></span>
-        </span>
+      <div id="circle" data-circle-value="<%= @project.completion_percentage %>">
+        <img class="project-show-avatar-large" src="https://kitt.lewagon.com/placeholder/users/gabriel-dehan">
       </div>
-    <div class="project-show-message-name"></div>s
+    <div class="project-show-message-name"></div>
       <i class="fa fa-phone" aria-hidden="true"></i>
       <i class="fa fa-comment" aria-hidden="true"></i>
       <i class="fa fa-map-marker" aria-hidden="true"></i>
@@ -20,7 +14,7 @@
       <p><%= @project.title %></p>
       <p> <%= @project.description %> </p>
     </div>
-    <div class="message-status">
+    <div class="">
     </div>
   </div>
 </div>
@@ -52,23 +46,17 @@
 <%=  content_for :after_js do %>
 
 <script>
-var bar = $(".myProgress");
 
-if (bar) {
-function setProgress(){
-  var status = bar
+  $('#circle').circleProgress({
+    startAngle: -Math.PI / 4 * 3,
+    value: "<%= @project.completion_percentage %>",
+    lineCap: 'round',
+    fill: {color: '#ffa500'}
+  });
 
-  if (status = 100)
-    bar.className = "progress green";
-  else if (status = 75)
-    bar.className = "progress blue fifty";
-  else if (status = 50)
-    bar.className = "progress yellow";
-  else if (status < 50)
-    bar.className = "progress pink";
-    }
-  }
-
+  // setTimeout(function() { c.circleProgress('value', 0.7); }, 1000);
+  // setTimeout(function() { c.circleProgress('value', 1.0); }, 1100);
+  // setTimeout(function() { c.circleProgress('value', 0.5); }, 2100);
 </script>
 
 <% end %>
