@@ -20,7 +20,7 @@
         </p>
       </div>
       <div class="inbox-status">
-        <p><%= chat_room.messages.last.created_at.today? ? chat_room.messages.last.created_at.strftime("%k:%M") : chat_room.messages.last.created_at.strftime("%d.%m.%Y - %k/%M") %></p>
+        <p><%= chat_room.messages.last.created_at.today? ? chat_room.messages.last.created_at.strftime("%k:%M") : chat_room.messages.last.created_at.strftime("%A") %></p>
         <h5 class='status <%= chat_room.messages.last.user.has_read_message ? "read-message" : "unread-message" %>'>
          <% if !chat_room.messages.last.read %> <!-- message.read gets set to true form the other person, because its not individual for each person so it gets setted true as soon as ones sends it from the chatroom -->
          ●
@@ -47,7 +47,7 @@
       <p><i>No messages</i></p>
     </div>
     <div class="inbox-status">
-      <p><%= chat_room.created_at.today? ? chat_room.created_at.strftime("%k:%M") : chat_room.created_at.strftime("%d.%m.%Y - %k/%M") %></p>
+      <p><%= chat_room.created_at.today? ? chat_room.created_at.strftime("%k:%M") : chat_room.created_at.strftime("%A") %></p>
       <p>
         ▷
       </p>

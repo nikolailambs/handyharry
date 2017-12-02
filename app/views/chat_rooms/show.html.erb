@@ -8,9 +8,9 @@
           <%= current_user.handy ? @chat_room.name[:client].build_user_name : @chat_room.name[:handy].build_user_name %>
         </h4>
         <% if current_user.handy %>
-          <%= image_tag 'client.png', class:"avatar chat-avatar" %>
+        <%= image_tag 'client.png', class:"avatar chat-avatar" %>
         <% else %>
-          <%= image_tag 'handy.png', class:"avatar chat-avatar" %>
+        <%= image_tag 'handy.png', class:"avatar chat-avatar" %>
         <% end %>
       </div>
       <div class="messages">
@@ -18,10 +18,11 @@
         <%= render 'messages/message', message: message, user_is_messages_author: message.user == current_user %>
         <% end %>
       </div>
+      <div id="suggesstion-box"></div>
       <div id="create-message">
         <%= simple_form_for [ @chat_room, Message.new ], remote: true do |f| %>
-          <%= f.input :content, label: false %>
-          <%= f.input :read, as: :hidden, :input_html => { :value => true } %>
+        <%= f.input :content, label: false %>
+        <%= f.input :read, as: :hidden, :input_html => { :value => true } %>
         <% end %>
       </div>
     </div>
@@ -30,8 +31,7 @@
 <% content_for :after_js do %>
 
 <!-- aloglia auto complete  -->
-<!-- <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
-<script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.jquery.min.js"></script> -->
+
 <!-- aloglia auto complete end -->
 
 <!-- search start -->
@@ -48,48 +48,72 @@
         }
       }
     });
+// autocomplete
 
-  document.addEventListener("keyup", (event) => {
-    var messageText = document.getElementById("message_content").value;
-    if( messageText.includes("@")){
-      var result = filter(messageText.split(" "), 0, "@" )
 
-  // aloglia search with auto complete
-      var client = algoliasearch('<%= ENV['AlgoliaApplicationID'] %>', '<%= ENV['AlgoliaSearchOnly'] %>');
-      var index = client.initIndex('Project');
+document.addEventListener("keyup", (event) => {
+  var messageText = document.getElementById("message_content").value;
+  if( messageText.includes("@")){
+    var result = filter(messageText.split(" "), 0, "@" )[0]
 
-        index.search(result[0], { hitsPerPage: 5, page: 0 })
+  // aloglia search
+  var client = algoliasearch('<%= ENV['AlgoliaApplicationID'] %>', '<%= ENV['AlgoliaSearchOnly'] %>');
+  var index = client.initIndex('Project');
+
+        index.search(result, { hitsPerPage: 5, page: 0 })
           .then(function searchDone(content) {
-          console.log(content)
 
+          console.log(content.hits[0].title);
+          console.log(content.hits[1].title);
+// ajax auto complete
+    //   $.ajax({
 
+    //       success: function(data){
+    //   $("#suggesstion-box").show();
+    //   $("#suggesstion-box").html(data);
+    //   $("#message_content").css("background","#FFF");
+    // }
+    // });
+// ajax auto complete
         })
         .catch(function searchFailure(err) {
         console.error(err);
         });
 
-// autocomplete
-        //   $('#message_content').autocomplete({ hint: false }, [
-        //   {
-        //     source: $.fn.autocomplete.sources.hits(index, { hitsPerPage: 5 }),
-        //     displayKey: 'title',
-        //     templates: {
-        //       suggestion: function(suggestion) {
-        //         return suggestion._highlightResult.my_attribute.value;
-        //       }
-        //     }
-        //   }
-        // ]).on('autocomplete:selected', function(event, suggestion, dataset) {
-        //   console.log(suggestion, dataset);
-        // });
-// autocomplete
 
       };
-});
-</script>
-<% end %>
+    });
+  </script>
+  <% end %>
 
-
+  <style>
+  .algolia-autocomplete {
+    width: 100%;
+  }
+  .algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+    width: 100%;
+  }
+  .algolia-autocomplete .aa-hint {
+    color: #999;
+  }
+  .algolia-autocomplete .aa-dropdown-menu {
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #999;
+    border-top: none;
+  }
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+    cursor: pointer;
+    padding: 5px 4px;
+  }
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+    background-color: #B2D7FF;
+  }
+  .algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+    font-weight: bold;
+    font-style: normal;
+  }
+</style>
 
 
 
