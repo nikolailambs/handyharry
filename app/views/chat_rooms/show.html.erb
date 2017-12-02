@@ -30,11 +30,19 @@
 </div>
 <% content_for :after_js do %>
 
-<!-- aloglia auto complete  -->
 
-<!-- aloglia auto complete end -->
 
-<!-- search start -->
+<!-- jquery auto complete  -->
+  <!-- JS file -->
+  <!-- <script src="../../../node_modules/easy-autocomplete/dist/jquery.easy-autocomplete.min.js"></script> -->
+
+  <!-- CSS file -->
+  <!-- <link rel="stylesheet" href="../../../node_modules/easy-autocomplete/dist/easy-autocomplete.min.css"> -->
+
+  <!-- Additional CSS Themes file - not required-->
+  <!-- <link rel="stylesheet" href="../../../node_modules/easy-autocomplete/dist/easy-autocomplete.themes.min.css"> -->
+<!-- jquery auto complete end -->
+
 <script>
   scrollLastMessageIntoView();
   App['chat_room_<%= @chat_room.id %>'] = App.cable.subscriptions.create(
@@ -48,41 +56,48 @@
         }
       }
     });
-// autocomplete
 
+  // build a list with the array
+    const result = document.querySelector("#suggesstion-box");
+    function addToSearchList(dataArray) {
+      document.querySelector("#suggesstion-box").innerHTML = "";
+      console.log(dataArray)
+      // dataArray.forEach((title) => { console.log(title) })
+      dataArray.forEach((title) => {
+        result.insertAdjacentHTML("beforeend", `<li class="list-group-item">${title}</li>`);
+      });
+    };
 
+// <!-- search start -->
 document.addEventListener("keyup", (event) => {
   var messageText = document.getElementById("message_content").value;
-  if( messageText.includes("@")){
+
+  var textMessage = messageText.split(" ")
+  if( textMessage[textMessage.length-1].includes("@")){
     var result = filter(messageText.split(" "), 0, "@" )[0]
 
-  // aloglia search
-  var client = algoliasearch('<%= ENV['AlgoliaApplicationID'] %>', '<%= ENV['AlgoliaSearchOnly'] %>');
-  var index = client.initIndex('Project');
+      console.log(textMessage)
+    // aloglia search
+    var client = algoliasearch('<%= ENV['AlgoliaApplicationID'] %>', '<%= ENV['AlgoliaSearchOnly'] %>');
+    var index = client.initIndex('Project');
 
-        index.search(result, { hitsPerPage: 5, page: 0 })
-          .then(function searchDone(content) {
+          index.search(result, { hitsPerPage: 5, page: 0 })
+            .then(function searchDone(content) {
 
-          console.log(content.hits[0].title);
-          console.log(content.hits[1].title);
-// ajax auto complete
-    //   $.ajax({
-
-    //       success: function(data){
-    //   $("#suggesstion-box").show();
-    //   $("#suggesstion-box").html(data);
-    //   $("#message_content").css("background","#FFF");
-    // }
-    // });
-// ajax auto complete
-        })
-        .catch(function searchFailure(err) {
-        console.error(err);
-        });
-
-
-      };
-    });
+            var options = {
+              data: [String(content.hits[0].title), String(content.hits[1].title)]
+            };
+            // console.log(options)
+            addToSearchList(options.data)
+            })
+            .catch(function searchFailure(err) {
+            console.error(err);
+            document.querySelector("#suggesstion-box").innerHTML = "";
+            });
+        }else{
+          document.querySelector("#suggesstion-box").innerHTML = "";
+        }
+      });
   </script>
   <% end %>
 
