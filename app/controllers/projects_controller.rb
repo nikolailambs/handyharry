@@ -37,6 +37,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    raise
     if @project.update(project_params)
       redirect_to @project
     else
