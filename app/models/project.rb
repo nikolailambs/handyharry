@@ -1,6 +1,7 @@
 class Project < ApplicationRecord
   belongs_to :handy, class_name: "User"
   belongs_to :client, class_name: "User"
+  has_attachments :photos, maximum: 5
 
   has_many :tasks, inverse_of: :project
   accepts_nested_attributes_for :tasks, reject_if: :all_blank, allow_destroy: true

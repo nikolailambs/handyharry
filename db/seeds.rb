@@ -65,7 +65,8 @@ counter = 0
         status: false,
         description: "Toilet is broken. Please fix the toilet seat",
         title: "Toilet",
-        location: Faker::Address.secondary_address
+        location: Faker::Address.secondary_address,
+        photo_url: "http://img.clubic.com/07791435-photo-playstation.jpg"
       )
       counter += 1
 

@@ -47,4 +47,7 @@ class User < ApplicationRecord
 
     return user
   end
+
+  def avatar
+  end
 end
