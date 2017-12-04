@@ -126,8 +126,13 @@ hr {
 
 }
 
+.form-remember .checkbox {
+  display: flex;
+  align-items: center;
+}
 
-// **** Wrappe Offer *****
+
+// **** Wrapper Offer *****
 
 .wrapper-offer {
     // min-height: 100vh;
