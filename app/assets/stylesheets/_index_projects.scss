@@ -222,12 +222,18 @@ a:focus {
 }
 
 
+.checkbox label {
+  min-height: 0;
+}
+
+.checkbox input[type="checkbox"] {
+  margin: 0;
+}
+
 
 .todo {
   form {
     label {
-
-        min-height: 0;
         padding: 0;
         display: flex;
         align-items: baseline;
@@ -237,7 +243,6 @@ a:focus {
 
 .todo {
   .checkbox input[type="checkbox"] {
-    margin: 0;
     margin-right: 20px;
     position: static;
   }
