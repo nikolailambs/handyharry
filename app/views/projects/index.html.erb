@@ -39,11 +39,26 @@
                         </div>
                       </div>
                       <div class="card-content-contacts">
-                        <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
-                        <%= link_to chat_rooms_path, class: "icon-link" do %>
-                          <i class="fa fa-comment" aria-hidden="true"></i>
+                        <%= link_to "tel:#{current_user.handy ? project.client.phone : project.handy.phone}", class: "icon-link" do %>
+                          <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
                         <% end %>
-                        <i class="fa fa-road fa-x2" aria-hidden="true"></i>
+
+                        <%= simple_form_for ChatRoom.new, html: { class: 'icon-z-index-form' } do |f| %>
+                          <% if current_user.handy %>
+                            <%= f.input :client_id, as: :hidden, input_html: { :value => project.client.id } %>
+                            <%= f.input :handy_id, :as => :hidden, :input_html => { :value => current_user.id } %>
+                          <% else %>
+                            <%= f.input :handy_id, :as => :hidden, :input_html => { :value => project.handy.id } %>
+                            <%= f.input :client_id, :as => :hidden, :input_html => { :value => current_user.id } %>
+                          <% end %>
+                          <%= button_tag('', type: 'submit', class: "icon-link") do %>
+                            <i class="fa fa-comment" aria-hidden="true"></i>
+                          <% end %>
+                        <% end %>
+
+                        <%= link_to project.map_link, class: "icon-link", target: :_blank do %>
+                          <i class="fa fa-road fa-x2" aria-hidden="true"></i>
+                        <% end %>
                       </div>
                     </div>
                     <%= link_to "", project_path(project), class: "tag-link" %>
