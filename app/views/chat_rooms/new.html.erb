@@ -3,7 +3,7 @@
   <% if current_user.handy %>
     <p>Contact a client (because you are a handy)</p>
     <div class="assign-to-handy-field">
-      <%= f.association :client, :include_blank => false, collection: User.where.not(id: current_user).where(handy: false), label_method: :build_user_name %>
+      <%= f.association :client, :include_blank => false, collection: User.where.not(id: current_user.id).where(handy: false), label_method: :build_user_name %>
       <%= f.input :handy_id, :as => :hidden, :input_html => { :value => current_user.id } %>
     </div>
   <% else %>
