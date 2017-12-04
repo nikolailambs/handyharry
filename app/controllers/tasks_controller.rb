@@ -25,6 +25,7 @@ class TasksController < ApplicationController
   end
 
   def update
+    raise
     if @task.update(task_params)
         flash[:notice] = "Task updated"
 
@@ -50,7 +51,8 @@ class TasksController < ApplicationController
 
   def set_task
     @task = Task.find(params[:id])
-    authorize @task
+    # authorize @task
+    skip_authorization
   end
 
   def task_params

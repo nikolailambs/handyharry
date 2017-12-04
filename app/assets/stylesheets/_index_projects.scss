@@ -7,13 +7,14 @@
 /* Tabs */
 
 .tabs {
-  background: #E8EBEF;
+  background: #F2F7FB;
   display: flex;
   padding: 10px 10px 0 0px;
   color: white;
 }
 .tabs a {
   color: white;
+  text-decoration: none;
 }
 .tabs a:hover {
   cursor: pointer;
@@ -24,6 +25,7 @@
   font-size: 25px;
   font-weight: bold;
   margin: 0;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6)
 }
 .tabs p {
   opacity: 0.5;
@@ -39,16 +41,36 @@
 }
 
 .tab.active {
-  background: #CCD0D3;
-  color: white;
+  background: white;
+  color: #83DACE;
+  text-decoration: none;
 }
+
+/* Data toggle bootstrap */
+
+.accordion-toggle:before{
+  font-family: 'Glyphicons Halflings';
+  content: "\e114";
+  color: #60636A;
+}
+
+a:hover,
+a:focus {
+  text-decoration: none !important;
+}
+
+
+.accordion-toggle.collapsed:before{
+  content: "\e080";
+  color: #60636A;
+}
+
 
 
 /* Projectlist */
 
 .projects {
-  background: #CCD0D3;
-  height: 100vh;
+  background: white;
 }
 
 
@@ -176,84 +198,87 @@
   text-decoration: none;
 }
 
-// .message-badge {
-//   background-color: #fa3e3e;
-//   border-radius: 2px;
-//   color: white;
 
-//   padding: 1px 3px;
-//   font-size: 10px;
+/* Card-content*/
 
-//   position: absolute; /* Position the badge within the relatively positioned button */
-//   top: 0;
-//   right: 0;
-// }
+.todo-list {
+  font-size: 20px;
+  max-width: 15em;
+  margin-left: 100px;
+  padding: 0.5em 1em;
+}
 
-// // copycat for facet - so you have all the clases setup
+.todo {
+  display: flex;
+  align-items: baseline;
+  width: 16em;
+  position: relative;
+  padding: 0.5em 0 0.5em 6%;
+  margin: 0 auto;
+  cursor: pointer;
+  border-bottom: solid 1px #ddd;
 
-// div ul li {
-//   list-style-type: none;
-// }
+  &:last-child { border-bottom: none; }
+}
 
-// .badge {
-//   display: inline;
-// }
 
-// #accordion .glyphicon {
-//   margin-right:10px;
-// }
+.checkbox label {
+  min-height: 0;
+}
 
-// .panel-collapse>.list-group .list-group-item:first-child {
-//   border-top-right-radius: 0;border-top-left-radius: 0;
-// }
+.checkbox input[type="checkbox"] {
+  margin: 0;
+}
 
-// .panel-collapse>.list-group .list-group-item {
-//   border-width: 1px 0;
-// }
 
-// .panel-collapse>.list-group {
-//   margin-bottom: 0;
-// }
+.todo {
+  form {
+    label {
+        padding: 0;
+        display: flex;
+        align-items: baseline;
+    }
+  }
+}
 
-// .panel-collapse .list-group-item {
-//   border-radius:0;
-// }
+.todo {
+  .checkbox input[type="checkbox"] {
+    margin-right: 20px;
+    position: static;
+  }
 
-// .panel-collapse .list-group .list-group {
-//   margin: 0;
-//   margin-top: 10px;
-// }
+}
 
-// .panel-collapse .list-group-item li.list-group-item {
-//   margin: 0 -15px;
-//   border-top: 1px solid #ddd !important;
-//   border-bottom: 0;
-//   padding-left: 30px;
-// }
+.todo form {
+  opacity: 1;
+  margin: 0;
+  z-index: 1000;
+}
 
-// .panel-collapse .list-group-item li.list-group-item:last-child {
-//   padding-bottom: 0;
-// }
+.todo .checkbox {
+  display: flex;
+  align-items: baseline;
+}
 
-// .panel-collapse div.list-group div.list-group{
-//   margin: 0;
-// }
 
-// .panel-collapse div.list-group .list-group a.list-group-item {
-//   border-top: 1px solid #ddd !important;
-//   border-bottom: 0;
-//   padding-left: 30px;
-// }
+.todo i {
+  position: absolute;
+  right: 0;
+  top: 1.2em;
+}
 
-// .panel-collapse .list-group-item li.list-group-item {
-//   border-top: 1px solid #DDD !important;
-// }
+.todo__state:checked {
 
-// .checkbox {
-//   padding-left: 20px; }
-//   .checkbox label {
+  ~ .todo__text {
+    transition-delay: 0s;
+    color: #5EBEC1;
+    opacity: 0.6;
+    text-decoration: line-through}
+}
+
+
+//  .checkbox label {
 //     display: inline-block;
-//     vertical-align: middle;
 //     position: relative;
 //     padding-left: 5px; }
 //     .checkbox label::before {
@@ -262,7 +287,8 @@
 //       position: absolute;
 //       width: 17px;
 //       height: 17px;
-//       left: 0;
+//           left: -7px;
+//     top: -24px;
 //       margin-left: -20px;
 //       border: 1px solid #cccccc;
 //       border-radius: 3px;
@@ -275,159 +301,33 @@
 //       position: absolute;
 //       width: 16px;
 //       height: 16px;
-//       left: 0;
-//       top: 0;
+//       left: -7px;
+//       top: -24px;
 //       margin-left: -20px;
 //       padding-left: 3px;
 //       padding-top: 1px;
 //       font-size: 11px;
 //       color: #555555; }
-//   .checkbox input[type="checkbox"] {
-//     opacity: 0;
-//     z-index: 1; }
-//     .checkbox input[type="checkbox"]:focus + label::before {
+
+
+// .checkbox input[type="checkbox"] {
+//     opacity: ; }
+//     .checkbox input[type="checkbox"]:focus {
 //       outline: thin dotted;
 //       outline: 5px auto -webkit-focus-ring-color;
 //       outline-offset: -2px; }
-//     .checkbox input[type="checkbox"]:checked + label::after {
+//     .checkbox input[type="checkbox"]:checked  {
 //       font-family: 'FontAwesome';
 //       content: "\f00c"; }
-//     .checkbox input[type="checkbox"]:disabled + label {
+//     .checkbox input[type="checkbox"]:disabled  {
 //       opacity: 0.65; }
-//       .checkbox input[type="checkbox"]:disabled + label::before {
+//       .checkbox input[type="checkbox"]:disabled  {
 //         background-color: #eeeeee;
 //         cursor: not-allowed; }
-//   .checkbox.checkbox-circle label::before {
-//     border-radius: 50%; }
-//   .checkbox.checkbox-inline {
-//     margin-top: 0; }
 
-// .checkbox-primary input[type="checkbox"]:checked + label::before {
+// .checkbox input[type="checkbox"]:checked + label::before {
 //   background-color: #428bca;
 //   border-color: #428bca; }
-// .checkbox-primary input[type="checkbox"]:checked + label::after {
+// .checkbox input[type="checkbox"]:checked + label::after {
 //   color: #fff; }
 
-// .checkbox-danger input[type="checkbox"]:checked + label::before {
-//   background-color: #d9534f;
-//   border-color: #d9534f; }
-// .checkbox-danger input[type="checkbox"]:checked + label::after {
-//   color: #fff; }
-
-// .checkbox-info input[type="checkbox"]:checked + label::before {
-//   background-color: #5bc0de;
-//   border-color: #5bc0de; }
-// .checkbox-info input[type="checkbox"]:checked + label::after {
-//   color: #fff; }
-
-// .checkbox-warning input[type="checkbox"]:checked + label::before {
-//   background-color: #f0ad4e;
-//   border-color: #f0ad4e; }
-// .checkbox-warning input[type="checkbox"]:checked + label::after {
-//   color: #fff; }
-
-// .checkbox-success input[type="checkbox"]:checked + label::before {
-//   background-color: #5cb85c;
-//   border-color: #5cb85c; }
-// .checkbox-success input[type="checkbox"]:checked + label::after {
-//   color: #fff; }
-
-// .radio {
-//   padding-left: 20px; }
-//   .radio label {
-//     display: inline-block;
-//     vertical-align: middle;
-//     position: relative;
-//     padding-left: 5px; }
-//     .radio label::before {
-//       content: "";
-//       display: inline-block;
-//       position: absolute;
-//       width: 17px;
-//       height: 17px;
-//       left: 0;
-//       margin-left: -20px;
-//       border: 1px solid #cccccc;
-//       border-radius: 50%;
-//       background-color: #fff;
-//       -webkit-transition: border 0.15s ease-in-out;
-//       -o-transition: border 0.15s ease-in-out;
-//       transition: border 0.15s ease-in-out; }
-//     .radio label::after {
-//       display: inline-block;
-//       position: absolute;
-//       content: " ";
-//       width: 11px;
-//       height: 11px;
-//       left: 3px;
-//       top: 3px;
-//       margin-left: -20px;
-//       border-radius: 50%;
-//       background-color: #555555;
-//       -webkit-transform: scale(0, 0);
-//       -ms-transform: scale(0, 0);
-//       -o-transform: scale(0, 0);
-//       transform: scale(0, 0);
-//       -webkit-transition: -webkit-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
-//       -moz-transition: -moz-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
-//       -o-transition: -o-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
-//       transition: transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33); }
-//   .radio input[type="radio"] {
-//     opacity: 0;
-//     z-index: 1; }
-//     .radio input[type="radio"]:focus + label::before {
-//       outline: thin dotted;
-//       outline: 5px auto -webkit-focus-ring-color;
-//       outline-offset: -2px; }
-//     .radio input[type="radio"]:checked + label::after {
-//       -webkit-transform: scale(1, 1);
-//       -ms-transform: scale(1, 1);
-//       -o-transform: scale(1, 1);
-//       transform: scale(1, 1); }
-//     .radio input[type="radio"]:disabled + label {
-//       opacity: 0.65; }
-//       .radio input[type="radio"]:disabled + label::before {
-//         cursor: not-allowed; }
-//   .radio.radio-inline {
-//     margin-top: 0; }
-
-// .radio-primary input[type="radio"] + label::after {
-//   background-color: #428bca; }
-// .radio-primary input[type="radio"]:checked + label::before {
-//   border-color: #428bca; }
-// .radio-primary input[type="radio"]:checked + label::after {
-//   background-color: #428bca; }
-
-// .radio-danger input[type="radio"] + label::after {
-//   background-color: #d9534f; }
-// .radio-danger input[type="radio"]:checked + label::before {
-//   border-color: #d9534f; }
-// .radio-danger input[type="radio"]:checked + label::after {
-//   background-color: #d9534f; }
-
-// .radio-info input[type="radio"] + label::after {
-//   background-color: #5bc0de; }
-// .radio-info input[type="radio"]:checked + label::before {
-//   border-color: #5bc0de; }
-// .radio-info input[type="radio"]:checked + label::after {
-//   background-color: #5bc0de; }
-
-// .radio-warning input[type="radio"] + label::after {
-//   background-color: #f0ad4e; }
-// .radio-warning input[type="radio"]:checked + label::before {
-//   border-color: #f0ad4e; }
-// .radio-warning input[type="radio"]:checked + label::after {
-//   background-color: #f0ad4e; }
-
-// .radio-success input[type="radio"] + label::after {
-//   background-color: #5cb85c; }
-// .radio-success input[type="radio"]:checked + label::before {
-//   border-color: #5cb85c; }
-// .radio-success input[type="radio"]:checked + label::after {
-//   background-color: #5cb85c; }
-
-// /* POST LIB */
-
-// .checkbox label {
-//   margin-left: 10px;
-// }

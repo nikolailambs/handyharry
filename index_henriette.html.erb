@@ -67,11 +67,12 @@
         </div>
         <div>
           <ul>
-          <% if policy_scope(Task) || policy(Task).desrtoy? %>
+          <% if policy_scope(Task) || policy(Task).destoy? %>
             <div class="list-group-item checkbox checkbox-circle">
               <%= render 'tasks/index', project: project %>
             </div>
           <% end %>
+
           <% end %>
           </ul>
         </div>

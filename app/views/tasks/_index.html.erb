@@ -1,3 +1,4 @@
+
 <% project.tasks.each do |task| %>
 <%= simple_form_for [project, task], remote: true, html: { id: "form_#{task.id}" } do |f| %>
 <div class="container-fluid">
