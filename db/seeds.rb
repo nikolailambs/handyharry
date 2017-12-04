@@ -34,7 +34,7 @@ require 'faker'
     first_name: Faker::Name.first_name,
     second_name: Faker::Name.last_name,
     avatar: "/assets/images/client.png",
-    phone: "",
+    phone: "017322337722",
     status: ""
   )
 
@@ -48,7 +48,7 @@ require 'faker'
     first_name: Faker::Company.name,
     second_name: Faker::Name.last_name,
     avatar: "/assets/images/handy.png",
-    phone: "",
+    phone: "01737348572",
     status: ""
   )
 
