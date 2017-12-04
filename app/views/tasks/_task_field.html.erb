@@ -1,11 +1,17 @@
 <!-- nested into project form -->
-<div class= "project-show-card-category">
-  <%= simple_form_for [project, @task] do |f| %>
-    <%= f.submit "add task"%>
-    <%= f.input :description, label: false , placeholder: "Add task ..." %>
-  <% end %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12-fluid">
+      <div class= "task-new">
+        <%= simple_form_for [project, @task] do |f| %>
+        <%= f.submit "add task"%>
+        <%= f.input :description, label: false , placeholder: "Add task ..." %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
-  <%#= link_to_remove_association "remove task", f, class: "btn btn-primary"%>
+<%#= link_to_remove_association "remove task", f, class: "btn btn-primary"%>
 
 
 
