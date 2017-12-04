@@ -25,7 +25,6 @@ class TasksController < ApplicationController
   end
 
   def update
-    raise
     if @task.update(task_params)
         flash[:notice] = "Task updated"
 

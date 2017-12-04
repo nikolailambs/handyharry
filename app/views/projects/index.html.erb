@@ -1,6 +1,4 @@
 <% content_for :title, "Projects" %>
-<div class="container-fluid">
-  <div class="row">
     <div class="tabs">
       <a class="tab active" href="#">
         <h3>Today</h3>
@@ -9,14 +7,13 @@
         <h3>This week</h3>
       </a>
     </div>
-  </div>
-
+<div class="container-fluid">
   <div id="projectAccordion" data-children=".item">
     <div class="projects">
       <% @projects.each do |project| %>
         <div class="item">
           <div class="row">
-            <div class="col-xs-12-fluid">
+            <div class="col-xs-12">
                 <div id="proj-<%="#{project.id}"%>" class="project">
 
                   <a class="accordion-toggle collapsed"data-toggle="collapse" data-parent="#projectAccordion" href="#taskAccordion-<%="#{project.id}"%>" aria-expanded="true" aria-controls="taskAccordion">
