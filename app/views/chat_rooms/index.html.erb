@@ -1,60 +1,64 @@
 <div class="container-inbox">
   <% contact = current_user.handy ? "client" : "handyman" %>
   <%= link_to 'Contact a Person', new_chat_room_path, class:"btn btn-default contact-btn" %>
-  <% @chat_rooms.each do |chat_room| %>
+  <% if @chat_rooms.any? %>
+    <% @chat_rooms.each do |chat_room| %>
+    <% if chat_room.messages.any? %>
+    <div class="inbox <%= chat_room.messages.last.user.has_read_message ? "read-message-background" : "unread-message-background" %>">
+      <% if current_user.handy %>
+      <%= image_tag 'client.png', class:"avatar inbox-avatar-size" %>
+      <% else %>
+      <%= image_tag 'handy.png', class:"avatar inbox-avatar-size" %>
+      <% end %>
+      <div class="inbox-body">
+        <h3>
+          <%= current_user.handy ? chat_room.name[:client].build_user_name : chat_room.name[:handy].build_user_name %>
+        </h3>
+        <p>
+          <%= chat_room.messages.last.user == current_user ? "✓✓" : "" %>
+          <%= chat_room.messages.last.content %>
+        </p>
+      </div>
+      <div class="inbox-status">
+        <p><%= chat_room.messages.last.created_at.today? ? chat_room.messages.last.created_at.strftime("%k:%M") : chat_room.messages.last.created_at.strftime("%A") %></p>
+        <h5 class='status <%= chat_room.messages.last.user.has_read_message ? "read-message" : "unread-message" %>'>
+         <% if !chat_room.messages.last.read %> <!-- message.read gets set to true form the other person, because its not individual for each person so it gets setted true as soon as ones sends it from the chatroom -->
+         ●
+         <% end %>
+       </h5>
+       <p>
+        ▷
+      </p>
+    </div>
+    <%= link_to '', chat_room_path(chat_room), class:"open-message" %>
+  </div>
 
-  <% if chat_room.messages.any? %>
-  <div class="inbox <%= chat_room.messages.last.user.has_read_message ? "read-message-background" : "unread-message-background" %>">
+  <% else %>
+  <div class="inbox unread-message-background">
     <% if current_user.handy %>
-    <%= image_tag 'client.png', class:"avatar inbox-avatar-size" %>
+      <%= image_tag 'client.png', class:"avatar inbox-avatar-size" %>
     <% else %>
-    <%= image_tag 'handy.png', class:"avatar inbox-avatar-size" %>
+      <%= image_tag 'handy.png', class:"avatar inbox-avatar-size" %>
     <% end %>
     <div class="inbox-body">
       <h3>
         <%= current_user.handy ? chat_room.name[:client].build_user_name : chat_room.name[:handy].build_user_name %>
       </h3>
-      <p>
-        <%= chat_room.messages.last.user == current_user ? "✓✓" : "" %>
-        <%= chat_room.messages.last.content %>
-      </p>
+      <p><i>No messages</i></p>
     </div>
     <div class="inbox-status">
-      <p><%= chat_room.messages.last.created_at.today? ? chat_room.messages.last.created_at.strftime("%k:%M") : chat_room.messages.last.created_at.strftime("%d.%m.%Y - %k/%M") %></p>
-      <h5 class='status <%= chat_room.messages.last.user.has_read_message ? "read-message" : "unread-message" %>'>
-       <% if !chat_room.messages.last.read %> <!-- message.read gets set to true form the other person, because its not individual for each person so it gets setted true as soon as ones sends it from the chatroom -->
-       ●
-       <% end %>
-     </h5>
-     <p>
-      ▷
-    </p>
+      <p><%= chat_room.created_at.today? ? chat_room.created_at.strftime("%k:%M") : chat_room.created_at.strftime("%A") %></p>
+      <p>
+        ▷
+      </p>
+    </div>
+    <%= link_to '', chat_room_path(chat_room), class:"open-message" %>
   </div>
-  <%= link_to '', chat_room_path(chat_room), class:"open-message" %>
-</div>
 
-<% else %>
-<div class="inbox unread-message-background">
-  <% if current_user.handy %>
-  <%= image_tag 'client.png', class:"avatar inbox-avatar-size" %>
-  <% else %>
-  <%= image_tag 'handy.png', class:"avatar inbox-avatar-size" %>
   <% end %>
-  <div class="inbox-body">
-    <h3>
-      <%= current_user.handy ? chat_room.name[:client].build_user_name : chat_room.name[:handy].build_user_name %>
-    </h3>
-    <p><i>No messages</i></p>
-  </div>
-  <div class="inbox-status">
-    <p><%= chat_room.created_at.today? ? chat_room.created_at.strftime("%k:%M") : chat_room.created_at.strftime("%d.%m.%Y - %k/%M") %></p>
-    <p>
-      ▷
-    </p>
-  </div>
-  <%= link_to '', chat_room_path(chat_room), class:"open-message" %>
+  <% end %>
+  <% else %>
+    <h3>No Chats</h3>
+  <% end %>
 </div>
-
-<% end %>
-<% end %>
-</div>
+ <!-- dummy  -->
