@@ -1,0 +1,30 @@
+
+<%= form_tag(projects_path, method: :get, class:"form-for-search") do %>
+  <%= text_field_tag :query, nil, class: 'form-control search-input', placeholder: "Search", id: "search_content" %>
+  <%= submit_tag 'Search', :style => "display: none;" %>
+<% end %>
+
+
+<script>
+// <!-- search start -->
+document.addEventListener("keyup", (event) => {
+  var searchText = document.getElementById("search_content").value;
+
+    // aloglia search
+    var client = algoliasearch('<%= ENV['AlgoliaApplicationID'] %>', '<%= ENV['AlgoliaSearchOnly'] %>');
+    var index = client.initIndex('Project');
+
+          index.search(searchText, { hitsPerPage: 5, page: 0 })
+            .then(function searchDone(content) {
+            // console.log(options)
+            console.log(content.hits)
+            content.hits.forEach( f => {
+              document.getElementsByClassName("item")
+              console.log(f.title)
+            })
+            })
+            .catch(function searchFailure(err) {
+            console.error(err);
+            });
+      });
+  </script>
