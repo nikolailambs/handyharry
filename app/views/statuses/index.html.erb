@@ -1,0 +1,10 @@
+<% @projects.each do |project| %>
+  <%= client = project.client_id  %>
+  <div id="circle" data-circle-value="<%= @project.completion_percentage %>">
+    <div class="">
+      <% avatar_url = client.facebook_picture_url || "assets/images/client.png" %>
+      <%= image_tag avatar_url, class: "avatar-large" %>
+    </div>
+  </div>
+<% end %>
+
