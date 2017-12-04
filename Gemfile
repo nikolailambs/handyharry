@@ -12,6 +12,7 @@ gem 'rails', '5.1.4'
 gem 'faker'
 gem 'redis', '~> 3.3'
 gem "algoliasearch-rails"
+gem 'omniauth-facebook'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
