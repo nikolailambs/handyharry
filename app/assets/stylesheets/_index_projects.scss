@@ -1,9 +1,6 @@
 // SET UP MESSAGE ALERT
 
-.container-fluid {
-  margin: 0;
-  padding: 0;
-}
+
 /* Tabs */
 
 .tabs {
@@ -79,8 +76,6 @@ a:focus {
 .project {
   display: flex;
   align-items: center;
-  margin-left: 10px;
-  padding: 0 20px;
 }
 
 /* Card */
@@ -204,16 +199,16 @@ a:focus {
 .todo-list {
   font-size: 20px;
   max-width: 15em;
-  margin-left: 100px;
+  margin-left: 3em;
   padding: 0.5em 1em;
 }
 
 .todo {
   display: flex;
   align-items: baseline;
-  width: 16em;
+  width: 12em;
   position: relative;
-  padding: 0.5em 0 0.5em 6%;
+  padding: 0.5em 0 0.5em 0;
   margin: 0 auto;
   cursor: pointer;
   border-bottom: solid 1px #ddd;
