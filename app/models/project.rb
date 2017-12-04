@@ -5,6 +5,13 @@ class Project < ApplicationRecord
   has_many :tasks, inverse_of: :project
   accepts_nested_attributes_for :tasks, reject_if: :all_blank, allow_destroy: true
 
+  include AlgoliaSearch
+
+
+  algoliasearch do
+    attribute :title
+  end
+
   def completion_percentage
     amount_tasks = tasks.count
     status_true = tasks.select { |f| f.status == true }
