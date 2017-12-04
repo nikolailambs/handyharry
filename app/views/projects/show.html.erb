@@ -1,46 +1,70 @@
 <div class="container">
-  <div class="project-show-message">
-    <div class="progress-value">
-      <div id="circle" data-circle-value="<%= @project.completion_percentage %>">
-        <img class="project-show-avatar-large" src="https://kitt.lewagon.com/placeholder/users/gabriel-dehan">
+  <div class="project-show-text-center">
+  <div class="project-show-user">
+    <div id="circle" data-circle-value="<%= @project.completion_percentage %>">
+      <div class="">
+        <img src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
       </div>
-    <div class="project-show-message-name"></div>
-      <i class="fa fa-phone" aria-hidden="true"></i>
-      <i class="fa fa-comment" aria-hidden="true"></i>
-      <i class="fa fa-map-marker" aria-hidden="true"></i>
     </div>
-    <div class="project-show-message-body">
+  </div>
+    <div class="project-show-header">
       <p><strong><%= @project.address %></strong></p>
-      <p><%= @project.title %></p>
-      <p> <%= @project.description %> </p>
+      <div class="project-show-contact">
+        <i class="fa fa-phone" aria-hidden="true"></i>
+        <i class="fa fa-comment" aria-hidden="true"></i>
+        <i class="fa fa-map-marker" aria-hidden="true"></i>
+      </div>
     </div>
-    <div class="">
+  </div>
+  <div class="project-show-date">
+    <div class="project-show-deadline">
+      <div><%= @project.deadline %></div>
+    </div>
+  </div>
+
+  <div class="col-xs-12-fluid">
+    <div class="project-show">
+      <div class="project-show-body">
+        <!-- photo to be added -->
+        <div class="description header">
+        <p><%= @project.title %></p>
+        <p> <%= @project.location %></p>
+        </div>
+        <p> <%= @project.description %> </p>
+      </div>
+    </div>
     </div>
   </div>
 </div>
-<div class="project-show-product">
-  <div class='project-show-none'>
-    <div class="project-show-none"></div>
-      <% if policy(Task).create? || policy(Task).update? || policy(Task).desrtoy?%>
-        <%= render 'tasks/task_field', project: @project, task: @task %>
-        <%# link_to 'Add a Task', new_project_task_path(@project), class: "btn btn-primary" %>
-      <% end %>
+
+
+<div class="project-show">
+  <div class="row">
+    <div class="project-show">
+      <div class="col-xs-12-fluid">
+        <% if policy(Task).create? || policy(Task).update? || policy(Task).destroy?%>
+         <%= render 'tasks/task_field', project: @project, task: @task %>
+        <% end %>
+      </div>
     </div>
   </div>
+</div>
+  </div>
+</div>
 </div>
 <div class="project-show-product">
   <div class='project-show-product-check'>
     <div class="project-show-product-checkbox"></div>
-      <% if policy_scope(Task) || policy(Task).desrtoy? %>
-        <%= render 'tasks/index', project: @project %>
-      <% end %>
-    </div>
+    <% if policy_scope(Task) || policy(Task).desrtoy? %>
+    <%= render 'tasks/index', project: @project %>
+    <% end %>
   </div>
 </div>
+</div>
 
-      <%= link_to 'Back', projects_path, class: "btn btn-primary" %>
+<%= link_to 'Back', projects_path, class: "btn btn-primary" %>
 
-      <%= link_to 'Delete Project', project_path(@project), method: :delete, class: "btn btn-primary" %>
+<%= link_to 'Delete Project', project_path(@project), method: :delete, class: "btn btn-primary" %>
 
 
 <%=  content_for :after_js do %>
@@ -51,7 +75,9 @@
     startAngle: -Math.PI / 4 * 3,
     value: "<%= @project.completion_percentage %>",
     lineCap: 'round',
-    fill: {color: '#ffa500'}
+    fill: {color: '#5593E3'},
+    emptyFill: "rgba(145, 193, 87, .9)",
+    thickness: '20',
   });
 
   // setTimeout(function() { c.circleProgress('value', 0.7); }, 1000);

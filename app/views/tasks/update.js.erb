@@ -8,9 +8,11 @@ checkbox.value = 0
 var newCompletionRate = <%= @project_completion %>
 $('#circle').circleProgress({
     startAngle: -Math.PI / 4 * 3,
-    value: newCompletionRategu,
+    value: newCompletionRate,
     lineCap: 'round',
-    fill: {color: '#ffa500'}
+    fill: {color: '#5593E3'},
+    emptyFill: "rgba(145, 193, 87, .9)",
+    thickness: '20',
   });
 
 
