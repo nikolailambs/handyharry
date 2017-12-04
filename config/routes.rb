@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'chat_rooms/show'
 
   devise_for :users
 
