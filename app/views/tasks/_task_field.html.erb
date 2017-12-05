@@ -1,17 +1,8 @@
-<!-- nested into project form -->
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-xs-12-fluid">
-      <div class= "task-new">
-        <%= simple_form_for [project, @task] do |f| %>
-        <%= f.submit "add task"%>
-        <%= f.input :description, label: false , placeholder: "Add task ..." %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
-<%#= link_to_remove_association "remove task", f, class: "btn btn-primary"%>
 
+<%= simple_form_for [project, @task], remote: true, html: {class: "form-inline"} do |f| %>
+  <%= f.input :description, label: false , placeholder: "Add task ..."   %>
+  <%= button_tag('', type: "submit", class: "submit-task") do %>
+      <i class= "fa fa-paper-plane" aria-hidden= "true"></i>
+  <% end %>
 
-
+<% end %>

@@ -21,7 +21,14 @@ class Project < ApplicationRecord
     status_true = tasks.select { |f| f.status == true }
     amount_true = status_true.count
     result = (amount_true.to_f / amount_tasks.to_f).to_f
+    p result.round(2)
     result.round(2)
+
+    if amount_tasks == status_true.length
+      status = true
+    else
+      status = false
+    end
   end
 
   def map_link
