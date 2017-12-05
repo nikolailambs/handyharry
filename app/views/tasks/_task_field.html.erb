@@ -1,5 +1,4 @@
 
-
 <%= simple_form_for [project, @task], remote: true, html: {class: "form-inline"} do |f| %>
   <%= f.input :description, label: false , placeholder: "Add task ..."   %>
   <%= button_tag('', type: "submit", class: "submit-task") do %>

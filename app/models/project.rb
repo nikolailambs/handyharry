@@ -1,9 +1,13 @@
 class Project < ApplicationRecord
   belongs_to :handy, class_name: "User"
   belongs_to :client, class_name: "User"
+  has_attachments :photos, maximum: 5
 
   has_many :tasks, inverse_of: :project
   accepts_nested_attributes_for :tasks, reject_if: :all_blank, allow_destroy: true
+
+  geocoded_by :full_address
+  after_validation :geocode, if: :address_changed?
 
   include AlgoliaSearch
 
@@ -19,5 +23,21 @@ class Project < ApplicationRecord
     result = (amount_true.to_f / amount_tasks.to_f).to_f
     p result.round(2)
     result.round(2)
+
+    if amount_tasks == status_true.length
+      status = true
+    else
+      status = false
+    end
+  end
+
+  def map_link
+    google_address = "#{self.address.gsub(/\s/, '+')},+#{self.city.gsub(/\s/, '+')}"
+    "https://www.google.com/maps/dir/Berlin/#{google_address}/data=!4m2!4m1!3e0"
+    "https://www.google.com/maps?saddr=My+Location&daddr=#{google_address}"
+  end
+
+  def full_address
+    "#{self.address}, #{self.city}"
   end
 end

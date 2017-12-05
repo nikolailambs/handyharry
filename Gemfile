@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.3.5'
 
+gem 'geocoder'
 gem "pundit"
 gem 'devise'
 gem 'figaro'
@@ -11,6 +12,11 @@ gem 'rails', '5.1.4'
 gem 'faker'
 gem 'redis', '~> 3.3'
 gem "algoliasearch-rails"
+gem 'omniauth-facebook'
+gem 'cloudinary', '1.1.7'
+gem 'attachinary', github: 'assembler/attachinary'
+gem 'jquery-fileupload-rails'
+gem 'coffee-rails'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'

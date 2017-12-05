@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171201104955) do
+ActiveRecord::Schema.define(version: 20171204155848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attachinary_files", id: :serial, force: :cascade do |t|
+    t.string "attachinariable_type"
+    t.integer "attachinariable_id"
+    t.string "scope"
+    t.string "public_id"
+    t.string "version"
+    t.integer "width"
+    t.integer "height"
+    t.string "format"
+    t.string "resource_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent"
+  end
 
   create_table "chat_rooms", force: :cascade do |t|
     t.text "name"
@@ -49,6 +64,9 @@ ActiveRecord::Schema.define(version: 20171201104955) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "location"
+    t.string "city"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["client_id"], name: "index_projects_on_client_id"
     t.index ["handy_id"], name: "index_projects_on_handy_id"
   end
@@ -86,6 +104,11 @@ ActiveRecord::Schema.define(version: 20171201104955) do
     t.string "phone"
     t.string "status"
     t.boolean "has_read_message"
+    t.string "provider"
+    t.string "uid"
+    t.string "facebook_picture_url"
+    t.string "token"
+    t.datetime "token_expiry"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
