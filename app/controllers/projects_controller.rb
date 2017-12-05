@@ -6,7 +6,6 @@ class ProjectsController < ApplicationController
   def index
     @projects = policy_scope(Project).order(created_at: :desc)
     @tasks = policy_scope(Task).order(created_at: :desc)
-
   end
 
   def show
@@ -58,7 +57,7 @@ class ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:address, :deadline, :description, :title, :client_id, tasks_attributes: [:id, :title, :description, :assigned_to, :deadline])
+    params.require(:project).permit(:address, :deadline, :description, :title, :client_id, :photo, tasks_attributes: [:id, :title, :description, :assigned_to, :deadline])
   end
 end
 

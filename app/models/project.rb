@@ -1,6 +1,7 @@
 class Project < ApplicationRecord
   belongs_to :handy, class_name: "User"
   belongs_to :client, class_name: "User"
+  has_attachments :photos, maximum: 5
 
   has_many :tasks, inverse_of: :project
   accepts_nested_attributes_for :tasks, reject_if: :all_blank, allow_destroy: true
@@ -12,7 +13,7 @@ class Project < ApplicationRecord
 
 
   algoliasearch do
-    attribute :title
+    attribute :title, :handy_id, :client_id, :address, :accepted, :deadline, :status, :description, :title, :location, :city
   end
 
   def completion_percentage
@@ -20,6 +21,7 @@ class Project < ApplicationRecord
     status_true = tasks.select { |f| f.status == true }
     amount_true = status_true.count
     result = (amount_true.to_f / amount_tasks.to_f).to_f
+    p result.round(2)
     result.round(2)
   end
 

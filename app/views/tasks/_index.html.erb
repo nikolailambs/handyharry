@@ -1,20 +1,20 @@
 
-<% project.tasks.each do |task| %>
-<%= simple_form_for [project, task], remote: true, html: { id: "form_#{task.id}" } do |f| %>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-xs-12-fluid">
-      <%= f.input :status, label: false, as: :boolean, input_html: { id: "task-check-#{task.id}", class: "task-check", data: { task_id: task.id } } %>
-      <% end %>
-      <!--     <input type="checkbox" class='project-show-product-checkbox'> -->
-      <div class="task-index-product-body">
-        <%= task.description %>
+    <div class="project-show-task">
 
-        <%= link_to 'Delete', project_task_path(id: task.project.id, project_id: project.id), method: :delete, class: "task-index-btn" %></br>
-        <%#= link_to 'Edit Task', task_path(task) %>
+      <div class="project-show-task-description">
+      <%= simple_form_for [project, task], remote: true, html: { id: "form_#{task.id}" } do |f| %>
+        <%= f.input :status, label: false, as: :boolean, input_html: { id: "task-check-#{task.id}", class: "task-check todo__state", data: { task_id: task.id } } %>
+      <% end %>
+
+      <p class="task-description"> <%= task.description %></p>
       </div>
+
+      <% if policy_scope(Task) || policy(Task).destroy? %>
+        <div>
+          <%= link_to project_task_path(project, task), method: :delete  do%>
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          <% end %>
+        </div>
+      <% end %>
     </div>
-  </div>
-</div>
-<% end %>
 

@@ -1,0 +1,69 @@
+<div class="navbar-wagon navigation-footer-position hidden-md hidden-lg">
+
+  <!-- Dropdown list appearing on mobile only -->
+<!--   <div class="navigation-middle"> -->
+<% @url_path_check %>
+<% url = request.path_info  %>
+<% if url.include?('projects') %>
+  <% @url_path_check = "pro" %>
+<% elsif url.include?('chat_rooms') %>
+  <% @url_path_check = "cha" %>
+<% elsif url.include?('users') %>
+  <% @url_path_check = "use" %>
+<% elsif url.include?('status') %>
+  <% @url_path_check = "sta" %>
+<% end %>
+
+    <% if current_user %>
+    <div class="navigation-icons-wrapper <%= "selected-nav" if @url_path_check == "sta"%>">
+        <div class="navigation-icons text-center">
+          <%= link_to "", class: "text-center" do %>
+            <i class="fa fa-user<%= @url_path_check == "sta" ? "s" : "-o" %> no-padding-no-margin" aria-hidden="true"></i>
+          <% end %>
+        </div>
+      </div>
+      <div class="navigation-icons-wrapper <%= "selected-nav" if @url_path_check == "pro"%>">
+        <div class="navigation-icons text-center">
+          <%= link_to projects_path, class: "text-center" do %>
+            <i class="fa fa-wrench no-padding-no-margin" aria-hidden="true"></i>
+          <% end %>
+        </div>
+      </div>
+      <div class="navigation-icons-wrapper <%= "selected-nav" if @url_path_check == "cha"%>">
+        <div class="navigation-icons text-center">
+          <%= link_to chat_rooms_path, class: "text-center" do %>
+            <i class="fa fa-commenting<%= @url_path_check == "cha" ? "" : "-o" %> no-padding-no-margin" aria-hidden="true"></i>
+          <% end %>
+        </div>
+      </div>
+      <div class="navigation-icons-wrapper <%= "selected-nav" if @url_path_check == "use"%>">
+        <div class="navigation-icons text-center">
+            <div class="dropup">
+              <% if current_user.handy %>
+                  <%= image_tag 'handy_e.png', class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+              <% else %>
+                  <%= image_tag 'client_e.png', class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+              <% end %>
+
+              <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+                <li>
+                  <%= link_to "#" do %>
+                    <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+                  <% end %>
+                </li>
+                <li>
+                  <% logout_path = destroy_user_session_path %>
+                  <%= link_to logout_path, method: :delete do %>
+                    <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+        </div>
+      </div>
+      <% else %>
+        <!-- Login link for customers (when logged out) -->
+        <%= link_to t(".sign_in", default: "Customers"), new_user_session_path, class: "btn btn-customers" %>
+    <% end %>
+  <!-- </div> -->
+</div>

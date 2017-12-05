@@ -1,3 +1,157 @@
+/* Caroussel */
+
+.carousel-inner > .item > img {
+    margin: 0 auto;
+}
+
+/* Caroussel */
+.fabutton {
+  background: none;
+  padding: 0px;
+  border: none;
+}
+
+.submit-task {
+  background: none;
+  padding: 0px;
+  border: none;
+  color: #83DACE;
+  font-family: FontAwesome;
+}
+
+
+/* Project show header */
+
+#circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.project-show-header {
+  margin-top: 2em;
+}
+
+.project-show-avatar-large {
+  position: absolute;
+  width: 104px;
+  border-radius: 50%;
+}
+
+.project-show-contact {
+  margin-left: 2em;
+}
+
+.project-show-contact > h3 {
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  font-size: 1.2em;
+
+}
+
+
+.project-show-appointment {
+  margin: 1em 0 auto;
+}
+
+.project-show-appointment > div{
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  width: 300px;
+}
+
+.project-show-appointment > i{
+  font-size: 22px;
+}
+.project-show-appointment h3{
+  margin: 0;
+  margin-left: 1em;
+  font-size: 25px;
+}
+
+/* Project show body */
+
+.project-show-body {
+  margin: 2em 1em;
+}
+
+.project-show-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Project show info */
+
+.project-show-info {
+  display: flex;
+  justify-content: space-around;
+}
+
+/* Project show task */
+
+.project-show-task {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 21em;
+  position: relative;
+  padding: 0.5em 0 0.5em 0;
+  cursor: pointer;
+  border-bottom: solid 1px #ddd;
+
+  &:last-child { border-bottom: none; }
+}
+
+.project-show-task-description{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+#new_task {
+  border: 1px solid #ECECEC;
+  width: 21em;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#task_description {
+  border: none;
+}
+
+input#new_task {
+  color: black;
+}
+
+i.fa.fa-paper-plane {
+  margin-right: 20px;
+}
+/* Avatar */
+
+
+
+
+.project-show-message {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid rgba(220,224,244,0.4);
+}
+.project-show-message:last-child {
+  border-bottom: none;
+}
+.project-show-message-body {
+  flex-grow: 1;
+}
+
+.avatar-large{
+  width: 70px;
+  border-radius: 50%;
+}
+
 .project-show {
   display: grid;
   grid-template-columns:25% 25% 25% 25%;

@@ -1,0 +1,30 @@
+const newTaskForm = document.getElementById('new_task');
+
+console.log(newTaskForm)
+
+<% if @task.errors.any? %>
+  newTaskForm.innerHTML = "<%= j render 'tasks/task_field', project: @project, task: @task %>";
+<% else %>
+  const tasks = document.getElementById('show-tasks');
+  tasks.insertAdjacentHTML("beforeend", "<%= j render 'tasks/index', project: @project, task: @task %>");
+  // newTaskForm.innerHTML = "<%# j render 'tasks/task_field', project: @project, task: Task.new %>";
+
+  $('input.task-check').change(function change (){
+    var task_id = $(this).data('task-id')
+    console.log('form_' + task_id)
+    $('#form_' + task_id).submit()
+  })
+
+  $('#circle').circleProgress({
+    startAngle: -Math.PI / 2,
+    size: 120,
+    value: "<%= @project.completion_percentage %>",
+    lineCap: 'round',
+    fill: {color: '#5593E3'},
+    emptyFill: "rgba(145, 193, 87, .9)",
+    thickness: '20',
+  });
+<% end %>
+
+
+
