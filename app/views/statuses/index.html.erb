@@ -1,10 +1,33 @@
-<% @projects.each do |project| %>
-  <%= client = project.client_id  %>
-  <div id="circle" data-circle-value="<%= @project.completion_percentage %>">
+
+<% @hash.each do |key, value| %>
+  <div id="circle" data-circle-value="<%= @result %>">
     <div class="">
-      <% avatar_url = client.facebook_picture_url || "assets/images/client.png" %>
+      <% client = User.find(key) %>
+      <% avatar_url = client.facebook_picture_url || "client.png" %>
       <%= image_tag avatar_url, class: "avatar-large" %>
+      <div>
+        <h2><%= (@result * 100).to_i %>%</h2>
+      </div>
     </div>
   </div>
-<% end %>
 
+<%=  content_for :after_js do %>
+
+<script>
+
+  $('#circle').circleProgress({
+    startAngle: -Math.PI / 4 * 3,
+    value: "<%= @result %>",
+    lineCap: 'round',
+    fill: {color: '#5593E3'},
+    emptyFill: "rgba(145, 193, 87, .9)",
+    thickness: '20',
+  });
+
+  // setTimeout(function() { c.circleProgress('value', 0.7); }, 1000);
+  // setTimeout(function() { c.circleProgress('value', 1.0); }, 1100);
+  // setTimeout(function() { c.circleProgress('value', 0.5); }, 2100);
+</script>
+
+<% end %>
+<% end %>
