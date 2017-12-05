@@ -67,10 +67,11 @@ project_array = []
         description: Faker::Commerce.department(4),
         title: Faker::Job.field,
         location: Faker::Address.secondary_address,
-        # photos: "http://img.clubic.com/07791435-photo-playstation.jpg"
+        photo_urls: ["http://mestrayllana.at/wp-content/uploads/2013/07/kaputtbett.jpg"],
       )
-      counter += 1
-
+      puts counter
+      counter == 24 ? counter = 0 : counter +=1
+      puts counter
     puts 'Creating 2 fake tasks'
 
     2.times do

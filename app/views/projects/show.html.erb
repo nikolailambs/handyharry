@@ -21,7 +21,7 @@
     <div class="project-show-appointment">
       <div>
       <i class="fa fa-calendar-o" aria-hidden="true"></i>
-      <h3><%= @project.deadline.strftime(" %a %d/%m/%Y  %H:%M ")  %></h3>
+      <h3><%= @project.deadline.strftime(" %a %d/%m/%Y  %H:%M ") %></h3>
       </div>
     </div>
   </div>
@@ -32,10 +32,10 @@
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"><#/li>
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <% @project.photos.each do |photo| %>
           <% i = 0 %>
-          <li data-target="#myCarousel" data-slide-to="#{index + 1}"><#/li>
+          <li data-target="#myCarousel" data-slide-to="#{index + 1}"></li>
           <% i += 1 %>
         <% end %>
       </ol>
@@ -53,10 +53,10 @@
       </div>
       <!-- Left and right controls -->
         <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left"><#/span>
+          <span class="glyphicon glyphicon-chevron-left"></span>
         </a>
         <a class="right carousel-control" href="#myCarousel" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right"><#/span>
+          <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
     </div>
   <% end %>
