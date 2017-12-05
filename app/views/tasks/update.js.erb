@@ -1,17 +1,12 @@
-console.log("hello")
-var id = 'task-check-<%= @task.id + 1 %>'
-console.log(id)
-var checkbox = document.getElementById(id)
-console.log(checkbox)
-checkbox.value = 0
 
-var newCompletionRate = <%= @project_completion %>
-$('#circle').circleProgress({
-    startAngle: -Math.PI / 4 * 3,
-    value: newCompletionRategu,
-    lineCap: 'round',
-    fill: {color: '#ffa500'}
-  });
+// console.log(<%# @task.id %>)
+// var id = 'task-check-<%# @task.id %>'
+// console.log(id)
+// var checkbox = document.getElementById(id)
+// console.log(checkbox)
+
+var newCompletionRate = <%= @project_completion.to_s %>
+console.log(newCompletionRate)
 
 
-
+setTimeout(function() { $('#circle').circleProgress('value', newCompletionRate); }, 0);

@@ -41,9 +41,9 @@
                       <div class="card-content-contacts">
                         <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
                         <%= link_to chat_rooms_path, class: "icon-link" do %>
-                          <i class="fa fa-comment" aria-hidden="true"></i>
+                          <i class="fa fa-comment fa-2x" aria-hidden="true"></i>
                         <% end %>
-                        <i class="fa fa-road fa-x2" aria-hidden="true"></i>
+                        <i class="fa fa-road fa-2x" aria-hidden="true"></i>
                       </div>
                     </div>
                     <%= link_to "", project_path(project), class: "tag-link" %>
@@ -68,7 +68,7 @@
 
                       <% if policy_scope(Task) || policy(Task).destroy? %>
                       <div>
-                        <%= link_to project_task_path(id: task.id, project_id: project.id), method: :delete  do%>
+                        <%= link_to project_task_path(project, task), method: :delete  do%>
                           <i class="fa fa-trash" aria-hidden="true"></i>
                         <% end %>
                       </div>
