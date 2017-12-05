@@ -10,9 +10,18 @@
   <% @url_path_check = "cha" %>
 <% elsif url.include?('users') %>
   <% @url_path_check = "use" %>
+<% elsif url.include?('status') %>
+  <% @url_path_check = "sta" %>
 <% end %>
 
     <% if current_user %>
+    <div class="navigation-icons-wrapper <%= "selected-nav" if @url_path_check == "sta"%>">
+        <div class="navigation-icons text-center">
+          <%= link_to "", class: "text-center" do %>
+            <i class="fa fa-user<%= @url_path_check == "sta" ? "s" : "-o" %> no-padding-no-margin" aria-hidden="true"></i>
+          <% end %>
+        </div>
+      </div>
       <div class="navigation-icons-wrapper <%= "selected-nav" if @url_path_check == "pro"%>">
         <div class="navigation-icons text-center">
           <%= link_to projects_path, class: "text-center" do %>
@@ -21,9 +30,9 @@
         </div>
       </div>
       <div class="navigation-icons-wrapper <%= "selected-nav" if @url_path_check == "cha"%>">
-        <div class="navigation-icons text-center border-left-right">
+        <div class="navigation-icons text-center">
           <%= link_to chat_rooms_path, class: "text-center" do %>
-            <i class="fa fa-comment no-padding-no-margin" aria-hidden="true"></i>
+            <i class="fa fa-commenting<%= @url_path_check == "cha" ? "" : "-o" %> no-padding-no-margin" aria-hidden="true"></i>
           <% end %>
         </div>
       </div>

@@ -3,9 +3,11 @@
   position: fixed;
   z-index: 100000;
   width: 100%;
-  background-color: #DBDBDB;
+  background-color: white;
   justify-content: space-around;
   padding: 0;
+  border-top: 1px solid #d3d3d363;
+  background-color: #f9f9f9;
 }
 
 .navigation-middle {
@@ -21,7 +23,6 @@
 }
 
 .selected-nav {
-  background-color: #EFEFEF;
   a {
     i {
       color: #da552f;
@@ -31,7 +32,7 @@
 
 .navigation-icons-wrapper {
   flex: 1 0 auto;
-  width: 33.33%;
+  width: 25%;
   height: 100%;
   padding: 10px 0;
 
@@ -43,17 +44,13 @@
     align-items: center;
   }
 
-  &:hover {
-    background-color: #EFEFEF;
-  }
-
   a {
     height: 100%;
     width: 100%;
   }
 
   i {
-    color: white;
+    color: #c1c1c1;
     font-size: 14px;
     padding: 0;
 
@@ -63,8 +60,6 @@
     }
   }
 }
-
-
 
 .no-padding-no-margin {
   padding: 0;
