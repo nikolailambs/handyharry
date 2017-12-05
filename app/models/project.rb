@@ -23,19 +23,13 @@ class Project < ApplicationRecord
     result = (amount_true.to_f / amount_tasks.to_f).to_f
     p result.round(2)
     result.round(2)
-
-    if amount_tasks == status_true.length
-      status = true
-    else
-      status = false
-    end
   end
 
-  def map_link
-    google_address = "#{self.address.gsub(/\s/, '+')},+#{self.city.gsub(/\s/, '+')}"
-    "https://www.google.com/maps/dir/Berlin/#{google_address}/data=!4m2!4m1!3e0"
-    "https://www.google.com/maps?saddr=My+Location&daddr=#{google_address}"
-  end
+  # def map_link
+  #   google_address = "#{self.address.gsub(/\s/, '+')},+#{self.city.gsub(/\s/, '+')}"
+  #   "https://www.google.com/maps/dir/Berlin/#{google_address}/data=!4m2!4m1!3e0"
+  #   "https://www.google.com/maps?saddr=My+Location&daddr=#{google_address}"
+  # end
 
   def full_address
     "#{self.address}, #{self.city}"

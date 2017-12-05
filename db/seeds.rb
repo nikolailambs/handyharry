@@ -63,7 +63,7 @@ project_array = []
         address: addresses_array[counter][0],
         city: addresses_array[counter][1],
         deadline: @date,
-        status: false,
+        status: true,
         description: Faker::Commerce.department(4),
         title: Faker::Job.field,
         location: Faker::Address.secondary_address,
@@ -79,7 +79,7 @@ project_array = []
           title: "",
           description: "Buy #{Faker::Commerce.material}",
           assigned_to: "",
-          status: false,
+          status: true,
           deadline: @date
         )
         task.save!
