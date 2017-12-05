@@ -1,5 +1,10 @@
+
 <div class="container">
 <!-- Project header -->
+
+  <%= link_to projects_path do %>
+  <i class="fa fa-chevron-left" aria-hidden="true"></i>
+  <% end %>
 
   <div class="project-show-header">
     <div class="project-show-info">
@@ -9,11 +14,30 @@
       <div class="project-show-contact">
         <h3><%= @project.address%></h3>
         <div class="project-show-contacts">
-          <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
-          <%= link_to chat_rooms_path, class: "icon-link" do %>
-            <i class="fa fa-comment fa-2x" aria-hidden="true"></i>
-          <% end %>
-          <i class="fa fa-road fa-2x" aria-hidden="true"></i>
+
+            <%= link_to "tel:#{current_user.handy ? @project.client.phone : @project.handy.phone}", class: "icon-link-show icon-z-index" do %>
+                <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
+            <% end %>
+
+            <%= simple_form_for ChatRoom.new do |f| %>
+              <% if current_user.handy %>
+                <%= f.input :client_id, as: :hidden, input_html: { :value => @project.client.id } %>
+                <%= f.input :handy_id, :as => :hidden, :input_html => { :value => current_user.id } %>
+              <% else %>
+                <%= f.input :handy_id, :as => :hidden, :input_html => { :value => @project.handy.id } %>
+                <%= f.input :client_id, :as => :hidden, :input_html => { :value => current_user.id } %>
+              <% end %>
+              <%= button_tag('', type: 'submit', class: "icon-link-show icon-z-index") do %>
+                <i class="fa fa-comment fa-2x" aria-hidden="true"></i>
+              <% end %>
+            <% end %>
+
+            <%= link_to @project.map_link, class: "icon-link-show icon-z-index", target: :_blank do %>
+              <i class="fa fa-road fa-2x" aria-hidden="true"></i>
+            <% end %>
+
+
+
        </div>
       </div>
     </div>
@@ -90,10 +114,6 @@
 
 
 
-<%= link_to 'Back', projects_path, class: "btn btn-primary" %>
-
-
-
 <%=  content_for :after_js do %>
 
 <script>
@@ -102,14 +122,14 @@
     size: 120,
     value: "<%= @project.completion_percentage %>",
     lineCap: 'round',
-    fill: {color: '#5593E3'},
-    emptyFill: "rgba(145, 193, 87, .9)",
+    fill: {color: '#32B796'},
+    emptyFill: '#5593E3',
     thickness: '20',
   });
+
 </script>
 
 <% end %>
-
 
 
 
