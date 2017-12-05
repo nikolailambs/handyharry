@@ -25,36 +25,58 @@ window.stackHeads=function(){
                 //the diference between our scroll position and the header's placeholder's position
                 if(dif<header.offsetHeight){
                     //if we have less distance between the placeholder of the next element and the top of of the page than the height of the current header, we push the header up so it doesn't overlap.
+                    // header.style.opacity="1";
                     header.style.position="fixed";
                     header.style.top='-'+(header.offsetHeight-dif)+'px';
-                    header.style.width="100% !important"
+                    header.style.width="100% !important";
 
                 }
                 else{
                     //if there is another header, but we have room
-                    //console.log(header
+                    //console.log(header)
+                    // header.style.opacity="1";
                     holder.style.height=header.offsetHeight+'px';
                     header.style.position="fixed";
                     header.style.top="0px";
+                    header.style.width="100% !important";
                 }
 
             }
 
+            else if (window.pageYOffset>180) {
+
+              holder.style.height=header.offsetHeight+'px';
+              header.style.opacity="0";
+              //if there isn't another header
+              header.style.position="fixed";
+              header.style.top="0px";
+              header.style.width="100% !important";
+            }
+
             else{
+                console.log('first')
+                // console.log($('.tabs'));
 
                 holder.style.height=header.offsetHeight+'px';
                 //if there isn't another header
                 header.style.position="fixed";
                 header.style.top="0px";
+                header.style.width="100% !important";
+                header.style.opacity= `${100/window.pageYOffset + (1 - 0.9)}`;
+                console.log(window.pageYOffset)
             }
 
 
         }
         else{
+            header.style.opacity= `${100/window.pageYOffset + (1 - 0.9)}`;
+            // header.style.opacity="1";
             holder.style.height='0px';
             //if we haven't gotten to the header yet
             header.style.position='static';
             header.style.removeProperty('top');
+            header.style.width="100% !important";
+
         }
 
     }
