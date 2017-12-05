@@ -1,90 +1,117 @@
 <div class="container">
-  <div class="project-show-text-center">
-  <div class="project-show-user">
-    <div id="circle" data-circle-value="<%= @project.completion_percentage %>">
-      <div class="">
-        <img src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
+<!-- Project header -->
+
+  <div class="project-show-header">
+    <div class="project-show-info">
+      <div id="circle" data-circle-value="<%= @project.completion_percentage %>">
+        <img class="project-show-avatar-large" src="https://kitt.lewagon.com/placeholder/users/gabriel-dehan">
       </div>
-    </div>
-  </div>
-    <div class="project-show-header">
-      <p><strong><%= @project.address %></strong></p>
       <div class="project-show-contact">
-        <i class="fa fa-phone" aria-hidden="true"></i>
-        <i class="fa fa-comment" aria-hidden="true"></i>
-        <i class="fa fa-map-marker" aria-hidden="true"></i>
+        <h3><%= @project.address%></h3>
+        <div class="project-show-contacts">
+          <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
+          <%= link_to chat_rooms_path, class: "icon-link" do %>
+            <i class="fa fa-comment fa-2x" aria-hidden="true"></i>
+          <% end %>
+          <i class="fa fa-road fa-2x" aria-hidden="true"></i>
+       </div>
+      </div>
+    </div>
+
+    <div class="project-show-appointment">
+      <div>
+      <i class="fa fa-calendar-o" aria-hidden="true"></i>
+      <h3><%= @project.deadline.strftime(" %a %d/%m/%Y  %H:%M ")  %></h3>
       </div>
     </div>
   </div>
-  <div class="project-show-date">
-    <div class="project-show-deadline">
-      <div><%= @project.deadline %></div>
-    </div>
-  </div>
 
-  <div class="col-xs-12-fluid">
-    <div class="project-show">
-      <div class="project-show-body">
-        <!-- PHOTO HERE -->
-        <div class="description header">
-        <p><%= @project.title %></p>
-        <p> <%= @project.location %></p>
-        </div>
-        <p> <%= @project.description %> </p>
-      </div>
-    </div>
-    </div>
+<!-- Caroussel Project Pics -->
+
+ <!--  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+    <!-- <#ol class="carousel-indicators">
+      <#li data-target="#myCarousel" data-slide-to="0" class="active"><#/li>
+      <#% @project.photos.each_with_index |project, index| do %>
+        <#li data-target="#myCarousel" data-slide-to="#{index + 1}"><#/li>
+      <#% end %>
+    <#/ol>
+
+   <#!-- Wrapper for slides -->
+    <!-- <#div class="carousel-inner">
+      <#div class="item active"><#%= cl_image_tag @project.photos.first.path %><#/div>
+
+      <#% collection = @project.photos[1..-1]  %>
+      <#% collection.each do |photo| %>
+        <#div class="item">
+          <#%= cl_image_tag photo.path %>
+        <#/div>
+      <#% end %>
+    <#/div>
+     <#!-- Left and right controls -->
+      <!-- <#a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <#span class="glyphicon glyphicon-chevron-left"><#/span>
+      <#/a>
+      <#a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <#span class="glyphicon glyphicon-chevron-right"><#/span>
+      <#/a>
+  <#/div> -->
+
+<!-- Project Description -->
+
+<div class="project-show-body">
+  <div class="project-show-title">
+    <p class="project-title"> <%= @project.title %></p>
+    <p class="project-location"> <%= @project.location %></p>
   </div>
+  <div class="project-show-description">
+    <p> <%= @project.description %></p>
+  </div>
+</div>
 </div>
 
+  <!-- Add Task -->
 
-<div class="project-show">
-  <div class="row">
-    <div class="project-show">
-      <div class="col-xs-12-fluid">
-        <% if policy(Task).create? || policy(Task).update? || policy(Task).destroy?%>
-         <%= render 'tasks/task_field', project: @project, task: @task %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
-  </div>
-</div>
-</div>
-<div class="project-show-product">
-  <div class='project-show-product-check'>
-    <div class="project-show-product-checkbox"></div>
-    <% if policy_scope(Task) || policy(Task).desrtoy? %>
-    <%= render 'tasks/index', project: @project %>
+  <div class= "project-show-add-task">
+    <% if policy(Task).create? || policy(Task).destroy?%>
+      <%= render 'tasks/task_field', project: @project, task: @task %>
     <% end %>
   </div>
-</div>
-</div>
+
+<!-- Tasks -->
+
+<div class= "project-show-tasks" id="show-tasks">
+  <% @project.tasks.each do |task| %>
+
+    <%= render 'tasks/index', project: @project, task: task %>
+
+  <% end %>
+  </div>
+
+
 
 <%= link_to 'Back', projects_path, class: "btn btn-primary" %>
 
-<%= link_to 'Delete Project', project_path(@project), method: :delete, class: "btn btn-primary" %>
 
 
 <%=  content_for :after_js do %>
 
 <script>
-
   $('#circle').circleProgress({
-    startAngle: -Math.PI / 4 * 3,
+    startAngle: -Math.PI / 2,
+    size: 120,
     value: "<%= @project.completion_percentage %>",
     lineCap: 'round',
     fill: {color: '#5593E3'},
     emptyFill: "rgba(145, 193, 87, .9)",
     thickness: '20',
   });
-
-  // setTimeout(function() { c.circleProgress('value', 0.7); }, 1000);
-  // setTimeout(function() { c.circleProgress('value', 1.0); }, 1100);
-  // setTimeout(function() { c.circleProgress('value', 0.5); }, 2100);
 </script>
 
 <% end %>
+
+
+
+
 
 

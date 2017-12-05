@@ -83,7 +83,7 @@
 
                       <% if policy_scope(Task) || policy(Task).destroy? %>
                       <div>
-                        <%= link_to project_task_path(id: task.id, project_id: project.id), method: :delete  do%>
+                        <%= link_to project_task_path(project, task), method: :delete  do%>
                           <i class="fa fa-trash" aria-hidden="true"></i>
                         <% end %>
                       </div>
