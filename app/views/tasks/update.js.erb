@@ -1,9 +1,9 @@
 console.log("hello")
-var id = 'task-check-<%= @task.id + 1 %>'
+var id = 'task-check-<%= @task.id %>'
 console.log(id)
 var checkbox = document.getElementById(id)
 console.log(checkbox)
-checkbox.value = 0
+
 
 var newCompletionRate = <%= @project_completion %>
 $('#circle').circleProgress({

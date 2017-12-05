@@ -11,6 +11,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, omniauth_providers: [:facebook]
 
+  def self.current_user
+    Thread.current[:user]
+  end
+
+  def self.current_user=(user)
+    Thread.current[:user] = user
+  end
 
   def build_user_name
     if check_user_names?
