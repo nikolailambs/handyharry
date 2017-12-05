@@ -13,7 +13,7 @@ class Project < ApplicationRecord
 
 
   algoliasearch do
-    attribute :title
+    attribute :title, :handy_id, :client_id, :address, :accepted, :deadline, :status, :description, :title, :location, :city
   end
 
   def completion_percentage

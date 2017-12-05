@@ -1,5 +1,6 @@
 <% content_for :title, "Projects" %>
-    <div class="tabs">
+  <div class="placeholder"></div>
+    <div class="tabs fixed-objects">
       <a class="tab active" href="#">
         <h3>Today</h3>
       </a>
@@ -103,6 +104,9 @@
     </div>
   </div>
 </div>
+<div id="project-results">
+
+</div>
 
 
 <% content_for(:after_js) do %>
@@ -114,6 +118,24 @@
     $('#form_' + task_id).submit()
   })
 
+// <!-- search start -->
+document.addEventListener("keyup", (event) => {
+  var searchText = document.getElementById("search_content").value;
+  var html_to_insert = '';
+    // aloglia search
+    var client = algoliasearch('<%= ENV['AlgoliaApplicationID'] %>', '<%= ENV['AlgoliaSearchOnly'] %>');
+    var index = client.initIndex('Project');
+
+          index.search(searchText, { hitsPerPage: 5, page: 0 })
+            .then(function searchDone(content) {
+            // console.log(options)
+            console.log(content.hits)
+            content.hits.forEach( function(element) {console.log(element.objectID) })
+            })
+            .catch(function searchFailure(err) {
+            console.error(err);
+            });
+      });
   </script>
 <% end %>
 

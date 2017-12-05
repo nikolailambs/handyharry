@@ -1,0 +1,100 @@
+`<div class="row">
+  <div class="col-xs-12">
+    <!-- var project div -->
+    <!-- var project link class -->
+    <!-- var project link class -->
+
+    <div class="project-card">
+      <!-- var card-header -->
+      <!-- var card-header -->
+
+      <div class="card-content">
+        <div class="card-content-details">
+          <!-- var card-content-title -->
+          <!-- var card-content-title -->
+
+          <!-- var card-content-location -->
+          <!-- var card-content-location -->
+        </div>
+
+        <div class="card-content-contacts">
+         <a class="icon-link" href="#"><i class="fa fa-phone fa-2x" aria-hidden="true"></i></a>
+         <a class="icon-link" target="_blank" href="#"><i class="fa fa-comment" aria-hidden="true"></i></a>
+         <a class="icon-link" target="_blank" href="#"><i class="fa fa-road fa-x2" aria-hidden="true"></i></a>
+       </div>
+     </div>
+    <!-- var tag-link -->
+   </div>
+ </div>
+   <!-- var project div -->
+</div>`
+
+
+
+// translating index to js with var same as classes in which they are used
+    var project = `<div id="proj-${element.objectID}" class="project"><a class="accordion-toggle collapsed"data-toggle="collapse" data-parent="#projectAccordion" href="#taskAccordion-${element.objectID}" aria-expanded="true" aria-controls="taskAccordion">
+      <i class="fa" aria-hidden="true"></i></a>
+      ${insideProjectDiv}
+    </div>`
+
+    var cardHeader = `<div class="card-header">
+        <img class="card-avatar" src="https://kitt.lewagon.com/placeholder/users/gabriel-dehan">
+        <h3>${element.address}</h3>
+      </div>`
+
+    var cardContentTitle = `<div class="card-content-title">
+    <i class="fa fa-wrench" aria-hidden="true"></i>
+    <p class="project-title">${element.title}</p>
+    </div>`
+
+    var cardContentLocation = `<div class="card-content-location">
+    <i class="fa fa-map-marker" aria-hidden="true"></i>
+    <p class="project-location"> ${element.location}</p>
+    </div>`
+
+    var cardContentContactsTelLink = `<a class="icon-link" href="#"><i class="fa fa-phone fa-2x" aria-hidden="true"></i></a>`
+
+    var cardContentContactsChatLink = `<a class="icon-link" target="_blank" href="#"><i class="fa fa-comment" aria-hidden="true"></i></a>`
+
+    var cardContentContactsMapLink = `<a class="icon-link" target="_blank" href="#"><i class="fa fa-road fa-x2" aria-hidden="true"></i></a>`
+
+    var tagLink = `<a class="tag-link" href="/projects/${element.objectID}"></a>`
+// end
+
+    var insideProjectDiv = `
+    <div class="project-card">
+      <!-- var card-header -->
+      ${cardHeader}
+      <!-- var card-header -->
+
+      <div class="card-content">
+        <div class="card-content-details">
+          <!-- var card-content-title -->
+          ${cardContentTitle}
+          <!-- var card-content-title -->
+
+          <!-- var card-content-location -->
+          ${cardContentLocation}
+          <!-- var card-content-location -->
+        </div>
+
+        <div class="card-content-contacts">
+          <!-- var card-content-contacts-tel-link -->
+          ${cardContentContactsTelLink}
+
+          <!-- var card-content-contacts-chat-link -->
+          ${cardContentContactsChatLink}
+
+          <!-- var card-content-contacts-map-link -->
+          ${cardContentContactsMapLink}
+        </div>
+      </div>
+   <!-- var project div -->
+   ${tagLink}
+    </div>`
+
+     var skellet = `<div class="row">
+      <div class="col-xs-12">
+        ${project}
+      </div>
+    </div>`
