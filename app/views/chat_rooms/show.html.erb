@@ -18,7 +18,7 @@
         <%= render 'messages/message', message: message, user_is_messages_author: message.user == current_user %>
         <% end %>
       </div>
-      <div id="suggesstion-box"></div>
+      <div class="dropdown-menu" id="suggesstion-box" data-toggle="dropdown"></div>
       <div id="create-message">
         <%= simple_form_for [ @chat_room, Message.new ], remote: true do |f| %>
         <%= f.input :content, label: false %>
@@ -64,8 +64,9 @@
       console.log(dataArray)
       // dataArray.forEach((title) => { console.log(title) })
       dataArray.forEach((title) => {
-        result.insertAdjacentHTML("beforeend", `<li class="list-group-item">${title}</li>`);
+        result.insertAdjacentHTML("beforeend", `<a class="dropdown-item" href="#">@${title}</a>`);
       });
+      $('#suggesstion-box').addClass('open');
     };
 
 // <!-- search start -->
@@ -76,18 +77,18 @@ document.addEventListener("keyup", (event) => {
   if( textMessage[textMessage.length-1].includes("@")){
     var result = filter(messageText.split(" "), 0, "@" )[0]
 
-      console.log(textMessage)
     // aloglia search
     var client = algoliasearch('<%= ENV['AlgoliaApplicationID'] %>', '<%= ENV['AlgoliaSearchOnly'] %>');
     var index = client.initIndex('Project');
 
-          index.search(result, { hitsPerPage: 5, page: 0 })
+          index.search(result, { hitsPerPage: 10, attributesToRetrieve: "*", })
             .then(function searchDone(content) {
+            console.log(content)
 
             var options = {
-              data: [String(content.hits[0].title), String(content.hits[1].title)]
+              data: [String(content.hits[0]._highlightResult.title.value).replace("<em>", "<strong>").replace("</em>", "</strong>"), String(content.hits[1]._highlightResult.title.value).replace("<em>", "<strong>").replace("</em>", "</strong>")]
             };
-            // console.log(options)
+            console.log(options)
             addToSearchList(options.data)
             })
             .catch(function searchFailure(err) {
@@ -95,7 +96,8 @@ document.addEventListener("keyup", (event) => {
             document.querySelector("#suggesstion-box").innerHTML = "";
             });
         }else{
-          document.querySelector("#suggesstion-box").innerHTML = "";
+          $('#suggesstion-box').removeClass('open');
+          document.querySelector("#suggesstion-box").hide();
         }
       });
   </script>

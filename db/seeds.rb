@@ -69,7 +69,7 @@ project_array = []
         location: Faker::Address.secondary_address,
         # photos: "http://img.clubic.com/07791435-photo-playstation.jpg"
       )
-      counter += 1
+      counter == 24 ? counter = 0 : counter += 1
 
     puts 'Creating 2 fake tasks'
 

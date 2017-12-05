@@ -1,3 +1,4 @@
+// messager scroll
 function scrollLastMessageIntoView() {
   const messages = document.querySelectorAll('.message');
   const lastMessage = messages[messages.length - 1];
@@ -8,6 +9,28 @@ function scrollLastMessageIntoView() {
 }
 
 
+
+// messager scroll with keyboard
+var $htmlOrBody = $('html, body'), // scrolling happens on body for some browsers, html for others
+    scrollTopPadding = 8,
+    scrollTopLast = 0;
+$('#message_content').focus(function() {
+  console.log("yes")
+  var textareaTop = $(this).offset().top;
+    // save the current scroll position for blur event
+    console.log($(window).scrollTop());
+    scrollTopLast = $(window).scrollTop();
+    // scroll to the textarea
+    var timing = 250;
+    $htmlOrBody.animate({ scrollTop: textareaTop - scrollTopPadding }, timing);
+}).blur(function() {
+    // scroll back to position before textarea focus
+    console.log("no")
+    $htmlOrBody.scrollTop(scrollTopLast);
+});
+
+
+// scroll animation on index
 window.onscroll=function(){
     window.stackHeads();
 };
@@ -54,7 +77,6 @@ window.stackHeads=function(){
             }
 
             else{
-                console.log('first')
                 // console.log($('.tabs'));
 
                 holder.style.height=header.offsetHeight+'px';
@@ -63,7 +85,6 @@ window.stackHeads=function(){
                 header.style.top="0px";
                 header.style.width="100% !important";
                 header.style.opacity= `${100/window.pageYOffset + (1 - 0.9)}`;
-                console.log(window.pageYOffset)
             }
 
 

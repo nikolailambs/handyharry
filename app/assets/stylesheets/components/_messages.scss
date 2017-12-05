@@ -18,6 +18,23 @@
   }
 }
 
+/*project @ link*/
+.open {
+  display: inline-grid;
+}
+
+#suggesstion-box {
+  width: 80px;
+  margin: -30px 30px 0;
+  color: black;
+
+  a {
+    padding-left: 10px;
+    color: #414141;
+    letter-spacing: 1px;
+  }
+}
+
 .chat-body {
   padding: 0;
 }
@@ -49,6 +66,9 @@
   background-color: #ffffff;
   margin-bottom: 0px;
   border: 1px solid #ececec;
+  position: fixed;
+  bottom: 60px;
+  width: 100%;
 }
 .message_content {
   margin-bottom: 0;
