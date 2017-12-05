@@ -28,34 +28,38 @@
 
 <!-- Caroussel Project Pics -->
 
- <!--  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-    <!-- <#ol class="carousel-indicators">
-      <#li data-target="#myCarousel" data-slide-to="0" class="active"><#/li>
-      <#% @project.photos.each_with_index |project, index| do %>
-        <#li data-target="#myCarousel" data-slide-to="#{index + 1}"><#/li>
-      <#% end %>
-    <#/ol>
+  <% if @project.photos? %>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"><#/li>
+        <% @project.photos.each do |photo| %>
+          <% i = 0 %>
+          <li data-target="#myCarousel" data-slide-to="#{index + 1}"><#/li>
+          <% i += 1 %>
+        <% end %>
+      </ol>
 
-   <#!-- Wrapper for slides -->
-    <!-- <#div class="carousel-inner">
-      <#div class="item active"><#%= cl_image_tag @project.photos.first.path %><#/div>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item active"><%= cl_image_tag @project.photos.first.path %></div>
 
-      <#% collection = @project.photos[1..-1]  %>
-      <#% collection.each do |photo| %>
-        <#div class="item">
-          <#%= cl_image_tag photo.path %>
-        <#/div>
-      <#% end %>
-    <#/div>
-     <#!-- Left and right controls -->
-      <!-- <#a class="left carousel-control" href="#myCarousel" data-slide="prev">
-        <#span class="glyphicon glyphicon-chevron-left"><#/span>
-      <#/a>
-      <#a class="right carousel-control" href="#myCarousel" data-slide="next">
-        <#span class="glyphicon glyphicon-chevron-right"><#/span>
-      <#/a>
-  <#/div> -->
+        <% collection = @project.photos[1..-1]  %>
+        <% collection.each do |photo| %>
+          <div class="item">
+            <%= cl_image_tag photo.path %>
+          </div>
+        <% end %>
+      </div>
+      <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"><#/span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"><#/span>
+        </a>
+    </div>
+  <% end %>
 
 <!-- Project Description -->
 
@@ -71,12 +75,11 @@
 </div>
 
   <!-- Add Task -->
-
-  <div class= "project-show-add-task">
-    <% if policy(Task).create? || policy(Task).destroy?%>
-      <%= render 'tasks/task_field', project: @project, task: @task %>
-    <% end %>
-  </div>
+<div class= "project-show-add-task">
+  <% if policy(Task).create? || policy(Task).destroy?%>
+    <%= render 'tasks/task_field', project: @project, task: @task %>
+  <% end %>
+</div>
 
 <!-- Tasks -->
 
@@ -86,7 +89,7 @@
     <%= render 'tasks/index', project: @project, task: task %>
 
   <% end %>
-  </div>
+</div>
 
 
 
