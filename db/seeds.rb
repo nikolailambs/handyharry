@@ -69,9 +69,8 @@ project_array = []
         location: Faker::Address.secondary_address,
         photo_urls: ["http://mestrayllana.at/wp-content/uploads/2013/07/kaputtbett.jpg"],
       )
-      puts counter
-      counter == 24 ? counter = 0 : counter +=1
-      puts counter
+      counter == 24 ? counter = 0 : counter += 1
+
     puts 'Creating 2 fake tasks'
 
     2.times do

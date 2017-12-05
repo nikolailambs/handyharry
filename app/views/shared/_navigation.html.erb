@@ -17,7 +17,7 @@
     <% if current_user %>
     <div class="navigation-icons-wrapper <%= "selected-nav" if @url_path_check == "sta"%>">
         <div class="navigation-icons text-center">
-          <%= link_to "", class: "text-center" do %>
+          <%= link_to status_index_path, class: "text-center" do %>
             <i class="fa fa-user<%= @url_path_check == "sta" ? "s" : "-o" %> no-padding-no-margin" aria-hidden="true"></i>
           <% end %>
         </div>
