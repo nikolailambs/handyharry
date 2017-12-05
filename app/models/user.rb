@@ -11,6 +11,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, omniauth_providers: [:facebook]
 
+
   def self.current_user
     Thread.current[:user]
   end

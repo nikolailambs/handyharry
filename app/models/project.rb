@@ -23,12 +23,6 @@ class Project < ApplicationRecord
     result = (amount_true.to_f / amount_tasks.to_f).to_f
     p result.round(2)
     result.round(2)
-
-    if amount_tasks == status_true.length
-      status = true
-    else
-      status = false
-    end
   end
 
   def map_link

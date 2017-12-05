@@ -63,11 +63,11 @@ project_array = []
         address: addresses_array[counter][0],
         city: addresses_array[counter][1],
         deadline: @date,
-        status: false,
+        status: true,
         description: Faker::Commerce.department(4),
         title: Faker::Job.field,
         location: Faker::Address.secondary_address,
-        # photos: "http://img.clubic.com/07791435-photo-playstation.jpg"
+        photo_urls: ["http://mestrayllana.at/wp-content/uploads/2013/07/kaputtbett.jpg"],
       )
       counter == 24 ? counter = 0 : counter += 1
 
@@ -79,7 +79,7 @@ project_array = []
           title: "",
           description: "Buy #{Faker::Commerce.material}",
           assigned_to: "",
-          status: false,
+          status: true,
           deadline: @date
         )
         task.save!

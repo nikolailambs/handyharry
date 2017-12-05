@@ -1,10 +1,17 @@
 <%= simple_form_for @project do |f| %>
 <!-- INPUT NICOLAI FOR PROJECT -->
 
+  <%= f.input 'address' %>
   <%= f.input 'title' %>
   <%= f.input 'description' %>
   <%= f.input 'address' %>
+  <%= f.input 'city' %>
+  <%= f.input 'location' %>
   <%= f.input 'deadline' %>
+  <%= f.hidden_field :status, value: false %>
+  <%= f.hidden_field :accepted, value: true %>
+  <%= f.input :photos, as: :attachinary %>
+
 
   <div class="assign-to-handy-field">
     <h4>Assign the project to an handyman!</h4>
@@ -12,3 +19,4 @@
   </div>
   <%= f.button :submit %>
 <% end %>
+
