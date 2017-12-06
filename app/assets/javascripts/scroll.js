@@ -38,7 +38,7 @@ function scrollLastMessageIntoView() {
 
 
 $('#message_content').on('focus', function() {
-  document.body.scrollTop += this.getBoundingClientRect().top - 10
+    document.body.scrollTop = $(this).offset().top;
 });
 
 
