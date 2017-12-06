@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+
   protect_from_forgery with: :exception
   before_action :authenticate_user!
   before_action :set_current_user
@@ -12,6 +13,9 @@ class ApplicationController < ActionController::Base
   after_action :verify_policy_scoped, only: :index, unless: :skip_pundit?
 
 
+  def default_url_options
+    { host: ENV["HOST"] || "localhost:3000" }
+  end
 
 
   private

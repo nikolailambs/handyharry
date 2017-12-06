@@ -6,14 +6,16 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
 
     <!-- Facebook optimization -->
-    <meta property="og:url"                content="http://www.handyharry.co" />
-    <meta property="og:type"               content="website" />
-    <meta property="og:title"              content="HandyHarry - Facilitating handy harry's life" />
-    <meta property="og:description"        content="Having problems keeping track of your tasks and schedules?" />
-    <meta property="og:image" content="assets/images/handyharry_logo.png">
+    <title><%= meta_title %></title>
+    <meta name="description" content="<%= meta_description %>">
 
+    <meta property="og:title" content="<%= meta_title %>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:image" content="<%= meta_image %>" />
+    <meta property="og:description" content="<%= meta_description %>" />
+    <meta property="og:site_name" content="<%= meta_title %>" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "Handy Harry" %></title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
