@@ -28,7 +28,19 @@
             </div>
           <% end %>
           <hr>
+                <%- if devise_mapping.omniauthable? %>
+                  <%- resource_class.omniauth_providers.each do |provider| %>
+                    <%= link_to omniauth_authorize_path(resource_name, provider), class: "facebook-link" do  %>
 
+                      <div class="facebook-button">
+                        <div>Log in with</div>
+                        <i class="fa fa-facebook"></i>
+                      </div>
+
+                    <% end %>
+                  <% end -%>
+                <% end -%>
+          <hr>
 
           <div class="user_signin">
             <p>Don't have an account yet?</p>
