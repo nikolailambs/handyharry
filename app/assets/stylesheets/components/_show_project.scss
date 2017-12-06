@@ -15,11 +15,21 @@ i.fa-chevron-left:hover {
 
 /* Caroussel */
 
-.carousel-inner > .item > img {
-    margin: 0 auto;
+#myCarousel {
+  margin-top: 2em;
 }
 
+
+
+// .carousel-inner > .item > img,
+// .carousel-inner > .item > a > img{
+// width: 100%; /* use this, or not */
+// margin: 0 auto;
+// }
+
+
 /* Caroussel */
+
 .fabutton {
   background: none;
   padding: 0px;
@@ -75,9 +85,11 @@ i.fa-chevron-left:hover {
 
 .project-show-appointment > div{
   display: flex;
+  justify-content: space-evenly;
   align-items: center;
   margin: 0 auto;
   width: 300px;
+  color: #60636B;
 }
 
 .project-show-appointment > i{
@@ -91,8 +103,10 @@ i.fa-chevron-left:hover {
 
 /* Project show body */
 
+
 .project-show-body {
   margin: 2em 1em;
+  color: rgba(0,0,0,0.4);
 }
 
 .project-show-title {
@@ -108,8 +122,44 @@ i.fa-chevron-left:hover {
   margin-top: 1em;
 }
 
-/* Project show task */
 
+/* Checkbox */
+
+
+label.task-label {
+  padding-left: 0 !important;
+}
+
+.task-check{
+  display: none;
+  vertical-align: middle;
+
+   & + label:before {
+    font-family: 'FontAwesome';
+   content: "\f1db";
+   padding: 0 1.5rem 0 0;
+   color: #32B796;
+   display: inline-block;
+   background-repeat: no-repeat;
+   vertical-align: center;
+   background-size: 50%;
+   cursor: pointer;
+   }
+
+   &:checked + label:before {
+     font-family: 'FontAwesome';
+   content: "\f058";
+   padding: 0 1.5rem 0 0;
+   color: #32B796;
+   }
+
+ }
+
+ .fa-trash {
+  color: #60636B;
+ }
+
+/* Project show task */
 
 #show-tasks {
   width: 20em;
@@ -287,13 +337,6 @@ i.fa.fa-paper-plane {
 
 }
 
-.project-show-body {
-  color: rgba(0,0,0,0.4);
-  margin: 6px 0;
-  text-align: center;
-  grid-column: 1 / span 4;
-  grid-row: 3 / span 1;
-}
 
 @media(max-width: 720px) {
   .grid {

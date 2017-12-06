@@ -2,7 +2,7 @@
   <span class="gradient-layer gradient-layer-<%= task.id %> <%= "active-layer" if task.status %>"></span>
   <div class="project-show-task-description">
     <%= simple_form_for [project, task], remote: true, html: { id: "form_#{task.id}" } do |f| %>
-      <%= f.input :status, label: "#{task.description}", as: :boolean,label_html: {class: ''}, input_html: { id: "task-check-#{task.id}", class: "task-check", data: { task_id: task.id } } %>
+      <%= f.input :status, label: "#{task.description}", as: :boolean, label_html: {class: 'task-label'}, input_html: { id: "task-check-#{task.id}", class: "task-check", data: { task_id: task.id } } %>
     <% end %>
   </div>
 
