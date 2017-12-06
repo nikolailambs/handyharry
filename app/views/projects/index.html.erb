@@ -41,11 +41,12 @@
                         </div>
                       </div>
                       <div class="card-content-contacts">
-                        <%= link_to "tel:#{current_user.handy ? project.client.phone : project.handy.phone}", class: "icon-link" do %>
+
+                        <%= link_to "tel:#{current_user.handy ? project.client.phone : project.handy.phone}", class: "icon-link icon-z-index" do %>
                           <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
                         <% end %>
 
-                        <%= simple_form_for ChatRoom.new, html: { class: 'icon-z-index-form' } do |f| %>
+                        <%= simple_form_for ChatRoom.new, html: { class: 'icon-link icon-z-index' } do |f| %>
                           <% if current_user.handy %>
                             <%= f.input :client_id, as: :hidden, input_html: { :value => project.client.id } %>
                             <%= f.input :handy_id, :as => :hidden, :input_html => { :value => current_user.id } %>
@@ -58,9 +59,10 @@
                           <% end %>
                         <% end %>
 
-                        <%= link_to project.map_link, class: "icon-link", target: :_blank do %>
+                        <%= link_to project.map_link, class: "icon-link icon-z-index", target: :_blank do %>
                           <i class="fa fa-road fa-x2" aria-hidden="true"></i>
                         <% end %>
+
                       </div>
                     </div>
                     <%= link_to "", project_path(project), class: "tag-link" %>
