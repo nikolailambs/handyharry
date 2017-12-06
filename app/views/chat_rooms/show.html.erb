@@ -56,11 +56,16 @@
   var ALGOLIA_APPID = '<%= ENV['AlgoliaApplicationID'] %>';
   var ALGOLIA_SEARCH_APIKEY = '<%= ENV['AlgoliaSearchOnly'] %>';
   var ALGOLIA_INDEX_NAME = 'Project';
-  var NB_RESULTS_DISPLAYED = 5;
+  var NB_RESULTS_DISPLAYED = 1000;
   // #2- Algolia API Client Initialization
   var algoliaClient = new algoliasearch(ALGOLIA_APPID, ALGOLIA_SEARCH_APIKEY);
   var index = algoliaClient.initIndex(ALGOLIA_INDEX_NAME);
   var lastQuery = '';
+  var check_client_id = <%= @chat_room.client_id %>
+  var check_handy_id = <%= @chat_room.handy_id %>
+  console.log(`client ${check_client_id}`)
+  console.log(`handy ${check_handy_id}`)
+  // `title:${lastQuery} AND client_id:${client_id} AND handy_id:${handy_id}`
 
   $('#message_content').textcomplete([
     {
@@ -69,11 +74,19 @@
       // #4 - Function called at every new keystroke
       search: function(query, callback) {
         lastQuery = query;
-        index.search(lastQuery, { hitsPerPage: NB_RESULTS_DISPLAYED })
+        index.search( lastQuery, {hitsPerPage: NB_RESULTS_DISPLAYED} )
           .then(function searchSuccess(content) {
             if (content.query === lastQuery) {
-              // console.log(content)
-              callback(content.hits);
+              // filter the result
+              var resultArray = []
+              content.hits.forEach(function(hit){
+                if(hit.client_id === check_client_id && hit.handy_id === check_handy_id)
+                resultArray.push(hit)
+              });
+              console.log(content.hits)
+              console.log(resultArray)
+              // end of filter the result
+              callback(resultArray);
             }
           })
           .catch(function searchFailure(err) {
@@ -83,7 +96,6 @@
       // #5 - Template used to display each result obtained by the Algolia API
       template: function (hit) {
         // Returns the highlighted version of the name attribute
-        console.log(hit)
         return hit._highlightResult.title.value;
       },
       // #6 - Template used to display the selected result in the textarea
