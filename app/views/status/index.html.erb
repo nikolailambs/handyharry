@@ -1,7 +1,7 @@
 <% content_for :title, "Client Status" %>
 
 
-  <div class="container-fluid">
+  <div class="container-fluid bottom-margin-100">
     <div id="projectAccordion" data-children=".item">
       <div class="clients">
         <% @hash.each do |key, value| %>
@@ -17,13 +17,12 @@
 
 
                 <div class="client-card">
-                  <div class="client-card-header">
-                    <% avatar_url = client.facebook_picture_url || "client.png" %>
+                  <% avatar_url = client.facebook_picture_url || "client.png" %>
                     <div id="circle-client" data-circle-value="<%= ((value.reduce(:+))/value.count) %>" src="<%= avatar_url %>">
                       <div class="client-image">
                         <%= image_tag avatar_url, class: "avatar-large" %>
                       </div>
-                      <div class="text-center">
+                      <div class="client-info">
                         <p>
                           <strong><%= (((value.reduce(:+))/value.count)*100).to_i %>%
                           </strong>
@@ -39,7 +38,9 @@
                   <div class="row">
                     <div class="project-title">
                       <% @projects_handy.where(client_id: client.id).each do |project| %>
-                      <p><%= project.title %></p>
+                      <p><i class="fa fa-home" aria-hidden="true"></i>
+                      <%= link_to project.title, project_path(project.id) %></p>
+                      <hr>
                       <% end %>
                     </div>
                   </div>
@@ -47,7 +48,6 @@
               </div>
             </div>
           </div>
-          <hr>
         </div>
       </div>
     </div>
@@ -60,11 +60,12 @@
 <script>
 
   $('#circle-client').circleProgress({
-    startAngle: -Math.PI / 4 * 3,
+    startAngle: -Math.PI / 2,
+    size: 120,
     value: "<%= ((value.reduce(:+))/value.count) %>",
     lineCap: 'round',
-    fill: {color: '#5593E3'},
-    emptyFill: "rgba(145, 193, 87, .9)",
+    fill: {color: '#32B796'},
+    emptyFill: '#da552f',
     thickness: '20',
   });
 
