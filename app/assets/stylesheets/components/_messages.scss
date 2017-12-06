@@ -69,12 +69,12 @@
   background-color: #fbfbfb;
   margin-bottom: 0px;
   border: 1px solid #ececec;
-  /*position: fixed;*/
-/*  bottom: 60px;
-  width: 100%;*/
-  position: absolute;
-  bottom: -96px;
+  position: fixed;
+  bottom: 60px;
   width: 100%;
+  /*position: absolute;
+  bottom: -96px;
+  width: 100%;*/
 }
 .message_content {
   margin-bottom: 0;
