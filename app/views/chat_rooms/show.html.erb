@@ -20,7 +20,7 @@
       </div>
       <div class="dropdown-menu" id="suggesstion-box" data-toggle="dropdown"></div>
       <div id="create-message">
-        <%= simple_form_for [ @chat_room, Message.new ], remote: true do |f| %>
+        <%= simple_form_for [ @chat_room, Message.new ], remote: true, html: { autocomplete: 'off' } do |f| %>
         <%= f.input :content, label: false %>
         <%= f.input :read, as: :hidden, :input_html => { :value => true } %>
         <% end %>
@@ -30,18 +30,10 @@
 </div>
 <% content_for :after_js do %>
 
-
-
-<!-- jquery auto complete  -->
-  <!-- JS file -->
-  <!-- <script src="../../../node_modules/easy-autocomplete/dist/jquery.easy-autocomplete.min.js"></script> -->
-
-  <!-- CSS file -->
-  <!-- <link rel="stylesheet" href="../../../node_modules/easy-autocomplete/dist/easy-autocomplete.min.css"> -->
-
-  <!-- Additional CSS Themes file - not required-->
-  <!-- <link rel="stylesheet" href="../../../node_modules/easy-autocomplete/dist/easy-autocomplete.themes.min.css"> -->
-<!-- jquery auto complete end -->
+ <!-- Text Autocomplete plugin -->
+      <!-- <script src="./jquery.textcomplete.min.js"></script> -->
+      <!-- Algolia Search API Client - latest version -->
+      <script src="https://cdn.jsdelivr.net/algoliasearch/3/algoliasearch.min.js"></script>
 
 <script>
   scrollLastMessageIntoView();
@@ -57,51 +49,50 @@
       }
     });
 
-  // build a list with the array
-    const result = document.querySelector("#suggesstion-box");
-    function addToSearchList(dataArray) {
-      document.querySelector("#suggesstion-box").innerHTML = "";
-      console.log(dataArray)
-      // dataArray.forEach((title) => { console.log(title) })
-      dataArray.forEach((title) => {
-        result.insertAdjacentHTML("beforeend", `<a class="dropdown-item" href="#">@${title}</a>`);
-      });
-      $('#suggesstion-box').addClass('open');
-    };
+  // #1 - Search configuration - To replace with your own
+  var ALGOLIA_APPID = '<%= ENV['AlgoliaApplicationID'] %>';
+  var ALGOLIA_SEARCH_APIKEY = '<%= ENV['AlgoliaSearchOnly'] %>';
+  var ALGOLIA_INDEX_NAME = 'Project';
+  var NB_RESULTS_DISPLAYED = 5;
+  // #2- Algolia API Client Initialization
+  var algoliaClient = new algoliasearch(ALGOLIA_APPID, ALGOLIA_SEARCH_APIKEY);
+  var index = algoliaClient.initIndex(ALGOLIA_INDEX_NAME);
+  var lastQuery = '';
 
-// <!-- search start -->
-document.addEventListener("keyup", (event) => {
-  var messageText = document.getElementById("message_content").value;
-
-  var textMessage = messageText.split(" ")
-  if( textMessage[textMessage.length-1].includes("@")){
-    var result = filter(messageText.split(" "), 0, "@" )[0]
-
-    // aloglia search
-    var client = algoliasearch('<%= ENV['AlgoliaApplicationID'] %>', '<%= ENV['AlgoliaSearchOnly'] %>');
-    var index = client.initIndex('Project');
-
-          index.search(result, { hitsPerPage: 10, attributesToRetrieve: "*", })
-            .then(function searchDone(content) {
-            console.log(content)
-
-            var options = {
-              data: [String(content.hits[0]._highlightResult.title.value).replace("<em>", "<strong>").replace("</em>", "</strong>"), String(content.hits[1]._highlightResult.title.value).replace("<em>", "<strong>").replace("</em>", "</strong>")]
-            };
-            console.log(options)
-            addToSearchList(options.data)
-            })
-            .catch(function searchFailure(err) {
+  $('#message_content').textcomplete([
+    {
+      // #3 - Regular expression used to trigger the autocomplete dropdown
+      match: /(^|\s)@(\w*(?:\s*\w*))$/,
+      // #4 - Function called at every new keystroke
+      search: function(query, callback) {
+        lastQuery = query;
+        index.search(lastQuery, { hitsPerPage: NB_RESULTS_DISPLAYED })
+          .then(function searchSuccess(content) {
+            if (content.query === lastQuery) {
+              // console.log(content)
+              callback(content.hits);
+            }
+          })
+          .catch(function searchFailure(err) {
             console.error(err);
-            document.querySelector("#suggesstion-box").innerHTML = "";
-            });
-        }else{
-          $('#suggesstion-box').removeClass('open');
-          document.querySelector("#suggesstion-box").hide();
-        }
-      });
+          });
+      },
+      // #5 - Template used to display each result obtained by the Algolia API
+      template: function (hit) {
+        // Returns the highlighted version of the name attribute
+        console.log(hit)
+        return hit._highlightResult.title.value;
+      },
+      // #6 - Template used to display the selected result in the textarea
+      replace: function (hit) {
+        return ' @' + hit.title.trim() + ' ';
+      }
+    }, {
+      dropdownClassName: 'dropup'
+    }]);
+
   </script>
-  <% end %>
+<% end %>
 
 
 

@@ -20,7 +20,6 @@ Bundler.require(*Rails.groups)
 
 module Handyharry
   class Application < Rails::Application
-    config.assets.paths << Rails.root.join('node_modules')
     config.generators do |generate|
       generate.assets false
       generate.helper false
