@@ -1,0 +1,56 @@
+.clients {
+  background: white;
+}
+
+.client {
+  display: flex;
+  align-items: center;
+}
+
+.client-card {
+  padding: 10px;
+  margin: 10px;
+  width: 100%;
+  height: 150px;
+  border-radius: 15px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  background-position: center;
+  color: white;
+  position: relative;
+  background-color: #DCDCD5;
+  position: relative;
+}
+
+.client-card h3 {
+  margin: 0;
+  font-size: 25px;
+}
+
+.client-card-header {
+  display: flex;
+  justify-content: space-around;
+}
+
+#client-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.client-image{
+  position: absolute;
+  width: 104px;
+  border-radius: 50%;
+}
+
+.text-center strong {
+  margin-top: -30px;
+}
+
+.project-title {
+  color: red;
+}
+
+
