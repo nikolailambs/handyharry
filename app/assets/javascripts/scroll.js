@@ -37,9 +37,9 @@ function scrollLastMessageIntoView() {
 // });
 
 
-$('#message_content').on('focus', function() {
-  document.body.scrollTop = $(this).offset().top;
-});
+// $('#message_content').on('focus', function() {
+//   document.body.scrollTop = $(this).offset().top;
+// });
 
 
 // scroll animation on index
