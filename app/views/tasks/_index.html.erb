@@ -1,20 +1,19 @@
+<div class="project-show-task">
+  <span class="gradient-layer gradient-layer-<%= task.id %> <%= "active-layer" if task.status %>"></span>
+  <div class="project-show-task-description">
+    <%= simple_form_for [project, task], remote: true, html: { id: "form_#{task.id}" } do |f| %>
+      <%= f.input :status, label: "#{task.description}", as: :boolean, label_html: {class: 'task-label'}, input_html: { id: "task-check-#{task.id}", class: "task-check", data: { task_id: task.id } } %>
+    <% end %>
+  </div>
 
-    <div class="project-show-task">
-
-      <div class="project-show-task-description">
-      <%= simple_form_for [project, task], remote: true, html: { id: "form_#{task.id}" } do |f| %>
-        <%= f.input :status, label: false, as: :boolean, input_html: { id: "task-check-#{task.id}", class: "task-check todo__state", data: { task_id: task.id } } %>
-      <% end %>
-
-      <p class="task-description"> <%= task.description %></p>
-      </div>
-
-      <% if policy_scope(Task) || policy(Task).destroy? %>
-        <div>
-          <%= link_to project_task_path(project, task), method: :delete  do%>
-            <i class="fa fa-trash" aria-hidden="true"></i>
-          <% end %>
-        </div>
+  <% if policy_scope(Task) || policy(Task).destroy? %>
+    <div id="delete-task">
+      <%= link_to project_task_path(project, task), method: :delete  do%>
+        <i class="fa fa-trash" aria-hidden="true"></i>
       <% end %>
     </div>
+  <% end %>
+</div>
+
+
 

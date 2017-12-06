@@ -72,6 +72,7 @@ project_array = []
 
       counter == 24 ? counter = 0 : counter +=1
 
+
     puts 'Creating 2 fake tasks'
 
     2.times do

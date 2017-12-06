@@ -1,5 +1,10 @@
+
 <div class="container">
 <!-- Project header -->
+
+  <%= link_to projects_path(project: @project, anchor: "proj-#{@project.id}") do %>
+  <i class="fa fa-chevron-left" aria-hidden="true"></i>
+  <% end %>
 
   <div class="project-show-header">
     <div class="project-show-info">
@@ -9,11 +14,30 @@
       <div class="project-show-contact">
         <h3><%= @project.address%></h3>
         <div class="project-show-contacts">
-          <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
-          <%= link_to chat_rooms_path, class: "icon-link" do %>
-            <i class="fa fa-comment fa-2x" aria-hidden="true"></i>
-          <% end %>
-          <i class="fa fa-road fa-2x" aria-hidden="true"></i>
+
+            <%= link_to "tel:#{current_user.handy ? @project.client.phone : @project.handy.phone}", class: "icon-link-show icon-z-index" do %>
+                <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
+            <% end %>
+
+            <%= simple_form_for ChatRoom.new do |f| %>
+              <% if current_user.handy %>
+                <%= f.input :client_id, as: :hidden, input_html: { :value => @project.client.id } %>
+                <%= f.input :handy_id, :as => :hidden, :input_html => { :value => current_user.id } %>
+              <% else %>
+                <%= f.input :handy_id, :as => :hidden, :input_html => { :value => @project.handy.id } %>
+                <%= f.input :client_id, :as => :hidden, :input_html => { :value => current_user.id } %>
+              <% end %>
+              <%= button_tag('', type: 'submit', class: "icon-link-show icon-z-index") do %>
+                <i class="fa fa-comment fa-2x" aria-hidden="true"></i>
+              <% end %>
+            <% end %>
+
+            <%= link_to @project.map_link, class: "icon-link-show icon-z-index", target: :_blank do %>
+              <i class="fa fa-road fa-2x" aria-hidden="true"></i>
+            <% end %>
+
+
+
        </div>
       </div>
     </div>
@@ -21,10 +45,11 @@
     <div class="project-show-appointment">
       <div>
       <i class="fa fa-calendar-o" aria-hidden="true"></i>
-      <h3><%= @project.deadline.strftime(" %a %d/%m/%Y  %H:%M ") %></h3>
+      <h3><%= @project.deadline.strftime(" %a %d/%m/%Y") %></h3>
       </div>
     </div>
   </div>
+</div>
 
 <!-- Caroussel Project Pics -->
 
@@ -32,47 +57,46 @@
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <% @project.photos.each do |photo| %>
-          <% i = 0 %>
-          <li data-target="#myCarousel" data-slide-to="#{index + 1}"></li>
-          <% i += 1 %>
+
+
+        <% collection = @project.photos[1..-1]  %>
+        <% if collection.size > 1 %>
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <% collection.each_with_index do |photo, index| %>
+            <li data-target="#myCarousel" data-slide-to="<%=index +1%>"></li>
+          <% end %>
         <% end %>
       </ol>
 
       <!-- Wrapper for slides -->
       <div class="carousel-inner">
-        <div class="item active"><%= cl_image_tag @project.photos.first.path %></div>
+        <div class="item active"><%= cl_image_tag @project.photos.first.path, class: "img-fluid" %></div>
 
         <% collection = @project.photos[1..-1]  %>
         <% collection.each do |photo| %>
           <div class="item">
-            <%= cl_image_tag photo.path %>
+            <%= cl_image_tag photo.path, class: "img-fluid" %>
           </div>
         <% end %>
       </div>
-      <!-- Left and right controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left"></span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
+
     </div>
   <% end %>
 
 <!-- Project Description -->
 
-<div class="project-show-body">
-  <div class="project-show-title">
-    <p class="project-title"> <%= @project.title %></p>
-    <p class="project-location"> <%= @project.location %></p>
-  </div>
-  <div class="project-show-description">
-    <p> <%= @project.description %></p>
+<div class="container">
+  <div class="project-show-body">
+    <div class="project-show-title">
+      <p class="project-title"> <%= @project.title %></p>
+      <p class="project-location"> <%= @project.location %></p>
+    </div>
+    <div class="project-show-description">
+      <p> <%= @project.description %></p>
+    </div>
   </div>
 </div>
-</div>
+
 
   <!-- Add Task -->
 <div class= "project-show-add-task">
@@ -93,26 +117,24 @@
 
 
 
-<%= link_to 'Back', projects_path, class: "btn btn-primary" %>
-
-
-
 <%=  content_for :after_js do %>
 
 <script>
+  $('#myCarousel').carousel();
+
   $('#circle').circleProgress({
     startAngle: -Math.PI / 2,
     size: 120,
     value: "<%= @project.completion_percentage %>",
     lineCap: 'round',
-    fill: {color: '#5593E3'},
-    emptyFill: "rgba(145, 193, 87, .9)",
+    fill: {color: '#32B796'},
+    emptyFill: '#5593E3',
     thickness: '20',
   });
+
 </script>
 
 <% end %>
-
 
 
 

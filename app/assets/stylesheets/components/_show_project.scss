@@ -1,10 +1,35 @@
-/* Caroussel */
 
-.carousel-inner > .item > img {
-    margin: 0 auto;
+/* Back link */
+
+i.fa-chevron-left {
+  margin: 1em 0 0 0.5em;
+  font-size: 20px;
+  color: #c1c1c1;
 }
 
+i.fa-chevron-left:hover {
+  color: #da552f;
+  text-decoration: none;
+}
+
+
 /* Caroussel */
+
+#myCarousel {
+  margin-top: 2em;
+}
+
+
+
+// .carousel-inner > .item > img,
+// .carousel-inner > .item > a > img{
+// width: 100%; /* use this, or not */
+// margin: 0 auto;
+// }
+
+
+/* Caroussel */
+
 .fabutton {
   background: none;
   padding: 0px;
@@ -30,7 +55,7 @@
 
 
 .project-show-header {
-  margin-top: 2em;
+  margin-top: 0.5em;
 }
 
 .project-show-avatar-large {
@@ -39,14 +64,17 @@
   border-radius: 50%;
 }
 
-.project-show-contact {
-  margin-left: 2em;
+.project-show-contacts {
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
 }
 
 .project-show-contact > h3 {
   margin-top: 0.5em;
   margin-bottom: 1em;
   font-size: 1.2em;
+  color: #5C6E7C;
 
 }
 
@@ -57,9 +85,11 @@
 
 .project-show-appointment > div{
   display: flex;
+  justify-content: space-evenly;
   align-items: center;
   margin: 0 auto;
   width: 300px;
+  color: #60636B;
 }
 
 .project-show-appointment > i{
@@ -73,8 +103,10 @@
 
 /* Project show body */
 
+
 .project-show-body {
   margin: 2em 1em;
+  color: rgba(0,0,0,0.4);
 }
 
 .project-show-title {
@@ -87,21 +119,97 @@
 .project-show-info {
   display: flex;
   justify-content: space-around;
+  margin-top: 1em;
 }
+
+
+/* Checkbox */
+
+
+label.task-label {
+  padding-left: 0 !important;
+}
+
+.task-check{
+  display: none;
+  vertical-align: middle;
+
+   & + label:before {
+    font-family: 'FontAwesome';
+   content: "\f1db";
+   padding: 0 1.5rem 0 0;
+   color: #32B796;
+   display: inline-block;
+   background-repeat: no-repeat;
+   vertical-align: center;
+   background-size: 50%;
+   cursor: pointer;
+   }
+
+   &:checked + label:before {
+     font-family: 'FontAwesome';
+   content: "\f058";
+   padding: 0 1.5rem 0 0;
+   color: #32B796;
+   }
+
+ }
+
+ .fa-trash {
+  color: #60636B;
+ }
 
 /* Project show task */
 
+#show-tasks {
+  width: 20em;
+  margin: 0 auto;
+  margin-top: 1em;
+
+}
+
 .project-show-task {
+  margin-bottom: 1em;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  width: 21em;
+  width: 20em;
   position: relative;
-  padding: 0.5em 0 0.5em 0;
   cursor: pointer;
-  border-bottom: solid 1px #ddd;
+  border: solid 1px #ddd;
+  border-radius: 5px;
+  padding: 10px 20px;
+  overflow: hidden;
 
-  &:last-child { border-bottom: none; }
+  .form-group {
+    margin: 0;
+  }
+
+  span.gradient-layer {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(120deg, #eeffc8 0%, #32B796 100%);
+    transform: translateX(-100%);
+    transition: all 0.3s ease-in-out;
+  }
+
+  span.gradient-layer.active-layer {
+    transform: translateX(0);
+  }
+}
+
+.project-show-task .checkbox {
+    display: flex;
+    align-items: baseline;
+    margin: 0;
+}
+
+.task_description {
+  margin: 0;
+  width: 100%;
 }
 
 .project-show-task-description{
@@ -110,9 +218,17 @@
   align-items: baseline;
 }
 
+
+.project-show-task-description .checkbox input[type="checkbox"] {
+    margin-right: 20px;
+    position: static;
+}
+
+
 #new_task {
   border: 1px solid #ECECEC;
-  width: 21em;
+  width: 20em;
+  margin: 0 auto;
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
@@ -130,8 +246,6 @@ i.fa.fa-paper-plane {
   margin-right: 20px;
 }
 /* Avatar */
-
-
 
 
 .project-show-message {
@@ -223,13 +337,6 @@ i.fa.fa-paper-plane {
 
 }
 
-.project-show-body {
-  color: rgba(0,0,0,0.4);
-  margin: 6px 0;
-  text-align: center;
-  grid-column: 1 / span 4;
-  grid-row: 3 / span 1;
-}
 
 @media(max-width: 720px) {
   .grid {

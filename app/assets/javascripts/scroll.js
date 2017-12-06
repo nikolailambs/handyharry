@@ -1,3 +1,4 @@
+// messager scroll
 function scrollLastMessageIntoView() {
   const messages = document.querySelectorAll('.message');
   const lastMessage = messages[messages.length - 1];
@@ -8,6 +9,28 @@ function scrollLastMessageIntoView() {
 }
 
 
+
+// messager scroll with keyboard
+var $htmlOrBody = $('html, body'), // scrolling happens on body for some browsers, html for others
+    scrollTopPadding = 8,
+    scrollTopLast = 0;
+$('#message_content').focus(function() {
+  // console.log("yes")
+  var textareaTop = $(this).offset().top;
+    // save the current scroll position for blur event
+    // console.log($(window).scrollTop());
+    scrollTopLast = $(window).scrollTop();
+    // scroll to the textarea
+    var timing = 250;
+    $htmlOrBody.animate({ scrollTop: textareaTop - scrollTopPadding }, timing);
+}).blur(function() {
+    // scroll back to position before textarea focus
+    // console.log("no")
+    $htmlOrBody.scrollTop(scrollTopLast);
+});
+
+
+// scroll animation on index
 window.onscroll=function(){
     window.stackHeads();
 };
@@ -30,8 +53,7 @@ window.stackHeads=function(){
                     header.style.top='-'+(header.offsetHeight-dif)+'px';
                     header.style.width="100% !important";
 
-                }
-                else{
+                } else {
                     //if there is another header, but we have room
                     //console.log(header)
                     // header.style.opacity="1";
@@ -41,12 +63,10 @@ window.stackHeads=function(){
                     header.style.width="100% !important";
                 }
 
-            }
-
-            else if (window.pageYOffset>180) {
-
-              holder.style.height=header.offsetHeight+'px';
-              header.style.opacity="0";
+            } else if (window.pageYOffset>180) {
+              $('.tabs').style.position="static"
+              holder.style.sheight=header.offsetHeight+'px';
+              // header.style.opacity= `${100/window.pageYOffset + (1 - 0.99)}`;
               //if there isn't another header
               header.style.position="fixed";
               header.style.top="0px";
@@ -54,22 +74,20 @@ window.stackHeads=function(){
             }
 
             else{
-                console.log('first')
                 // console.log($('.tabs'));
 
+                $('.tabs').style.position="static"
                 holder.style.height=header.offsetHeight+'px';
                 //if there isn't another header
                 header.style.position="fixed";
                 header.style.top="0px";
                 header.style.width="100% !important";
-                header.style.opacity= `${100/window.pageYOffset + (1 - 0.9)}`;
-                console.log(window.pageYOffset)
+                // header.style.opacity= `${100/window.pageYOffset + (1 - 0.99)}`;
             }
 
 
-        }
-        else{
-            header.style.opacity= `${100/window.pageYOffset + (1 - 0.9)}`;
+        } else {
+            // header.style.opacity= `${100/window.pageYOffset + (1 - 0.99)}`;
             // header.style.opacity="1";
             holder.style.height='0px';
             //if we haven't gotten to the header yet

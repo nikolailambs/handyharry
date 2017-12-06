@@ -8,6 +8,8 @@
   width: 100%;
 }
 
+button{ border:0; background:none;}
+
 #head-title {
   padding: 12.5px 15px;
   margin: 0px;
@@ -114,7 +116,7 @@ a:focus {
 
 .project-card h3 {
   margin: 0;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .tag-link {
@@ -125,9 +127,6 @@ a:focus {
 
 }
 
-.icon-z-index-form {
-  z-index: 10000;
-}
 
 /* Card-header*/
 
@@ -149,18 +148,16 @@ a:focus {
 /* Card-content*/
 
 .card-content {
-  margin-top: 20px;
+  margin-top: 50px;
 }
 
 .card-content-details {
-  background-color: rgba(250, 250, 250, 0.8);
-  border-radius: 15px;
-  padding: 0 5px 0px 15px;
-  margin-left: -10px;
+  padding: 6px 0px 0px 10px;
   text-shadow: none;
   position: absolute;
-  bottom: 15px;
-  left: 0;
+  top: 50px;
+  left: 60px;
+  display: flex;
 }
 
 .card-content-details i {
@@ -182,6 +179,7 @@ a:focus {
 .card-content-location {
   display: flex;
   align-items: baseline;
+  margin-left: 24px;
 }
 
 .card-content-location p{
@@ -190,11 +188,10 @@ a:focus {
 }
 
 .card-content-contacts {
-  position: absolute;
-  bottom: 25px;
-  right: 45px;
   display: flex;
-  justify-content: space-between;
+  width: 100%;
+  -webkit-box-pack: justify;
+  justify-content: space-around;
 }
 
 .card-content-contacts i {

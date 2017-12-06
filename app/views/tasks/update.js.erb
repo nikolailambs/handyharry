@@ -11,3 +11,10 @@ console.log(newCompletionRate)
 
 
 setTimeout(function() { $('#circle').circleProgress('value', newCompletionRate); }, 0);
+
+
+var layer = document.querySelector('.gradient-layer-<%= @task.id %>');
+
+layer.classList.toggle('active-layer');
+
+
