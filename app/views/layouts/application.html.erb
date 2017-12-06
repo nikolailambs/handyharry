@@ -38,8 +38,12 @@
     <% end %>
 
 
+  <% if current_page?(projects_path) %>
 
+  <% else %>
     <%= render 'shared/flashes' %>
+  <% end %>
+
 
     <div class="main">
       <%= yield %>

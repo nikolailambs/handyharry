@@ -2,7 +2,7 @@
 <div class="container">
 <!-- Project header -->
 
-  <%= link_to projects_path do %>
+  <%= link_to projects_path(project: @project, anchor: "proj-#{@project.id}") do %>
   <i class="fa fa-chevron-left" aria-hidden="true"></i>
   <% end %>
 
@@ -45,10 +45,11 @@
     <div class="project-show-appointment">
       <div>
       <i class="fa fa-calendar-o" aria-hidden="true"></i>
-      <h3><%= @project.deadline.strftime(" %a %d/%m/%Y  %H:%M ") %></h3>
+      <h3><%= @project.deadline.strftime(" %a %d/%m/%Y") %></h3>
       </div>
     </div>
   </div>
+</div>
 
 <!-- Caroussel Project Pics -->
 
@@ -57,21 +58,19 @@
       <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <% @project.photos.each do |photo| %>
-          <% i = 0 %>
-          <li data-target="#myCarousel" data-slide-to="#{index + 1}"></li>
-          <% i += 1 %>
+        <% @project.photos.each_with_index do |photo, index| %>
+          <li data-target="#myCarousel" data-slide-to="<%=index +1%>"></li>
         <% end %>
       </ol>
 
       <!-- Wrapper for slides -->
       <div class="carousel-inner">
-        <div class="item active"><%= cl_image_tag @project.photos.first.path %></div>
+        <div class="item active"><%= cl_image_tag @project.photos.first.path, class: "img-fluid" %></div>
 
         <% collection = @project.photos[1..-1]  %>
         <% collection.each do |photo| %>
           <div class="item">
-            <%= cl_image_tag photo.path %>
+            <%= cl_image_tag photo.path, class: "img-fluid" %>
           </div>
         <% end %>
       </div>
@@ -87,16 +86,18 @@
 
 <!-- Project Description -->
 
-<div class="project-show-body">
-  <div class="project-show-title">
-    <p class="project-title"> <%= @project.title %></p>
-    <p class="project-location"> <%= @project.location %></p>
-  </div>
-  <div class="project-show-description">
-    <p> <%= @project.description %></p>
+<div class="container">
+  <div class="project-show-body">
+    <div class="project-show-title">
+      <p class="project-title"> <%= @project.title %></p>
+      <p class="project-location"> <%= @project.location %></p>
+    </div>
+    <div class="project-show-description">
+      <p> <%= @project.description %></p>
+    </div>
   </div>
 </div>
-</div>
+
 
   <!-- Add Task -->
 <div class= "project-show-add-task">
@@ -120,6 +121,8 @@
 <%=  content_for :after_js do %>
 
 <script>
+  $('#myCarousel').carousel();
+
   $('#circle').circleProgress({
     startAngle: -Math.PI / 2,
     size: 120,
