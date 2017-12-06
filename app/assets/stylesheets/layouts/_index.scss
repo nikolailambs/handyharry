@@ -5,6 +5,9 @@
 // @import "map";
 
 .main {
-  min-height: calc(100vh - 100px);
-  padding-bottom: 100px;
+  min-height: 100vh;
+}
+
+.bottom-margin-100 {
+  margin-bottom: 100px;
 }
