@@ -48,69 +48,75 @@
   </div>
 </div>
 
-<!-- Caroussel Project Pics -->
+  <!-- Caroussel Project Pics -->
 
-  <% if @project.photos? %>
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
+    <% if @project.photos? %>
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
 
 
-        <% collection = @project.photos[1..-1]  %>
-        <% if collection.size > 1 %>
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <% collection.each_with_index do |photo, index| %>
-            <li data-target="#myCarousel" data-slide-to="<%=index +1%>"></li>
+          <% collection = @project.photos[1..-1]  %>
+          <% if collection.size > 1 %>
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <% collection.each_with_index do |photo, index| %>
+              <li data-target="#myCarousel" data-slide-to="<%=index +1%>"></li>
+            <% end %>
           <% end %>
-        <% end %>
-      </ol>
+        </ol>
 
-      <!-- Wrapper for slides -->
-      <div class="carousel-inner">
-        <div class="item active"><%= cl_image_tag @project.photos.first.path, class: "img-fluid" %></div>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+          <div class="item active"><%= cl_image_tag @project.photos.first.path, class: "img-fluid" %></div>
 
-        <% collection = @project.photos[1..-1]  %>
-        <% collection.each do |photo| %>
-          <div class="item">
-            <%= cl_image_tag photo.path, class: "img-fluid" %>
-          </div>
-        <% end %>
+          <% collection = @project.photos[1..-1]  %>
+          <% collection.each do |photo| %>
+            <div class="item">
+              <%= cl_image_tag photo.path, class: "img-fluid" %>
+            </div>
+          <% end %>
+        </div>
+
       </div>
+    <% end %>
 
-    </div>
-  <% end %>
 
-<!-- Project Description -->
+<div class="container container-show">
+  <!-- Project Description -->
 
-<div class="container">
-  <div class="project-show-body">
-    <div class="project-show-title">
-      <p class="project-title"> <%= @project.title %></p>
-      <p class="project-location"> <%= @project.location %></p>
+    <div class="project-show-body">
+      <div class="project-show-title">
+        <p class="project-title"> <%= @project.title %></p>
+        <p class="project-location"> <%= @project.location %></p>
+      </div>
+      <div class="project-show-description">
+        <p> <%= @project.description %></p>
+      </div>
     </div>
-    <div class="project-show-description">
-      <p> <%= @project.description %></p>
-    </div>
+
+
+    <!-- Add Task -->
+  <div class= "project-show-add-task">
+    <% if policy(Task).create? || policy(Task).destroy?%>
+      <%= render 'tasks/task_field', project: @project, task: @task %>
+    <% end %>
+  </div>
+
+  <!-- Tasks -->
+
+  <div class= "project-show-tasks" id="show-tasks">
+    <% @project.tasks.each do |task| %>
+
+      <%= render 'tasks/index', project: @project, task: task %>
+
+    <% end %>
   </div>
 </div>
 
 
-  <!-- Add Task -->
-<div class= "project-show-add-task">
-  <% if policy(Task).create? || policy(Task).destroy?%>
-    <%= render 'tasks/task_field', project: @project, task: @task %>
-  <% end %>
-</div>
 
-<!-- Tasks -->
 
-<div class= "project-show-tasks" id="show-tasks">
-  <% @project.tasks.each do |task| %>
 
-    <%= render 'tasks/index', project: @project, task: task %>
-
-  <% end %>
-</div>
 
 
 
