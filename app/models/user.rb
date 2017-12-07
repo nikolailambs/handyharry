@@ -32,6 +32,10 @@ class User < ApplicationRecord
 
     if self.facebook_picture_url
       self.avatar = facebook_picture_url
+    else
+      if !self.avatar
+        self.handy ? self.avatar = "handy2.png" : self.avatar = "client.png"
+      end
     end
 
     return self.avatar
