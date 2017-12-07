@@ -28,8 +28,8 @@ class Project < ApplicationRecord
 
   def map_link
     google_address = "#{self.address.gsub(/\s/, '+')},+#{self.city.gsub(/\s/, '+')}"
-    "https://www.google.com/maps/dir/Berlin/#{google_address}/data=!4m2!4m1!3e0"
-    "https://www.google.com/maps?saddr=My+Location&daddr=#{google_address}"
+    # "https://www.google.com/maps/dir/Berlin/#{google_address}/data=!4m2!4m1!3e0"
+    "https://www.google.com/maps?saddr=Factory+Berlin&daddr=#{google_address}"
   end
 
   def full_address

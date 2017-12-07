@@ -4,7 +4,7 @@ class StatusController < ApplicationController
     skip_authorization
 
     @project_policy = policy_scope(Project).order(created_at: :desc)
-    @projects_handy = Project.all.where(handy_id: current_user)
+    @projects_handy = Project.all.where(handy_id: current_user.id)
 
     @hash = {}
     @projects_handy.each do |project|

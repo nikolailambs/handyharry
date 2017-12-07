@@ -84,10 +84,9 @@
               var resultArray = []
               content.hits.forEach(function(hit){
                 if(hit.client_id === check_client_id && hit.handy_id === check_handy_id)
-                  console.log(hit)
+                  // console.log(hit)
                 resultArray.push(hit)
               });
-              console.log(content.hits)
               console.log(resultArray)
               // end of filter the result
               callback(resultArray);
@@ -101,6 +100,7 @@
       template: function (hit) {
         // Returns the highlighted version of the name attribute
         return hit._highlightResult.title.value;
+
       },
       // #6 - Template used to display the selected result in the textarea
       replace: function (hit) {
