@@ -28,6 +28,16 @@ class User < ApplicationRecord
     end
   end
 
+  def check_avatar
+    if self.facebook_picture_url
+      self.avatar = facebook_picture_url
+    else
+      self.handy ? self.avatar = "handy2.png" : self.avatar = "client.png"
+    end
+
+    return self.avatar
+  end
+
   private
 
   def check_user_names?
@@ -56,6 +66,36 @@ class User < ApplicationRecord
     return user
   end
 
-  def avatar
-  end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
