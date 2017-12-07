@@ -36,11 +36,9 @@ random = rand(0..2)
 
 
 
-5.times do
-
-  puts 'Creating 5 fake clients...'
-
-  client = User.new(
+puts 'Creating 8 fake clients...'
+8.times do
+  client_array << User.create(
     email: Faker::Internet.email,
     password: "123456",
     speciality: "",
@@ -51,10 +49,11 @@ random = rand(0..2)
     phone: phone_array.sample,
     status: ""
   )
+end
 
-  puts 'Creating 5 fake handies...'
-
-  handy = User.new(
+puts 'Creating 8 fake handies...'
+8.times do
+  handy_array << User.create(
     email: Faker::Internet.email,
     password: "123456",
     speciality: "",
@@ -65,8 +64,10 @@ random = rand(0..2)
     phone: phone_array.sample,
     status: ""
   )
+end
 
   puts 'Creating 5 fake projects'
+
 
   5.times do
       @title = project_hash.keys[title_counter]
@@ -93,17 +94,13 @@ random = rand(0..2)
           title: "",
           description: "Check water supply in cellar",
           assigned_to: "",
-          status: true,
+          status: false,
           deadline: @date
         )
         task.save!
     end
     project.save!
   end
-  client.save!
-  handy.save!
-end
-
 
 
 puts 'Seeding finished!'

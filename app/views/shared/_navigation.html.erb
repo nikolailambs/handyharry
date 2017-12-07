@@ -18,7 +18,7 @@
     <div class="navigation-icons-wrapper <%= "selected-nav" if @url_path_check == "sta"%>">
         <div class="navigation-icons text-center">
           <%= link_to status_index_path, class: "text-center" do %>
-            <i class="fa fa-user<%= @url_path_check == "sta" ? "s" : "-o" %> no-padding-no-margin" aria-hidden="true"></i>
+            <i class="fa fa-users no-padding-no-margin" aria-hidden="true"></i>
           <% end %>
         </div>
       </div>
@@ -39,12 +39,7 @@
       <div class="navigation-icons-wrapper <%= "selected-nav" if @url_path_check == "use"%>">
         <div class="navigation-icons text-center">
             <div class="dropup">
-              <% if current_user.handy %>
-                  <%= image_tag 'handy_e.png', class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-              <% else %>
-                  <%= image_tag 'client_e.png', class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-              <% end %>
-
+              <i class="fa fa-user-o dropdown-toggle no-padding-no-margin" id="navbar-wagon-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
               <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
                 <li>
                   <%= link_to "#" do %>
