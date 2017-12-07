@@ -18,6 +18,11 @@
   }
 }
 
+.show-mess-fav {
+  padding: 0 !important;
+  margin-left: 10px;
+}
+
 .dropup-auto {
   top: inherit !important;
   overflow: scroll !important;
@@ -26,7 +31,7 @@
 
 .message-show-fav {
   margin: 2px !important;
-  padding-bottom: 32px;
+  padding-bottom: 0;
 }
 
 /*keyboard for testing*/
