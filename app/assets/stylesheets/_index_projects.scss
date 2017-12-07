@@ -15,15 +15,16 @@ button{ border:0; background:none;}
   margin: 0px;
   font-family: 'Nunito', sans-serif;
   letter-spacing: 3px;
-  color: #60636B;
-  background-color: #F2F7FB;
+  color: #FEFCFB;
+  background-color: #505153;
+  background-opacity: 0.8;
   width: 100% !important;
 }
 
 /* Tabs */
 
 .tabs {
-  background: #F2F7FB;
+  background: #505153;
   display: flex;
   padding: 10px 10px 0 0px;
   color: white;
@@ -41,7 +42,7 @@ button{ border:0; background:none;}
   font-size: 25px;
   font-weight: bold;
   margin: 0;
-  color: #60636B;
+  color: #FEFCFB;
 }
 .tabs p {
   opacity: 0.5;
@@ -58,8 +59,10 @@ button{ border:0; background:none;}
 
 .tab.active {
   background: white;
-  color: #83DACE;
   text-decoration: none;
+  h3 {
+    color: #505153;
+  }
 }
 
 /* Data toggle bootstrap */
@@ -103,14 +106,14 @@ a:focus {
   padding: 10px;
   margin: 10px;
   width: 100%;
-  height: 150px;
+  height: 160px;
   border-radius: 15px;
 
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
   background-position: center;
   color: white;
   position: relative;
-  background-color: #83DACE;
+  background-color: #97D8CE;
   position: relative;
 }
 
@@ -132,14 +135,29 @@ a:focus {
 
 .card-header {
   display: flex;
-  h3{
-    font-size: 17px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.card-sub-header{
+  h3 {
+    color: #505153;
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: none;
+  }
+  h4 {
+    color: #61626A;
+    font-size: 18px;
+    text-shadow: none;
+    margin-top: 5px;
+    margin-bottom: 0px;
   }
 }
 
 .card-avatar {
-  height: 40px;
-  width: 40px;
+  height: 50px;
+  width: 50px;
   border-radius: 50%;
   margin-right: 20px;
 }
@@ -151,17 +169,19 @@ a:focus {
 /* Card-content*/
 
 .card-content {
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 .card-content-details {
-  padding: 6px 0px 0px 10px;
+  // padding: 6px 0px 0px 10px;
   text-shadow: none;
-  position: absolute;
-  top: 50px;
-  left: 60px;
+  // position: absolute;
+  // top: 50px;
+  // left: 60px;
   display: flex;
   align-items: center;
+  margin-top: 15px;
+  margin-left: 10px;
 }
 
 .card-content-details i {
@@ -198,6 +218,7 @@ a:focus {
   width: 100%;
   -webkit-box-pack: justify;
   justify-content: space-around;
+  align-items: center;
 }
 
 .card-content-contacts i {
@@ -290,11 +311,18 @@ a:focus {
 
   ~ .todo__text {
     transition-delay: 0s;
-    color: #5EBEC1;
+    color: Ï#203352;
     opacity: 0.6;
   }
 }
 
+.todo__state {
+
+  ~ .todo__text {
+    color: Ï#203352;
+    opacity: 0.8;
+  }
+}
 
 //  .checkbox label {
 //     display: inline-block;
