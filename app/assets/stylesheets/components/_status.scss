@@ -30,21 +30,21 @@
 
 .client-card img {
   position: absolute;
-  right: 18px;
-  top: 18px;
-  width: 85px;
+  right: 155px;
+  top: 29px;
+  width: 82px;
   border-radius: 50%;
   z-index:2;
 }
 
-#circle-client > div.client-info > p {
+.circle-client > div.client-info > p {
   margin: 0px 0px 0px;
   text-align: center;
   color: #151515;
   text-decoration: none;
 }
 
-#circle-client > div.client-info > p:nth-child(1) > strong {
+.circle-client > div.client-info > p > strong {
   position: absolute;
   align-items: center;
   margin-top: -35px;
@@ -79,6 +79,5 @@
       margin-bottom: 20px;
     }
 }
-
 
 

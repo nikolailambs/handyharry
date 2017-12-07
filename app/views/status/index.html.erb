@@ -18,7 +18,7 @@
 
                 <div class="client-card">
                   <% avatar_url = client.facebook_picture_url || "client.png" %>
-                    <div id="circle-client" data-circle-value="<%= ((value.reduce(:+))/value.count) %>" src="<%= avatar_url %>">
+                    <div id="circle-client-<%="#{client.id}"%>" class="circle-client" data-circle-value="<%= ((value.reduce(:+))/value.count) %>" src="<%= avatar_url %>">
                       <div class="client-image">
                         <%= image_tag avatar_url, class: "avatar-large" %>
                       </div>
@@ -48,28 +48,26 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
+
+      <%=  content_for :after_js do %>
+
+        <script>
+
+        $('#circle-client-<%="#{client.id}"%>').circleProgress({
+          startAngle: -Math.PI / 2,
+          size: 120,
+          value: "<%= ((value.reduce(:+))/value.count) %>",
+          lineCap: 'round',
+          fill: {color: '#32B796'},
+          emptyFill: '#da552f',
+          thickness: '20',
+        });
+
+        </script>
+
+      <% end %>
+      <% end %>
+
     </div>
   </div>
-
-
-
-<%=  content_for :after_js do %>
-
-<script>
-
-  $('#circle-client').circleProgress({
-    startAngle: -Math.PI / 2,
-    size: 120,
-    value: "<%= ((value.reduce(:+))/value.count) %>",
-    lineCap: 'round',
-    fill: {color: '#32B796'},
-    emptyFill: '#da552f',
-    thickness: '20',
-  });
-
-</script>
-
-<% end %>
-<% end %>
+</div>
