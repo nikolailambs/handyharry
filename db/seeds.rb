@@ -29,17 +29,15 @@ project_hash = {
   toilet: {location: ["1st Floor", "2nd Floor", "3rd Floor"], photo_urls: ["app/assets/images/toilet.png"]},
   shower: {location: ["1st Floor", "2nd Floor", "3rd Floor"], photo_urls: ["app/assets/images/shower.jpg"]},
   bath: {location: ["1st Floor", "2nd Floor", "3rd Floor"], photo_urls: ["app/assets/images/bath.jpg"]},
-  sink: {location: ["Kitchen"], photo_urls: ["app/assets/images/kitchen_sink.jpg"]},
-  dishwasher: {location: ["Kitchen"], photo_urls: ["app/assets/images/dishwasher.jpg"]}
+  sink: {location: ["Kitchen","Kitchen","Kitchen"], photo_urls: ["app/assets/images/kitchen_sink.jpg"]},
+  dishwasher: {location: ["Kitchen","Kitchen","Kitchen"], photo_urls: ["app/assets/images/dishwasher.jpg"]}
 }
 
 random = rand(0..2)
 project_array = []
 client_array = []
-
-
-
-
+client_pics = ["https://kitt.lewagon.com/placeholder/users/HenrietteFl","https://kitt.lewagon.com/placeholder/users/ChristopheVercarre","https://kitt.lewagon.com/placeholder/users/NikolaiLambs","https://kitt.lewagon.com/placeholder/users/aliceclv","https://kitt.lewagon.com/placeholder/users/ssaunier"]
+client_pic_counter = 0
 
 
 
@@ -53,10 +51,11 @@ client_array = []
     handy: false,
     first_name: Faker::Name.first_name,
     second_name: Faker::Name.last_name,
-    avatar: "/assets/images/client.png",
+    avatar: client_pics[client_pic_counter],
     phone: phone_array.sample,
     status: ""
   )
+   client_pic_counter == 5 ? client_pic_counter = 0 : client_pic_counter += 1
 end
 
 
@@ -69,7 +68,7 @@ end
     handy: true,
     first_name: Faker::Company.name,
     second_name: Faker::Name.last_name,
-    avatar: "https://kitt.lewagon.com/placeholder/users/ssaunier",
+    avatar: "handy2.png",
     phone: phone_array.sample,
     status: ""
   )
@@ -93,7 +92,7 @@ end
       counter == 24 ? counter = 0 : counter += 1
       title_counter == 4 ? title_counter = 0 : title_counter += 1
 
-    puts 'Creating on fake task'
+    puts 'Creating one fake task'
 
 
     task = Task.new(
