@@ -56,7 +56,6 @@ addresses_array = [["Herbert-Lewin-Platz 1", "Berlin"], ["Wörther Straße 26", 
     )
    client_pic_counter == 5 ? client_pic_counter = 0 : client_pic_counter += 1
   end
->>>>>>> origin
 
   puts 'Creating 1 fake handy...'
 
