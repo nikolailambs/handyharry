@@ -20,8 +20,17 @@
   position: relative;
   display: flex;
   justify-content: space-around;
-  border: 1px solid #7F7F7F;
 }
+
+
+
+/* toggle */
+
+.client-card a.accordion-toggle.collapsed:before {
+  content: "\e113";
+  color: #60636A;
+}
+
 
 #circle-client {
   position: relative;
@@ -30,11 +39,15 @@
 
 .client-card img {
   position: absolute;
-  right: 119px;
+  right: 130px;
   top: 20px;
   width: 100px;
   /* border-radius: 50%; */
   z-index: 2;
+}
+
+.client-info {
+  text-align: center;
 }
 
 .circle-client > div.client-info > p {
