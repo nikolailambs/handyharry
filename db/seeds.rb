@@ -27,7 +27,7 @@ addresses_array = [["Herbert-Lewin-Platz 1", "Berlin"], ["Wörther Straße 26", 
   title_counter = 0
   project_hash = {
     toilet: {location: ["1st Floor", "2nd Floor", "3rd Floor"], photo_urls: ["app/assets/images/toilet.jpg"]},
-    shower: {location: ["1st Floor", "2nd Floor", "3rd Floor"], photo_urls: ["app/assets/images/shower.jpg"]},
+    shower: {location: ["1st Floor", "2nd Floor", "3rd Floor"], photo_urls: ["app/assets/images/shower_pic.jpg"]},
     bath: {location: ["1st Floor", "2nd Floor", "3rd Floor"], photo_urls: ["app/assets/images/bath.jpg"]},
     sink: {location: ["Kitchen"], photo_urls: ["app/assets/images/kitchen_sink.jpg"]},
     dishwasher: {location: ["Kitchen"], photo_urls: ["app/assets/images/dishwasher.jpg"]}
