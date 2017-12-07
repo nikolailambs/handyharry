@@ -36,7 +36,7 @@
                 <div id="taskAccordion-<%="#{client.id}"%>" class="collapse" role="tabpanel">
 
                   <div class="row">
-                    <div class="project-title">
+                    <div class="status-title">
                       <% @projects_handy.where(client_id: client.id).each do |project| %>
                       <p><i class="fa fa-home" aria-hidden="true"></i>
                       <%= link_to project.title, project_path(project.id) %></p>
