@@ -76,7 +76,7 @@ window.stackHeads=function(){
                 }
 
             } else if (window.pageYOffset>180) {
-              $('.tabs').style.position="static"
+              $('.tabs').style.position="static";
               holder.style.sheight=header.offsetHeight+'px';
               // header.style.opacity= `${100/window.pageYOffset + (1 - 0.99)}`;
               //if there isn't another header

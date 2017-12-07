@@ -136,6 +136,35 @@ hr {
 }
 
 
+.facebook-button {
+    color: white;
+    font-size: 15px;
+    padding-left: 20px;
+    background-color: #37599A;
+    border-radius: 3px;
+    padding: 13px 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.facebook-button:hover {
+  text-decoration: none;
+}
+
+.facebook-button i {
+  padding-left: 1em;
+}
+
+// .facebook-link {
+//   position: absolute;
+//   top: 0;
+//   bottom: 0;
+//   right: 0;
+//   width: 100%;
+
+// }
+
 // **** Wrapper Offer *****
 
 .wrapper-offer {
@@ -172,30 +201,3 @@ hr {
 .new-handy-value-prop-text {
   font-size: 1.5em;
 }
-
-/* Hover effects */
-// .reviews-product:hover {
-//   background: #f7f7fa;
-//   cursor: pointer;
-// }
-// .reviews-product-upvote:hover {
-//   color: #5898f1;
-//   cursor: pointer;
-// }
-// .reviews-product:hover .product-upvote { transform: scale(1.2) }
-// .reviews-product:hover .product-controls-hidden a { color: #E6E6E6 }
-// .reviews-product-upvote:hover .product-arrow { border-bottom: 9px solid #5898f1 }
-
-// .review-wrapper{
-//   display: flex;
-//   align-items: center;
-//   h3{
-//     padding-left: 10px;
-//     font-size: 20px;
-//   }
-// }
-// .review-container{
-//   p{
-//     font-style: italic;
-//   }
-// }
