@@ -1,108 +1,113 @@
 <% content_for :meta_title, "Projects" %>
 
-  <div class="placeholder"></div>
-    <div class="tabs fixed-objects">
-      <a class="tab active" href="#">
-        <h3>Today</h3>
-      </a>
-      <a class="tab" href="#">
-        <h3>This week</h3>
-      </a>
-    </div>
+<div class="placeholder"></div>
+<div class="tabs fixed-objects">
+  <a class="tab active" href="#">
+    <h3>Today</h3>
+  </a>
+  <a class="tab" href="#">
+    <h3>This week</h3>
+  </a>
+</div>
 <div class="container-fluid bottom-margin-100">
   <div id="projectAccordion" data-children=".item">
     <div class="projects">
       <% @projects.each do |project| %>
-        <div class="item">
-          <div class="row">
-            <div class="col-xs-12">
-                <div id="proj-<%="#{project.id}"%>" class="project">
+      <div class="item">
+        <div class="row">
+          <div class="col-xs-12">
+            <div id="proj-<%="#{project.id}"%>" class="project">
 
-                  <a class="accordion-toggle collapsed"data-toggle="collapse" data-parent="#projectAccordion" href="#taskAccordion-<%="#{project.id}"%>" aria-expanded="true" aria-controls="taskAccordion">
-                    <i class="fa" aria-hidden="true"></i>
-                  </a>
+              <a class="accordion-toggle collapsed"data-toggle="collapse" data-parent="#projectAccordion" href="#taskAccordion-<%="#{project.id}"%>" aria-expanded="true" aria-controls="taskAccordion">
+                <i class="fa" aria-hidden="true"></i>
+              </a>
 
-                  <div class="project-card">
-                    <div class="card-header">
-                      <%= image_tag project.client.check_avatar, class: "card-avatar" %>
-                      <h3><%=project.client.first_name%> | <%=project.address%></h3>
-
-                      <div class="card-content-details">
-                        <div class="card-content-title">
-                          <i class="fa fa-wrench" aria-hidden="true"></i>
-                          <p class="project-title"> <%= project.title %></p>
-                        </div>
-
-                        <div class="card-content-location">
-                          <i class="fa fa-map-marker" aria-hidden="true"></i>
-                          <p class="project-location"> <%= project.location %></p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="card-content">
-                      <div class="card-content-contacts">
-
-                        <%= link_to "tel:#{current_user.handy ? project.client.phone : project.handy.phone}", class: "icon-link icon-z-index" do %>
-                          <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
-                        <% end %>
-
-                        <%= simple_form_for ChatRoom.new, html: { class: 'icon-link icon-z-index' } do |f| %>
-                          <% if current_user.handy %>
-                            <%= f.input :client_id, as: :hidden, input_html: { :value => project.client.id } %>
-                            <%= f.input :handy_id, :as => :hidden, :input_html => { :value => current_user.id } %>
-                          <% else %>
-                            <%= f.input :handy_id, :as => :hidden, :input_html => { :value => project.handy.id } %>
-                            <%= f.input :client_id, :as => :hidden, :input_html => { :value => current_user.id } %>
-                          <% end %>
-                          <%= button_tag('', type: 'submit', class: "icon-link") do %>
-                            <i class="fa fa-comment" aria-hidden="true"></i>
-                          <% end %>
-                        <% end %>
-
-                        <%= link_to project.map_link, class: "icon-link icon-z-index", target: :_blank do %>
-                          <i class="fa fa-road fa-x2" aria-hidden="true"></i>
-                        <% end %>
-
-                      </div>
-                    </div>
-                    <%= link_to "", project_path(project), class: "tag-link" %>
+              <div class="project-card">
+                <div class="card-header">
+                  <% client = User.find(project.client_id) %>
+                  <%= image_tag project.client.check_avatar, class: "card-avatar" %>
+                  <div class="card-sub-header">
+                    <h3><%=client.first_name%></h3>
+                    <h4><%=project.address%></h4>
                   </div>
                 </div>
 
-            </div>
-          </div>
+                <div class="card-content-details">
+                  <div class="card-content-title">
+                    <i class="fa fa-wrench" aria-hidden="true"></i>
+                    <p class="project-title"> <%= project.title %></p>
+                  </div>
 
-          <div id="taskAccordion-<%="#{project.id}"%>" class="collapse" role="tabpanel">
-          <div class="row">
-            <div class="todo-list">
-                <% if project.tasks %>
-                  <% project.tasks.each do |task| %>
+                  <div class="card-content-location">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    <p class="project-location"> <%= project.location %></p>
+                  </div>
 
-                    <div class="todo">
+                </div>
 
-                      <%= simple_form_for [project, task], remote: true, html: { id: "form_#{task.id}" } do |f| %>
+                <div class="card-content">
+                  <div class="card-content-contacts">
 
-                      <%= f.input :status, label: "#{task.description}", as: :boolean, label_html: {class: 'todo__text'}, input_html: { id: "task-check-#{task.id}", class: "task-check todo__state", data: { task_id: task.id } } %>
-                     <% end %>
+                    <%= link_to "tel:#{current_user.handy ? project.client.phone : project.handy.phone}", class: "icon-link icon-z-index" do %>
+                    <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
+                    <% end %>
 
-                      <% if policy_scope(Task) || policy(Task).destroy? %>
-                      <div>
-                        <%= link_to project_task_path(project, task), method: :delete  do%>
-                          <i class="fa fa-trash" aria-hidden="true"></i>
-                        <% end %>
-                      </div>
-                      <% end %>
+                    <%= simple_form_for ChatRoom.new, html: { class: 'icon-link icon-z-index' } do |f| %>
+                    <% if current_user.handy %>
+                    <%= f.input :client_id, as: :hidden, input_html: { :value => project.client.id } %>
+                    <%= f.input :handy_id, :as => :hidden, :input_html => { :value => current_user.id } %>
+                    <% else %>
+                    <%= f.input :handy_id, :as => :hidden, :input_html => { :value => project.handy.id } %>
+                    <%= f.input :client_id, :as => :hidden, :input_html => { :value => current_user.id } %>
+                    <% end %>
+                    <%= button_tag('', type: 'submit', class: "icon-link") do %>
+                    <i class="fa fa-comment" aria-hidden="true"></i>
+                    <% end %>
+                    <% end %>
 
-                    </div>
+                    <%= link_to project.map_link, class: "icon-link icon-z-index", target: :_blank do %>
+                    <i class="fa fa-road fa-x2" aria-hidden="true"></i>
+                    <% end %>
 
-                  <% end %>
-                <% end %>
+                  </div>
+                </div>
+                <%= link_to "", project_path(project), class: "tag-link" %>
               </div>
             </div>
-          </div>
 
+          </div>
         </div>
+
+        <div id="taskAccordion-<%="#{project.id}"%>" class="collapse" role="tabpanel">
+          <div class="row">
+            <div class="todo-list">
+              <% if project.tasks %>
+              <% project.tasks.each do |task| %>
+
+              <div class="todo">
+
+                <%= simple_form_for [project, task], remote: true, html: { id: "form_#{task.id}" } do |f| %>
+
+                <%= f.input :status, label: "#{task.description}", as: :boolean, label_html: {class: 'todo__text'}, input_html: { id: "task-check-#{task.id}", class: "task-check todo__state", data: { task_id: task.id } } %>
+                <% end %>
+
+                <% if policy_scope(Task) || policy(Task).destroy? %>
+                <div>
+                  <%= link_to project_task_path(project, task), method: :delete  do%>
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+                  <% end %>
+                </div>
+                <% end %>
+
+              </div>
+
+              <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+      </div>
       <% end %>
 
     </div>
@@ -115,7 +120,7 @@
 
 
 <% content_for(:after_js) do %>
-  <script>
+<script>
 
   $('input.task-check').change(function change (){
     var task_id = $(this).data('task_id')
@@ -131,17 +136,17 @@ document.addEventListener("keyup", (event) => {
     var client = algoliasearch('<%= ENV['AlgoliaApplicationID'] %>', '<%= ENV['AlgoliaSearchOnly'] %>');
     var index = client.initIndex('Project');
 
-          index.search(searchText, { hitsPerPage: 5, page: 0 })
-            .then(function searchDone(content) {
+    index.search(searchText, { hitsPerPage: 5, page: 0 })
+    .then(function searchDone(content) {
             // console.log(options)
             console.log(content.hits)
             content.hits.forEach( function(element) {console.log(element.objectID) })
-            })
-            .catch(function searchFailure(err) {
-            console.error(err);
-            });
-      });
-  </script>
+          })
+    .catch(function searchFailure(err) {
+      console.error(err);
+    });
+  });
+</script>
 <% end %>
 
 
