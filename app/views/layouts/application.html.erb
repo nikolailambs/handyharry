@@ -43,8 +43,8 @@
   <% if current_page?(projects_path) || current_page?(root_path) %>
     <h2 id="head-title" class="fixed-objects">Projects</h2>
   <% elsif current_page?(chat_rooms_path) %>
-  <div class="chat-head">
-    <h2 id="head-title" class="fixed-objects chats-header-icon">Chats</h2><h4><%= link_to new_chat_room_path do %><i class="fa fa-pencil-square-o add-message-icon" aria-hidden="true"></i><% end %></h4></div>
+  <div class="chat-head fixed-objects">
+    <h2 id="head-title" class="chats-header-icon">Chats</h2><%= link_to new_chat_room_path do %><i class="fa fa-pencil-square-o add-message-icon" aria-hidden="true"></i><% end %></div>
   <% elsif current_page?(status_index_path) %>
     <h2 id="head-title" class="fixed-objects">Status</h2>
   <% elsif current_page?(setting_path(current_user)) %>
