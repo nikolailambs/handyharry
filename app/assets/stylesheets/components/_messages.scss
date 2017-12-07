@@ -18,6 +18,12 @@
   }
 }
 
+.dropup-auto {
+  top: inherit !important;
+  overflow: scroll !important;
+  bottom: 113px !important;
+}
+
 .message-show-fav {
   margin: 2px !important;
 }

@@ -63,9 +63,12 @@
   var lastQuery = '';
   var check_client_id = <%= @chat_room.client_id %>
   var check_handy_id = <%= @chat_room.handy_id %>
+
   console.log(`client ${check_client_id}`)
   console.log(`handy ${check_handy_id}`)
-  // `title:${lastQuery} AND client_id:${client_id} AND handy_id:${handy_id}`
+
+  var option = {dropdownClassName: "dropup-auto dropdown-menu textcomplete-dropdown" }
+  // `title:${lastQuery} AND client_id:${client_id} AND handy_id:${handy_id}
 
   $('#message_content').textcomplete([
     {
@@ -81,6 +84,7 @@
               var resultArray = []
               content.hits.forEach(function(hit){
                 if(hit.client_id === check_client_id && hit.handy_id === check_handy_id)
+                  console.log(hit)
                 resultArray.push(hit)
               });
               console.log(content.hits)
@@ -104,7 +108,8 @@
       }
     }, {
       dropdownClassName: 'dropup'
-    }]);
+    }], option);
+
 
   </script>
 <% end %>
