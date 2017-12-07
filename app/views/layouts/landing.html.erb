@@ -10,8 +10,6 @@
   </head>
   <body class='parallax'>
     <%= render 'shared/navbar', background: "transparent", shadow: "none" %>
-
-    <%= render 'shared/flashes' %>
     <%= yield %>
     <% unless current_page?(new_user_session_path) %>
       <%= render 'shared/footer' %>
