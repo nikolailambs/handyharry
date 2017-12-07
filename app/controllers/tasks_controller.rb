@@ -52,7 +52,11 @@ class TasksController < ApplicationController
     @project = Project.find(params[:project_id])
     @task = Task.find(params[:id])
     @task.destroy
-    redirect_to project_path(@project)
+
+    session[:return_to] ||= request.referer
+
+    redirect_to session.delete(:return_to)
+
   end
 
   private
