@@ -17,7 +17,7 @@
 
 
                 <div class="client-card">
-                    <div id="circle-client" data-circle-value="<%= ((value.reduce(:+))/value.count) %>">
+                    <div id="circle-client-<%="#{client.id}"%>" class="circle-client" data-circle-value="<%= ((value.reduce(:+))/value.count) %>" >
 
                       <div class="client-image">
                         <%= image_tag client.check_avatar, class: "avatar-large" %>
@@ -60,7 +60,7 @@
           lineCap: 'round',
           fill: {color: '#32B796'},
           emptyFill: '#da552f',
-          thickness: '20',
+          thickness: '10',
         });
 
         </script>
