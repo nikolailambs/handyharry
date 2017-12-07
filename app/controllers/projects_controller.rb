@@ -19,6 +19,7 @@ class ProjectsController < ApplicationController
 
   def create # only the user
     @project = Project.new(project_params)
+
     @project.client = current_user #in the end it should be the client doing the tasks
     @handy = User.find(params[:project][:handy_id])
     @project.handy = @handy #in the end it should be the handy to whom the tasks gets asigned
