@@ -18,7 +18,7 @@ require 'faker'
 #   Task.destroy_all
 # end
 
-@date = rand(1.year).seconds.from_now
+@date = DateTime.now
 
 addresses_array = [["Herbert-Lewin-Platz 1", "Berlin"], ["Wörther Straße 26", "Berlin"], ["Charlottenstraße 60", "Berlin"], ["Gipsstraße 3", "Berlin"], ["
 Chausseestraße 8", "Berlin"], ["Karl-Marx-Allee 33", "Berlin"], ["Warschauer Str. 74", "Berlin"], ["Gabriel-Max-Straße 4", "Berlin"], ["Neue Bahnhofstraße 21", "Berlin"], ["Revaler Str. 99", "Berlin"], ["Warschauer Str. 33", "Berlin"], ["Rykestraße 45", "Berlin"], ["Knaackstraße 30", "Berlin"], ["Knaackstraße 16", "Berlin"], ["Kollwitzstraße 54", "Berlin"], ["Kollwitzstraße 18", "Berlin"], ["Schwedter Str. 269", "Berlin"], ["Christinenstraße 24", "Berlin"], ["Schwedter Str. 2", "Berlin"], ["Straßburger Str. 16", "Berlin"], ["Straßburger Str. 7c", "Berlin"], ["Prenzlauer Allee 247", "Berlin"], ["Prenzlauer Allee 4", "Berlin"], ["Johannisstraße 20", "Berlin"], ["Jägerstraße 35", "Berlin"], ["Mohrenstraße 67-69", "Berlin"], ["Prinzenstraße 81", "Berlin"]]
