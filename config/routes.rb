@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   mount Attachinary::Engine => "/attachinary"
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
@@ -17,6 +16,8 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show]
+
+  get '/home', to: 'pages#home', as: 'home'
 
   root to: 'projects#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
