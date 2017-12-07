@@ -23,7 +23,7 @@
 
   <!-- mobile title -->
   <div class="placeholder"></div>
-  <% if current_page?(projects_path) %>
+  <% if current_page?(projects_path) || current_page?(root_path) %>
     <h2 id="head-title" class="fixed-objects">Projects</h2>
   <% elsif current_page?(chat_rooms_path) %>
     <h2 id="head-title" class="fixed-objects">Chats</h2>
@@ -34,7 +34,7 @@
   <% end %>
 
   <!-- search bar in chats and projects -->
-    <% if current_page?(projects_path) || current_page?(chat_rooms_path) %>
+    <% if current_page?(projects_path) || current_page?(chat_rooms_path) || current_page?(root_path) %>
       <%= render 'shared/search_bar'%>
     <% end %>
 

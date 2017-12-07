@@ -6,6 +6,8 @@ class MessagesController < ApplicationController
     @chat_room = ChatRoom.find(params[:chat_room_id])
     @message.chat_room = @chat_room
     @message.user = current_user
+    @message.user.has_read_message = true
+    current_user.handy ? @chat_room.client.has_read_message = false :  @chat_room.handy.has_read_message = false
 
     # defining a task if the content has a @
     if @message.content.include? "@"

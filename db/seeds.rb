@@ -22,13 +22,13 @@ require 'faker'
 addresses_array = [["Herbert-Lewin-Platz 1", "Berlin"], ["Jahnstr. 40", "Stuttgart"], ["Mühlbaurstr. 16", "München"], ["Friedrichstr. 16", "Berlin"], ["Dreifertstr. 12", "Cottbus"], ["Pappelallee 5", "Potsdam"], ["Schwachhauser Heerstr. 30", "Bremen"], ["Weidestr. 122 b", "Hamburg"], ["Im Vogelsgesang 3", "Frankfurt"], ["August-Bebel-Str. 9a", "Rostock"], ["Berliner Allee 20", "Hannover"], ["Tersteegenstr. 9", "Düsseldorf"], ["Deutschhausplatz 3", "Mainz"], ["Faktoreistr. 4", "Saarbrücken"], ["Schützenhöhe 16", "Dresden"], ["Doctor-Eisenbart-Ring 2", "Magdeburg"], ["Bismarckallee 8-12", "Bad Segeberg"], ["Im Semmicht 33", "Jena-Maua"], ["Gartenstr. 210-214", "Münster"], ["Tersteegenstr. 22", "Düsseldorf"], ["Deutschhausplatz 20", "Mainz"], ["Faktoreistr. 32", "Saarbrücken"], ["Schützenhöhe 2", "Dresden"], ["Doctor-Eisenbart-Ring 11", "Magdeburg"], ["Bismarckallee 23", "Bad Segeberg"], ["Im Semmicht 3", "Jena-Maua"], ["Gartenstr. 56", "Münster"]]
 counter = 0
 project_array = []
+handy_array = []
+client_array = []
 
 
-5.times do
-
-  puts 'Creating 5 fake clients...'
-
-  client = User.new(
+puts 'Creating 8 fake clients...'
+8.times do
+  client_array << User.create(
     email: Faker::Internet.email,
     password: "123456",
     speciality: "",
@@ -39,10 +39,11 @@ project_array = []
     phone: "017322337722",
     status: ""
   )
+end
 
-  puts 'Creating 5 fake handies...'
-
-  handy = User.new(
+puts 'Creating 8 fake handies...'
+8.times do
+  handy_array << User.create(
     email: Faker::Internet.email,
     password: "123456",
     speciality: "",
@@ -53,17 +54,18 @@ project_array = []
     phone: "01737348572",
     status: ""
   )
+end
 
   puts 'Creating 5 fake projects'
 
-  5.times do
-      project = Project.new(
-        handy: handy,
-        client: client,
+  10.times do
+      project = Project.create(
+        handy: handy_array.sample,
+        client: client_array.sampe,
         address: addresses_array[counter][0],
         city: addresses_array[counter][1],
         deadline: @date,
-        status: true,
+        status: false,
         description: Faker::Commerce.department(4),
         title: Faker::Job.field,
         location: Faker::Address.secondary_address,
@@ -79,17 +81,13 @@ project_array = []
           title: "",
           description: "Buy #{Faker::Commerce.material}",
           assigned_to: "",
-          status: true,
+          status: false,
           deadline: @date
         )
         task.save!
     end
     project.save!
   end
-  client.save!
-  handy.save!
-end
-
 
 
 puts 'Seeding finished!'
