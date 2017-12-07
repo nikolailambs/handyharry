@@ -19,3 +19,16 @@
   border-top: solid 1px #F0F0F0;
   margin-top: 3px;
 }
+
+.dropdown-menu .textcomplete-item .picture {
+  border-radius: 2em;
+  -webkit-border-radius: 2em;
+  -moz-border-radius: 2em;
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  float: left;
+}
+  .dropdown-menu .textcomplete-item .picture img {
+    width: 32px;
+  }
