@@ -1,8 +1,4 @@
 <div class="message <%= user_is_messages_author ? "right" : "" %>">
-  <% if message.user.handy %>
-    <%= image_tag 'handy.png', class: "avatar" %>
-  <% else %>
-    <%= image_tag 'client.png', class: "avatar" %>
-  <% end %>
+  <%= image_tag message.user.check_avatar, class: "avatar" %>
   <p><%= message.content %></p>
 </div>
