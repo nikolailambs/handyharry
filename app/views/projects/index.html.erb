@@ -25,7 +25,8 @@
                   <div class="project-card">
                     <div class="card-header">
                       <img class="card-avatar" src="https://kitt.lewagon.com/placeholder/users/gabriel-dehan">
-                      <h3><%=project.address%></h3>
+                      <% client = User.find(project.client_id) %>
+                      <h3><%=client.first_name%> | <%=project.address%></h3>
                       <div class="card-content-details">
                         <div class="card-content-title">
                           <i class="fa fa-wrench" aria-hidden="true"></i>
