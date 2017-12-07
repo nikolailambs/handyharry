@@ -9,7 +9,11 @@
         <h4>
           <%= current_user.handy ? @chat_room.name[:client].build_user_name : @chat_room.name[:handy].build_user_name %>
         </h4>
-        <%= image_tag current_user.check_avatar, class:"avatar chat-avatar" %>
+        <% if current_user.handy %>
+          <%= image_tag @chat_room.client.check_avatar, class:"avatar" %>
+        <% else %>
+          <%= image_tag @chat_room.handy.check_avatar, class:"avatar" %>
+        <% end %>
       </div>
       <div class="messages">
         <% @chat_room.messages.each do |message| %>
