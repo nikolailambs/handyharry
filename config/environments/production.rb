@@ -4,8 +4,8 @@ Rails.application.configure do
 
 ####################################### Action cable (messenger)################
 
-  config.action_cable.url = "ws://handyharry.herokuapp.com/cable"
-  config.action_cable.allowed_request_origins = [ "http://handyharry.herokuapp.com", "https://handyharry.herokuapp.com" ]
+  config.action_cable.url = "ws://www.handyharry.co/cable"
+  config.action_cable.allowed_request_origins = [ "http://www.handyharry.co", "https://www.handyharry.co" ]
 
 #############################################################################
 
