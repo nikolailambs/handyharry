@@ -9,7 +9,7 @@
   <div class="project-show-header">
     <div class="project-show-info">
       <div id="circle" data-circle-value="<%= @project.completion_percentage %>">
-        <img class="project-show-avatar-large" src="https://kitt.lewagon.com/placeholder/users/gabriel-dehan">
+        <%= image_tag @project.client.check_avatar, class: "project-show-avatar-large" %>
       </div>
       <div class="project-show-contact">
         <h3><%= @project.address%></h3>
@@ -132,7 +132,7 @@
     lineCap: 'round',
     fill: {color: '#32B796'},
     emptyFill: '#da552f',
-    thickness: '20',
+    thickness: '10',
   });
 
 </script>

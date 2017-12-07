@@ -104,9 +104,9 @@ a:focus {
 
 .project-card {
   padding: 10px;
-  margin: 10px;
+  margin: 22px 10px;
   width: 100%;
-  height: 160px;
+  height: 166px;
   border-radius: 15px;
 
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
@@ -169,7 +169,7 @@ a:focus {
 /* Card-content*/
 
 .card-content {
-  margin-top: 20px;
+  margin-top: 29px;
 }
 
 .card-content-details {
@@ -180,7 +180,7 @@ a:focus {
   // left: 60px;
   display: flex;
   align-items: center;
-  margin-top: 15px;
+  margin-top: 28px;
   margin-left: 10px;
 }
 
@@ -225,12 +225,21 @@ a:focus {
   margin-right: 15px;
   font-size: 35px !important;
   text-shadow: none;
+  align-items: center;
 }
 
 .card-content-contacts i {
+  background: white;
   margin-right: 15px;
-  font-size: 35px !important;
+  font-size: 30px !important;
   text-shadow: none;
+  color: #97D8CE;
+  padding: 10px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  text-align: center;
+  box-shadow: 1px 1px 3px;
 }
 
 .card-content-contacts i:hover {
@@ -323,6 +332,7 @@ a:focus {
     opacity: 0.8;
   }
 }
+
 
 //  .checkbox label {
 //     display: inline-block;

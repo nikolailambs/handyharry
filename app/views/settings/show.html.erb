@@ -1,0 +1,53 @@
+<style>
+.settings-container {
+  height: calc(100vh-200px);
+  h5 {
+    margin-bottom: 40px;
+  }
+}
+
+.settings-links {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+}
+
+.settings-links ul {
+  list-style: none;
+}
+.settings-btn {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 5px 20px;
+  border: 1px solid #414141;
+  border-radius: 4px;
+  color: #414141;
+}
+
+.settings-btn:hover {
+  color: #da552f;
+  border-color: #da552f;
+}
+</style>
+
+<div class="container text-center">
+  <div class="settings-container">
+    <h3><%= @current_user.first_name %></h3>
+    <h3><%= @current_user.second_name %></h3>
+    <% if @current_user.handy %>
+    <h5>Handyman</h5>
+    <% else %>
+    <h5>Client</h5>
+    <% end %>
+
+
+    <div class="settings-links">
+      <ul>
+        <li><%= link_to('Edit Profile', edit_user_password_path(@current_user), class:" btn settings-btn") %></li>
+        <li><%= link_to('Logout', destroy_user_session_path, method: :delete, class:"btn settings-btn") %></li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>
