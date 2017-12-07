@@ -20,6 +20,15 @@
   text-decoration: none;
 }
 
+.icon-link:active {
+  outline: none;
+}
+
+.icon-link:focus {
+  outline: none;
+}
+
+
 .icon-z-index {
   z-index: 10000;
 }
