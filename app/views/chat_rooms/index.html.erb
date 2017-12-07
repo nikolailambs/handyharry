@@ -1,7 +1,6 @@
 <div class="tabs fixed-objects"></div>
 <div class="container-inbox bottom-margin-100">
   <% contact = current_user.handy ? "client" : "handyman" %>
-  <%= link_to 'Contact a Person', new_chat_room_path, class:"btn btn-default contact-btn" %>
   <% if @chat_rooms.any? %>
     <% @chat_rooms.each do |chat_room| %>
     <% if chat_room.messages.any? %>
