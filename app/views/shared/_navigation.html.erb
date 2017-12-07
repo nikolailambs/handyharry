@@ -8,8 +8,8 @@
   <% @url_path_check = "pro" %>
 <% elsif url.include?('chat_rooms') %>
   <% @url_path_check = "cha" %>
-<% elsif url.include?('users') %>
-  <% @url_path_check = "use" %>
+<% elsif url.include?('settings') %>
+  <% @url_path_check = "set" %>
 <% elsif url.include?('status') %>
   <% @url_path_check = "sta" %>
 <% end %>
@@ -36,26 +36,33 @@
           <% end %>
         </div>
       </div>
-      <div class="navigation-icons-wrapper <%= "selected-nav" if @url_path_check == "use"%>">
+      <div class="navigation-icons-wrapper <%= "selected-nav" if @url_path_check == "set"%>">
+        <div class="navigation-icons text-center">
+          <%= link_to setting_path(current_user), class: "text-center" do %>
+            <i class="fa fa-user<%= @url_path_check == "set" ? "" : "-o" %> no-padding-no-margin" aria-hidden="true"></i>
+          <% end %>
+        </div>
+      </div>
+      <!-- <div class="navigation-icons-wrapper <%#= "selected-nav" if @url_path_check == "use"%>">
         <div class="navigation-icons text-center">
             <div class="dropup">
               <i class="fa fa-user-o dropdown-toggle no-padding-no-margin" id="navbar-wagon-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
               <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
                 <li>
-                  <%= link_to "#" do %>
-                    <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
-                  <% end %>
+                  <%#= link_to "#" do %>
+                    <i class="fa fa-user"></i> <%#= t(".profile", default: "Profile") %>
+                  <%# end %>
                 </li>
                 <li>
-                  <% logout_path = destroy_user_session_path %>
-                  <%= link_to logout_path, method: :delete do %>
-                    <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
-                  <% end %>
+                  <%# logout_path = destroy_user_session_path %>
+                  <%#= link_to logout_path, method: :delete do %>
+                    <i class="fa fa-sign-out"></i>  <%#= t(".sign_out", default: "Log out") %>
+                  <%# end %>
                 </li>
               </ul>
             </div>
         </div>
-      </div>
+      </div> -->
       <% else %>
         <!-- Login link for customers (when logged out) -->
         <%= link_to t(".sign_in", default: "Customers"), new_user_session_path, class: "btn btn-customers" %>
