@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
   end
 
-  resources :users, only: [:show]
+  resources :settings, only: [:show]
 
   get '/home', to: 'pages#home', as: 'home'
 
