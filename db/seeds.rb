@@ -42,6 +42,7 @@ client_array = []
 
 
 
+
   puts 'Creating 5 fake clients...'
 
 5.times do
@@ -58,6 +59,7 @@ client_array = []
   )
 end
 
+
   puts 'Creating 1 fake handy...'
 
   handy = User.create(
@@ -72,8 +74,8 @@ end
     status: ""
   )
 
-  puts 'Creating 5 fake projects'
 
+  puts 'Creating 5 fake projects'
   5.times do
       @title = project_hash.keys[title_counter]
       project = Project.create(
@@ -91,7 +93,7 @@ end
       counter == 24 ? counter = 0 : counter += 1
       title_counter == 4 ? title_counter = 0 : title_counter += 1
 
-    puts 'Creating 2 fake tasks'
+    puts 'Creating on fake task'
 
 
     task = Task.new(
@@ -105,7 +107,5 @@ end
     task.save!
 
   end
-
-
 
 puts 'Seeding finished!'

@@ -2,8 +2,21 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title><%= content_for?(:title) ? yield(:title) : "Handy Harry" %></title>
+
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+
+    <!-- Facebook optimization -->
+    <title><%= meta_title %></title>
+    <meta name="description" content="<%= meta_description %>">
+    <meta property="fb:app_id" content="1234567890" />
+
+    <meta property="og:title" content="<%= meta_title %>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:image" content="<%= meta_image %>" />
+    <meta property="og:description" content="<%= meta_description %>" />
+    <meta property="og:site_name" content="<%= meta_title %>" />
+
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
@@ -15,15 +28,16 @@
 <!-- jquery auto complete  -->
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 <!-- jquery auto complete  -->
-    <% if current_page?(root_path) %>
-      <%= render 'shared/navbar', background: "transparent", shadow: "none" %>
-    <% else %>
-      <%= render 'shared/navbar', background: "#83DACE", shadow: "0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03)" %>
-    <% end %>
+  <% if current_page?(home_path) %>
+    <%= render 'shared/navbar', background: "transparent", shadow: "none" %>
+  <% else %>
+    <%= render 'shared/navbar', background: "#83DACE", shadow: "0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03)" %>
+  <% end %>
 
   <!-- mobile title -->
+  <% if current_user %>
   <div class="placeholder"></div>
-  <% if current_page?(projects_path) %>
+  <% if current_page?(projects_path) || current_page?(root_path) %>
     <h2 id="head-title" class="fixed-objects">Projects</h2>
   <% elsif current_page?(chat_rooms_path) %>
     <h2 id="head-title" class="fixed-objects">Chats</h2>
@@ -34,9 +48,11 @@
   <% end %>
 
   <!-- search bar in chats and projects -->
-    <% if current_page?(projects_path) || current_page?(chat_rooms_path) %>
+    <% if current_page?(projects_path) || current_page?(chat_rooms_path) || current_page?(root_path) %>
       <%= render 'shared/search_bar'%>
     <% end %>
+  <% end %>
+
 
     <div class="main">
       <%= yield %>

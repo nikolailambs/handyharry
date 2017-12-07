@@ -6,7 +6,7 @@
   border: 1px solid #ececec;
   border-top: none;
   border-bottom-width: 0;
-  max-height: calc(100vh - 70px - 45px - 61px - 30px);
+  max-height: calc(100vh - 170px);;
   overflow: scroll;
 
   p {
@@ -17,6 +17,19 @@
     margin: 5px;
   }
 }
+
+.dropup-auto {
+  top: inherit !important;
+  overflow: scroll !important;
+  bottom: 113px !important;
+}
+
+.message-show-fav {
+  margin: 2px !important;
+}
+
+/*keyboard for testing*/
+.keyboard {position:fixed;bottom:0;left:0;right:0;height:50%;background:grey;opacity:0.5;display:none;}
 
 /*project @ link*/
 .open {
@@ -63,15 +76,21 @@
 
 #create-message {
   padding: 10px;
-  background-color: #ffffff;
+  background-color: #fbfbfb;
   margin-bottom: 0px;
   border: 1px solid #ececec;
   position: fixed;
   bottom: 60px;
   width: 100%;
+  /*position: absolute;
+  bottom: -96px;
+  width: 100%;*/
 }
 .message_content {
   margin-bottom: 0;
+}
+#message_content {
+  border-radius: 50px;
 }
 input.form-control {
   border: 1px solid #ECECEC;

@@ -9,25 +9,37 @@ function scrollLastMessageIntoView() {
 }
 
 
-
 // messager scroll with keyboard
-var $htmlOrBody = $('html, body'), // scrolling happens on body for some browsers, html for others
-    scrollTopPadding = 8,
-    scrollTopLast = 0;
-$('#message_content').focus(function() {
-  // console.log("yes")
-  var textareaTop = $(this).offset().top;
-    // save the current scroll position for blur event
-    // console.log($(window).scrollTop());
-    scrollTopLast = $(window).scrollTop();
-    // scroll to the textarea
-    var timing = 250;
-    $htmlOrBody.animate({ scrollTop: textareaTop - scrollTopPadding }, timing);
-}).blur(function() {
-    // scroll back to position before textarea focus
-    // console.log("no")
-    $htmlOrBody.scrollTop(scrollTopLast);
-});
+// var $htmlOrBody = $('html, body'), // scrolling happens on body for some browsers, html for others
+//    scrollTopPadding = 8,
+//    scrollTopLast = 0;
+//    $pretendKBD = $('.keyboard'),
+// console.log($('#message_content').offset().top)
+// console.log($(window).scrollTop())
+// $('#message_content').focus(function() {
+
+//   // var textareaTop = $(this).offset().top;
+//   // console.log(textareaTop)
+//   // save the current scroll position for blur event
+//   scrollTopLast = $(window).scrollTop();
+//   console.log(scrollTopLast)
+//   // scroll to the textarea
+//   var timing = 250;
+//    $htmlOrBody.scrollTop($(this).offset().top - scrollTopPadding);
+//   // show fake keyboard
+//   $pretendKBD.show();
+// }).blur(function() {
+//   // scroll back to position before textarea focus
+//   // console.log("no")
+//   $htmlOrBody.scrollTop(scrollTopLast);
+
+//   $pretendKBD.hide();
+// });
+
+
+// $('#message_content').on('focus', function() {
+//   document.body.scrollTop = $(this).offset().top;
+// });
 
 
 // scroll animation on index
