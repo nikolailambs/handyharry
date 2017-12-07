@@ -6,11 +6,9 @@
     <% @chat_rooms.each do |chat_room| %>
     <% if chat_room.messages.any? %>
     <div class="inbox <%= chat_room.messages.last.user.has_read_message ? "read-message-background" : "unread-message-background" %> " id="chat-<%="#{chat_room.id}"%>">
-      <% if current_user.handy %>
-      <%= image_tag 'client.png', class:"avatar inbox-avatar-size" %>
-      <% else %>
-      <%= image_tag 'handy.png', class:"avatar inbox-avatar-size" %>
-      <% end %>
+
+      <%= image_tag current_user.check_avatar, class:"avatar inbox-avatar-size" %>
+
       <div class="inbox-body">
         <h3>
           <%= current_user.handy ? chat_room.name[:client].build_user_name : chat_room.name[:handy].build_user_name %>
@@ -36,11 +34,7 @@
 
   <% else %>
   <div class="inbox unread-message-background">
-    <% if current_user.handy %>
-      <%= image_tag 'client.png', class:"avatar inbox-avatar-size" %>
-    <% else %>
-      <%= image_tag 'handy.png', class:"avatar inbox-avatar-size" %>
-    <% end %>
+    <%= image_tag current_user.check_avatar, class:"avatar inbox-avatar-size" %>
     <div class="inbox-body">
       <h3>
         <%= current_user.handy ? chat_room.name[:client].build_user_name : chat_room.name[:handy].build_user_name %>
