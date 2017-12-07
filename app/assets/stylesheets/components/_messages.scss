@@ -2,7 +2,7 @@
   font-size: 14px;
   color: #868686;
   background-color: #ffffff;
-  padding: 20px;
+  padding: 20px 10px 20px 20px;
   border: 1px solid #ececec;
   border-top: none;
   border-bottom-width: 0;
@@ -26,6 +26,7 @@
 
 .message-show-fav {
   margin: 2px !important;
+  padding-bottom: 32px;
 }
 
 /*keyboard for testing*/
@@ -76,9 +77,8 @@
 
 #create-message {
   padding: 10px;
-  background-color: #fbfbfb;
+  background-color: #505153;
   margin-bottom: 0px;
-  border: 1px solid #ececec;
   position: fixed;
   bottom: 60px;
   width: 100%;
@@ -91,7 +91,14 @@
 }
 #message_content {
   border-radius: 50px;
+  background: white;
+  color: #505153;
 }
+
+#message_content:focus {
+  border: none;
+}
+
 input.form-control {
   border: 0;
   border-bottom: 3px solid white;
@@ -112,26 +119,37 @@ input.form-control {
   }
 }
 
-.chat-header {
-  background-color: #565554;
+.chat-head {
+  background-color: #505153;
   color: white;
-  padding: 10px 20px;
   margin: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 50px;
 
-  h4 {
-    margin: 0;
+  h2 {
+    margin: 10px 0 0 !important;
+  }
+
+  a {
+    padding: 25px 10px 0px;
+    color: white;
+    font-size: 27px;
+    background-color: #505153;
   }
 
   .chat-avatar {
+    margin-right: 0.8em;
   }
 
   .to-inbox-btn {
     text-decoration: none;
     color: white;
+  }
+
+  #head-title {
+    padding: 12.5px 15px 0;
   }
 }
 

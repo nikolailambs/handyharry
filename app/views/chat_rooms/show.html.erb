@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-6 col-sm-offset-3 chat-body">
-      <div class="chat-header">
+      <div class="chat-head">
        <%= link_to chat_rooms_path(chat_room: @chat_room, anchor: "chat-#{@chat_room.id}") do %>
         <i class="fa fa-chevron-left message-show-fav" aria-hidden="true"></i>
       <% end %>
@@ -10,9 +10,9 @@
           <%= current_user.handy ? @chat_room.name[:client].build_user_name : @chat_room.name[:handy].build_user_name %>
         </h4>
         <% if current_user.handy %>
-          <%= image_tag @chat_room.client.check_avatar, class:"avatar" %>
+          <%= image_tag @chat_room.client.check_avatar, class:"avatar chat-avatar" %>
         <% else %>
-          <%= image_tag @chat_room.handy.check_avatar, class:"avatar" %>
+          <%= image_tag @chat_room.handy.check_avatar, class:"avatar chat-avatar" %>
         <% end %>
       </div>
       <div class="messages">
