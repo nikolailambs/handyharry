@@ -32,6 +32,7 @@ addresses_array = [["Herbert-Lewin-Platz 1", "Berlin"], ["Wörther Straße 26", 
     sink: {location: ["Kitchen"], photo_urls: ["app/assets/images/kitchen_sink.jpg"]},
     dishwasher: {location: ["Kitchen"], photo_urls: ["app/assets/images/dishwasher.jpg"]}
   }
+  # dummy
 
   random = rand(0..2)
   project_array = []
