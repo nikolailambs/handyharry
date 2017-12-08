@@ -1,5 +1,5 @@
 meta_product_name: "Handy Harry"
 meta_title: "HandyHarry - Facilitating handy harry's life"
 meta_description: "Having problems keeping track of your tasks and schedules?"
-meta_image: "handyharry_logo.png"                       # should exist in `app/assets/images/`
+meta_image: "HANDY_HARRY_LOGO-FB.png"                       # should exist in `app/assets/images/`
 twitter_account: "@product_twitter_account"   # required for Twitter Cards
